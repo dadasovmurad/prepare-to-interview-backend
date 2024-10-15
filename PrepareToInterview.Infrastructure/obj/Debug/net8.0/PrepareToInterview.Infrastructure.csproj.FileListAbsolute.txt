@@ -1,0 +1,17 @@
+C:\Users\Murad Dadashov\source\repos\PrepareToInterview\PrepareToInterview.Infrastructure\obj\Debug\net8.0\PrepareToInterview.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\Murad Dadashov\source\repos\PrepareToInterview\PrepareToInterview.Infrastructure\obj\Debug\net8.0\PrepareToInterview.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Murad Dadashov\source\repos\PrepareToInterview\PrepareToInterview.Infrastructure\obj\Debug\net8.0\PrepareToInterview.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\Murad Dadashov\source\repos\PrepareToInterview\PrepareToInterview.Infrastructure\obj\Debug\net8.0\PrepareToInterview.Infrastructure.AssemblyInfo.cs
+C:\Users\Murad Dadashov\source\repos\PrepareToInterview\PrepareToInterview.Infrastructure\obj\Debug\net8.0\PrepareToInterview.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\Murad Dadashov\source\repos\PrepareToInterview\PrepareToInterview.Infrastructure\bin\Debug\net8.0\PrepareToInterview.Infrastructure.deps.json
+C:\Users\Murad Dadashov\source\repos\PrepareToInterview\PrepareToInterview.Infrastructure\bin\Debug\net8.0\PrepareToInterview.Infrastructure.dll
+C:\Users\Murad Dadashov\source\repos\PrepareToInterview\PrepareToInterview.Infrastructure\bin\Debug\net8.0\PrepareToInterview.Infrastructure.pdb
+C:\Users\Murad Dadashov\source\repos\PrepareToInterview\PrepareToInterview.Infrastructure\bin\Debug\net8.0\PrepareToInterview.Application.dll
+C:\Users\Murad Dadashov\source\repos\PrepareToInterview\PrepareToInterview.Infrastructure\bin\Debug\net8.0\PrepareToInterview.Domain.dll
+C:\Users\Murad Dadashov\source\repos\PrepareToInterview\PrepareToInterview.Infrastructure\bin\Debug\net8.0\PrepareToInterview.Application.pdb
+C:\Users\Murad Dadashov\source\repos\PrepareToInterview\PrepareToInterview.Infrastructure\bin\Debug\net8.0\PrepareToInterview.Domain.pdb
+C:\Users\Murad Dadashov\source\repos\PrepareToInterview\PrepareToInterview.Infrastructure\obj\Debug\net8.0\PrepareT.995D0536.Up2Date
+C:\Users\Murad Dadashov\source\repos\PrepareToInterview\PrepareToInterview.Infrastructure\obj\Debug\net8.0\PrepareToInterview.Infrastructure.dll
+C:\Users\Murad Dadashov\source\repos\PrepareToInterview\PrepareToInterview.Infrastructure\obj\Debug\net8.0\refint\PrepareToInterview.Infrastructure.dll
+C:\Users\Murad Dadashov\source\repos\PrepareToInterview\PrepareToInterview.Infrastructure\obj\Debug\net8.0\PrepareToInterview.Infrastructure.pdb
+C:\Users\Murad Dadashov\source\repos\PrepareToInterview\PrepareToInterview.Infrastructure\obj\Debug\net8.0\ref\PrepareToInterview.Infrastructure.dll
