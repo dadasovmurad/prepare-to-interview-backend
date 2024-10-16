@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PrepareToInterview.Domain.Entities.Common
 {
-    public class BaseEntities
+    public class BaseEntity
     {
         public Guid Id { get; set; }
         public DateTime CreatedDate => DateTime.Now;

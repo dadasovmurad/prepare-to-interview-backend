@@ -15,3 +15,4 @@ C:\Users\Murad Dadashov\source\repos\PrepareToInterview\PrepareToInterview.Infra
 C:\Users\Murad Dadashov\source\repos\PrepareToInterview\PrepareToInterview.Infrastructure\obj\Debug\net8.0\refint\PrepareToInterview.Infrastructure.dll
 C:\Users\Murad Dadashov\source\repos\PrepareToInterview\PrepareToInterview.Infrastructure\obj\Debug\net8.0\PrepareToInterview.Infrastructure.pdb
 C:\Users\Murad Dadashov\source\repos\PrepareToInterview\PrepareToInterview.Infrastructure\obj\Debug\net8.0\ref\PrepareToInterview.Infrastructure.dll
+C:\Users\Murad Dadashov\source\repos\PrepareToInterview\PrepareToInterview.Infrastructure\obj\Debug\net8.0\PrepareToInterview.Infrastructure.sourcelink.json

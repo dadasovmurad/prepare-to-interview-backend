@@ -17,3 +17,4 @@ C:\Users\Murad Dadashov\source\repos\PrepareToInterview\PrepareToInterview.Persi
 C:\Users\Murad Dadashov\source\repos\PrepareToInterview\PrepareToInterview.Persistence\obj\Debug\net8.0\PrepareToInterview.Persistence.pdb
 C:\Users\Murad Dadashov\source\repos\PrepareToInterview\PrepareToInterview.Persistence\obj\Debug\net8.0\PrepareToInterview.Persistence.genruntimeconfig.cache
 C:\Users\Murad Dadashov\source\repos\PrepareToInterview\PrepareToInterview.Persistence\obj\Debug\net8.0\ref\PrepareToInterview.Persistence.dll
+C:\Users\Murad Dadashov\source\repos\PrepareToInterview\PrepareToInterview.Persistence\obj\Debug\net8.0\PrepareToInterview.Persistence.sourcelink.json

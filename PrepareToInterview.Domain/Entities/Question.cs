@@ -8,7 +8,7 @@ using System.Xml.Linq;
 
 namespace PrepareToInterview.Domain.Entities
 {
-    public class Question : BaseEntities
+    public class Question : BaseEntity
     {
         public string Content { get; set; } // Question text
         public string Category { get; set; } // Question category (Technical, HR, etc.)

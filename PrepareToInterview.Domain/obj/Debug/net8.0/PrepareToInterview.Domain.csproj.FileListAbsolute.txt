@@ -10,3 +10,4 @@ C:\Users\Murad Dadashov\source\repos\PrepareToInterview\PrepareToInterview.Domai
 C:\Users\Murad Dadashov\source\repos\PrepareToInterview\PrepareToInterview.Domain\obj\Debug\net8.0\refint\PrepareToInterview.Domain.dll
 C:\Users\Murad Dadashov\source\repos\PrepareToInterview\PrepareToInterview.Domain\obj\Debug\net8.0\PrepareToInterview.Domain.pdb
 C:\Users\Murad Dadashov\source\repos\PrepareToInterview\PrepareToInterview.Domain\obj\Debug\net8.0\ref\PrepareToInterview.Domain.dll
+C:\Users\Murad Dadashov\source\repos\PrepareToInterview\PrepareToInterview.Domain\obj\Debug\net8.0\PrepareToInterview.Domain.sourcelink.json

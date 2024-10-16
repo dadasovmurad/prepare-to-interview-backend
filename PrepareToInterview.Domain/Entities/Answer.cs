@@ -3,7 +3,7 @@ using PrepareToInterview.Domain.Entities.Common;
 
 namespace PrepareToInterview.Domain.Entities
 {
-    public class Answer : BaseEntities
+    public class Answer : BaseEntity
     {
         public string Content { get; set; } // Answer text
         // Foreign Key

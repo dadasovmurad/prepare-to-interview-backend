@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using PrepareToInterview.Application.Repositories;
 using PrepareToInterview.Persistence.Contexts;
+using PrepareToInterview.Persistence.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +18,15 @@ namespace PrepareToInterview.Persistence
         {
             string conStr = Configuration.ConnectionString;
             services.AddDbContext<PrepareToInterviewAPIDbContext>(options => options.UseNpgsql(Configuration.ConnectionString));
+
+            services.AddScoped<IQuestionReadRepository,QuestionReadRepository>();
+            services.AddScoped<IQuestionWriteRepository,QuestionWriteRepository>();
+
+            services.AddScoped<IAnswerReadRepository, AnswerReadRepository>();
+            services.AddScoped<IAnswerWriteRepository, AnswerWriteRepository>();
+
+            services.AddScoped<ICommentReadRepository, CommentReadRepository>();
+            services.AddScoped<ICommentWriteRepository, CommentWriteRepository>();
         }
     }
 }
