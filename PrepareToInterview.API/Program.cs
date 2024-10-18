@@ -1,3 +1,7 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Identity;
+using PrepareToInterview.Application.Validators;
 using PrepareToInterview.Persistence;
 
 namespace PrepareToInterview.API
@@ -9,9 +13,14 @@ namespace PrepareToInterview.API
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            var services = builder.Services;
 
-            builder.Services.AddControllers();
-            builder.Services.AddPersistenceServices();
+            services.AddControllers();
+
+            services.AddPersistenceServices();
+            services.AddControllersWithViews();
+            services.AddValidatorsFromAssemblyContaining<CreateQuestionValidator>();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

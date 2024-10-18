@@ -7,11 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PrepareToInterview.Domain\PrepareToInterview.Domain.csproj" />
+    <PackageReference Include="FluentValidation" Version="11.10.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Abstractions\" />
+    <ProjectReference Include="..\PrepareToInterview.Domain\PrepareToInterview.Domain.csproj" />
   </ItemGroup>
 
 </Project>

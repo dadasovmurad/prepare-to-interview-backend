@@ -14,7 +14,7 @@ namespace PrepareToInterview.Domain.Entities
         public string Category { get; set; } // Question category (Technical, HR, etc.)
         // Foreign Key
         //public string UserId { get; set; }
-        public Answer Answer { get; set; } // The answer to this question
+        public ICollection<Answer> Answer { get; set; } // The answer to this question
         public ICollection<Comment> Comments { get; set; } // Related comments
     }
 }

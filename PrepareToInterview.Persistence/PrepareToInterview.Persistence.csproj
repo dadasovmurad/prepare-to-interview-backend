@@ -27,8 +27,4 @@
     <ProjectReference Include="..\PrepareToInterview.Application\PrepareToInterview.Application.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
-
 </Project>

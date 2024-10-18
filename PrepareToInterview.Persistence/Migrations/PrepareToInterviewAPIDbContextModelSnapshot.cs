@@ -37,8 +37,7 @@ namespace PrepareToInterview.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("QuestionId")
-                        .IsUnique();
+                    b.HasIndex("QuestionId");
 
                     b.ToTable("Answer");
                 });
@@ -85,8 +84,8 @@ namespace PrepareToInterview.Persistence.Migrations
             modelBuilder.Entity("PrepareToInterview.Domain.Entities.Answer", b =>
                 {
                     b.HasOne("PrepareToInterview.Domain.Entities.Question", "Question")
-                        .WithOne("Answer")
-                        .HasForeignKey("PrepareToInterview.Domain.Entities.Answer", "QuestionId")
+                        .WithMany("Answer")
+                        .HasForeignKey("QuestionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -106,8 +105,7 @@ namespace PrepareToInterview.Persistence.Migrations
 
             modelBuilder.Entity("PrepareToInterview.Domain.Entities.Question", b =>
                 {
-                    b.Navigation("Answer")
-                        .IsRequired();
+                    b.Navigation("Answer");
 
                     b.Navigation("Comments");
                 });

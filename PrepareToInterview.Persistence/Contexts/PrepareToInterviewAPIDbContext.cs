@@ -25,15 +25,15 @@ namespace PrepareToInterview.Persistence.Contexts
            //.WithMany(u => u.Questions)
            //.HasForeignKey(q => q.UserId);
 
-            modelBuilder.Entity<Question>()
-                .HasOne(q => q.Answer)
-                .WithOne(a => a.Question)
-                .HasForeignKey<Answer>(a => a.QuestionId);
+            //modelBuilder.Entity<Question>()
+            //    .HasMany(q => q.Answer)
+            //    .WithOne(a => a.Question)
+            //    .HasForeignKey(a => a.QuestionId);
 
-            //modelBuilder.Entity<Answer>()
-            //    .HasOne(a => a.User)
-            //    .WithMany()
-            //    .HasForeignKey(a => a.UserId);
+            modelBuilder.Entity<Answer>()
+                .HasOne(c => c.Question)
+                .WithMany(q => q.Answer)
+                .HasForeignKey(c => c.QuestionId);
 
             modelBuilder.Entity<Comment>()
                 .HasOne(c => c.Question)
