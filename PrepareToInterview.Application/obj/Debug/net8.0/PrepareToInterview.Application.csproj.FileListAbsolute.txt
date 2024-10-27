@@ -3,6 +3,7 @@ C:\Users\Murad Dadashov\source\repos\PrepareToInterview\PrepareToInterview.Appli
 C:\Users\Murad Dadashov\source\repos\PrepareToInterview\PrepareToInterview.Application\obj\Debug\net8.0\PrepareToInterview.Application.AssemblyInfoInputs.cache
 C:\Users\Murad Dadashov\source\repos\PrepareToInterview\PrepareToInterview.Application\obj\Debug\net8.0\PrepareToInterview.Application.AssemblyInfo.cs
 C:\Users\Murad Dadashov\source\repos\PrepareToInterview\PrepareToInterview.Application\obj\Debug\net8.0\PrepareToInterview.Application.csproj.CoreCompileInputs.cache
+C:\Users\Murad Dadashov\source\repos\PrepareToInterview\PrepareToInterview.Application\obj\Debug\net8.0\PrepareToInterview.Application.sourcelink.json
 C:\Users\Murad Dadashov\source\repos\PrepareToInterview\PrepareToInterview.Application\bin\Debug\net8.0\PrepareToInterview.Application.deps.json
 C:\Users\Murad Dadashov\source\repos\PrepareToInterview\PrepareToInterview.Application\bin\Debug\net8.0\PrepareToInterview.Application.dll
 C:\Users\Murad Dadashov\source\repos\PrepareToInterview\PrepareToInterview.Application\bin\Debug\net8.0\PrepareToInterview.Application.pdb
@@ -13,4 +14,3 @@ C:\Users\Murad Dadashov\source\repos\PrepareToInterview\PrepareToInterview.Appli
 C:\Users\Murad Dadashov\source\repos\PrepareToInterview\PrepareToInterview.Application\obj\Debug\net8.0\refint\PrepareToInterview.Application.dll
 C:\Users\Murad Dadashov\source\repos\PrepareToInterview\PrepareToInterview.Application\obj\Debug\net8.0\PrepareToInterview.Application.pdb
 C:\Users\Murad Dadashov\source\repos\PrepareToInterview\PrepareToInterview.Application\obj\Debug\net8.0\ref\PrepareToInterview.Application.dll
-C:\Users\Murad Dadashov\source\repos\PrepareToInterview\PrepareToInterview.Application\obj\Debug\net8.0\PrepareToInterview.Application.sourcelink.json

@@ -1,6 +1,7 @@
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Identity;
+using PrepareToInterview.Application;
 using PrepareToInterview.Application.Validators;
 using PrepareToInterview.Persistence;
 
@@ -18,6 +19,7 @@ namespace PrepareToInterview.API
             services.AddControllers();
 
             services.AddPersistenceServices();
+            services.AddApplicationServices();
             services.AddControllersWithViews();
             services.AddValidatorsFromAssemblyContaining<CreateQuestionValidator>();
 

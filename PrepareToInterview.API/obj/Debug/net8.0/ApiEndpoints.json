@@ -1,12 +1,81 @@
 [
   {
     "ContainingType": "PrepareToInterview.API.Controllers.QuestionsController",
-    "Method": "GetQuestions",
+    "Method": "CreateQuestion",
+    "RelativePath": "api/Questions",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "createQuestionCommandRequest",
+        "Type": "PrepareToInterview.Application.Features.Commands.Question.CreateQuestion.CreateQuestionCommandRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PrepareToInterview.API.Controllers.QuestionsController",
+    "Method": "GetAllQuestions",
     "RelativePath": "api/Questions",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PrepareToInterview.API.Controllers.QuestionsController",
+    "Method": "UpdateQuestion",
+    "RelativePath": "api/Questions",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "updateQuestionCommandRequest",
+        "Type": "PrepareToInterview.Application.Features.Commands.Question.UpdateQuestion.UpdateQuestionCommandRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PrepareToInterview.API.Controllers.QuestionsController",
+    "Method": "GetQuestionById",
+    "RelativePath": "api/Questions/{Id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PrepareToInterview.API.Controllers.QuestionsController",
+    "Method": "RemoveQuestion",
+    "RelativePath": "api/Questions/{Id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "removeQuestionCommandRequest",
+        "Type": "PrepareToInterview.Application.Features.Commands.Question.RemoveQuestion.RemoveQuestionCommandRequest",
+        "IsRequired": true
+      },
+      {
+        "Name": "Id",
+        "Type": "",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   }
 ]

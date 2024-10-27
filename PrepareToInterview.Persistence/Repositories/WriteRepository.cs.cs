@@ -47,6 +47,6 @@ namespace PrepareToInterview.Persistence.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public void Update(T model) => Table.Update(model);
+        public T Update(T model) => Table.Update(model).Entity;
     }
 }

@@ -23,6 +23,13 @@ namespace PrepareToInterview.Persistence.Repositories
 
         public DbSet<T> Table => _context.Set<T>();
 
+        public T Get(Expression<Func<T, bool>> predicate, bool tracking = true)
+        {
+            var query = Table.AsQueryable();
+            if (!tracking) query = query.AsNoTracking();
+            return query.FirstOrDefault(predicate);
+        }
+
         public IQueryable<T> GetAll(Expression<Func<T, bool>>? predicate = null, bool tracking = true)
         {
             var query = Table.AsQueryable();

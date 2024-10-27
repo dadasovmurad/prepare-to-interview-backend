@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Razor.Internal;
-using PrepareToInterview.Application.Abstractions.Services;
-using PrepareToInterview.Application.Repositories;
-using PrepareToInterview.Domain.DTOs;
-using PrepareToInterview.Domain.Entities;
+using PrepareToInterview.Application.Features.Commands.Question.CreateQuestion;
+using PrepareToInterview.Application.Features.Commands.Question.RemoveQuestion;
+using PrepareToInterview.Application.Features.Commands.Question.UpdateQuestion;
+using PrepareToInterview.Application.Features.Queries.Question.GetAllQuestion;
+using PrepareToInterview.Application.Features.Queries.Question.GetByIdQuestion;
 
 namespace PrepareToInterview.API.Controllers
 {
@@ -12,58 +12,41 @@ namespace PrepareToInterview.API.Controllers
     [ApiController]
     public class QuestionsController : ControllerBase
     {
-        private readonly IQuestionService _questionService;
+        private readonly IMediator _mediator;
 
-        public QuestionsController(IQuestionService questionService)
+        public QuestionsController(IMediator mediator)
         {
-            _questionService = questionService;
+            _mediator = mediator;
+        }
+        [HttpPost]
+        public async Task<IActionResult> CreateQuestion([FromBody]CreateQuestionCommandRequest createQuestionCommandRequest)
+        {
+            var response = await _mediator.Send(createQuestionCommandRequest);
+            return StatusCode(StatusCodes.Status201Created, response);
         }
         [HttpGet]
-        public async Task<IActionResult> GetQuestions()
+        public async Task<IActionResult> GetAllQuestions()
         {
-            var datas = await _questionService.GetAllAsync();
-            return Ok(datas);
+            var response = await _mediator.Send(new GetAllQuestionQueryRequest());
+            return Ok(response);
         }
-
-        // POST api/questions
-        //[HttpPost]
-        //public async Task<IActionResult> CreateQuestion(string data)
-        //{
-        //    // Your logic to add a new question
-        //    Question createdQuestion = new Question()
-        //    {
-        //        //Category = "Technical",
-        //        //Content = "What is Dependency Injection in C#?",
-        //        //Answer = new Answer() { Content = "Dependency Injection is a design pattern used to implement IoC, where the control of object creation is transferred from the class to the container." },
-        //        //Comments = new List<Comment>() { new Comment() { Content = "Great explanation, thanks!" }, new Comment() { Content = "Could you provide an example?" } }
-        //    };
-        //    await _questionWriteRepository.AddAsync(createdQuestion);
-        //    await _questionWriteRepository.SaveAsync();
-        //    return StatusCode(201);
-        //}
-
-        // GET api/questions/{id}
-        //[HttpGet("{id}")]
-        //public async Task<IActionResult> GetQuestionById(string id)
-        //{
-        //    // Your logic to get a question by id
-        //    return Ok(await _questionReadRepository.GetByIdAsync(id));
-        //}
-
-        //// PUT api/questions/{id}
-        //[HttpPut("{id}")]
-        //public IActionResult UpdateQuestion(int id, [FromBody] QuestionModel question)
-        //{
-        //    // Your logic to update a question
-        //    return NoContent();
-        //}
-
-        //// DELETE api/questions/{id}
-        //[HttpDelete("{id}")]
-        //public IActionResult DeleteQuestion(int id)
-        //{
-        //    // Your logic to delete a question
-        //    return NoContent();
-        //}
+        [HttpGet("{Id}")]
+        public async Task<IActionResult> GetQuestionById([FromRoute] GetByIdQuestionQueryRequest getByIdQuestionQueryRequest)
+        {
+            var response = await _mediator.Send(getByIdQuestionQueryRequest);
+            return Ok(response);
+        }
+        [HttpPut]
+        public async Task<ActionResult> UpdateQuestion(UpdateQuestionCommandRequest updateQuestionCommandRequest)
+        {
+            var response = await _mediator.Send(updateQuestionCommandRequest);
+            return Ok(response);
+        }
+        [HttpDelete("{Id}")]
+        public async Task<ActionResult> RemoveQuestion([FromRoute] RemoveQuestionCommandRequest removeQuestionCommandRequest)
+        {
+            var response = await _mediator.Send(removeQuestionCommandRequest);
+            return Ok(response);
+        }
     }
 }

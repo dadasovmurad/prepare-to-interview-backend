@@ -7,5 +7,9 @@ using System.Threading.Tasks;
 
 namespace PrepareToInterview.Domain.DTOs.Answer
 {
-    public record AnswerListDto (Guid Id,string Content);
+    public class AnswerListDto 
+    {
+        public Guid Id { get; set; }
+        public string Content { get; set; }
+    }
 }

@@ -14,7 +14,7 @@ namespace PrepareToInterview.Application.Repositories
         void RemoveRange(List<T> datas);
         void Remove(T model);
         Task RemoveAsync(string id);
-        void Update(T model);
+        T Update(T model);
         Task SaveAsync();
     }
 }
