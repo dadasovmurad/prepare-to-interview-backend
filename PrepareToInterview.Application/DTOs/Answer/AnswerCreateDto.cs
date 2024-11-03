@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PrepareToInterview.Application.DTOs.Question
+namespace PrepareToInterview.Application.DTOs.Answer
 {
-    public class QuestionByIdDto
+    public class AnswerCreateDto
     {
-
+        public string Content { get; set; }
     }
 }

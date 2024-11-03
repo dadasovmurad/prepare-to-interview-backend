@@ -1,10 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using PrepareToInterview.Application.Abstractions.Services;
 using PrepareToInterview.Application.Repositories;
 using PrepareToInterview.Persistence.Contexts;
 using PrepareToInterview.Persistence.Repositories;
-using PrepareToInterview.Persistence.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,8 +27,6 @@ namespace PrepareToInterview.Persistence
 
             services.AddScoped<ICommentReadRepository, CommentReadRepository>();
             services.AddScoped<ICommentWriteRepository, CommentWriteRepository>();
-
-            services.AddScoped<IQuestionService, QuestionService>();
         }
     }
 }

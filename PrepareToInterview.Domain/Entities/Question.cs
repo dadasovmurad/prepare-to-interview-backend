@@ -13,6 +13,7 @@ namespace PrepareToInterview.Domain.Entities
         public string Content { get; set; } // Question text
         public string Category { get; set; } // Question category (Technical, HR, etc.)
         public string SuitableFor { get; set; }
+
         // Foreign Key
         //public string UserId { get; set; }
         public ICollection<Answer> Answer { get; set; } // The answer to this question

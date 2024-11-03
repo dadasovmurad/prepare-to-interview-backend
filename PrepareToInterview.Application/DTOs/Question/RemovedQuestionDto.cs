@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PrepareToInterview.Domain.DTOs.Comment
+namespace PrepareToInterview.Application.DTOs.Question
 {
-    public class CommentListDto(Guid Id,string Content);
+    public class RemovedQuestionDto
+    {
+    }
 }

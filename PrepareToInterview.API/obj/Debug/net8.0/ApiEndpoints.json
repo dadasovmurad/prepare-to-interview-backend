@@ -9,7 +9,7 @@
     "Parameters": [
       {
         "Name": "createQuestionCommandRequest",
-        "Type": "PrepareToInterview.Application.Features.Commands.Question.CreateQuestion.CreateQuestionCommandRequest",
+        "Type": "PrepareToInterview.Application.Features.Commands.Question.CreateQuestion.CreateQuestionCommand",
         "IsRequired": true
       }
     ],
@@ -35,7 +35,7 @@
     "Parameters": [
       {
         "Name": "updateQuestionCommandRequest",
-        "Type": "PrepareToInterview.Application.Features.Commands.Question.UpdateQuestion.UpdateQuestionCommandRequest",
+        "Type": "PrepareToInterview.Application.Features.Commands.Question.UpdateQuestion.UpdateQuestionCommand",
         "IsRequired": true
       }
     ],
@@ -66,13 +66,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "removeQuestionCommandRequest",
-        "Type": "PrepareToInterview.Application.Features.Commands.Question.RemoveQuestion.RemoveQuestionCommandRequest",
-        "IsRequired": true
-      },
-      {
         "Name": "Id",
-        "Type": "",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],

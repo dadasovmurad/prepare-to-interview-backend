@@ -7,6 +7,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Features\Commands\Question\CreateQuestion\CreateQuestionCommandHandler.cs" />
+    <Compile Remove="Features\Commands\Question\CreateQuestion\CreateQuestionCommandRequest.cs" />
+    <Compile Remove="Features\Commands\Question\CreateQuestion\CreateQuestionCommandResponse.cs" />
+    <Compile Remove="Features\Commands\Question\RemoveQuestion\RemoveQuestionCommandHandler.cs" />
+    <Compile Remove="Features\Commands\Question\RemoveQuestion\RemoveQuestionCommandRequest.cs" />
+    <Compile Remove="Features\Commands\Question\RemoveQuestion\RemoveQuestionCommandResponse.cs" />
+    <Compile Remove="Features\Commands\Question\UpdateQuestion\UpdateQuestionCommandHandler.cs" />
+    <Compile Remove="Features\Commands\Question\UpdateQuestion\UpdateQuestionCommandRequest.cs" />
+    <Compile Remove="Features\Commands\Question\UpdateQuestion\UpdateQuestionCommandResponse.cs" />
+    <Compile Remove="Features\Queries\Question\GetAllQuestion\GetAllQuestionQueryHandler.cs" />
+    <Compile Remove="Features\Queries\Question\GetAllQuestion\GetAllQuestionQueryRequest.cs" />
+    <Compile Remove="Features\Queries\Question\GetAllQuestion\GetAllQuestionQueryResponse.cs" />
+    <Compile Remove="Features\Queries\Question\GetByIdQuestion\GetByIdQuestionQueryHandler.cs" />
+    <Compile Remove="Features\Queries\Question\GetByIdQuestion\GetByIdQuestionQueryRequest.cs" />
+    <Compile Remove="Features\Queries\Question\GetByIdQuestion\GetByIdQuestionQueryResponse.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="FluentValidation" Version="11.10.0" />
     <PackageReference Include="MediatR" Version="12.4.1" />
   </ItemGroup>

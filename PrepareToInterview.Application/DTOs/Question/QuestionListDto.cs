@@ -1,7 +1,4 @@
 ﻿using PrepareToInterview.Application.DTOs.Answer;
-using PrepareToInterview.Application.DTOs.Comment;
-using PrepareToInterview.Domain.DTOs.Answer;
-using PrepareToInterview.Domain.DTOs.Comment;
 using System;
 using System.Collections.Generic;
 using System.Linq;

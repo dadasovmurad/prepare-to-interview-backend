@@ -19,7 +19,7 @@ namespace PrepareToInterview.API.Controllers
             _mediator = mediator;
         }
         [HttpPost]
-        public async Task<IActionResult> CreateQuestion([FromBody]CreateQuestionCommandRequest createQuestionCommandRequest)
+        public async Task<IActionResult> CreateQuestion([FromBody]CreateQuestionCommand createQuestionCommandRequest)
         {
             var response = await _mediator.Send(createQuestionCommandRequest);
             return StatusCode(StatusCodes.Status201Created, response);
@@ -27,23 +27,23 @@ namespace PrepareToInterview.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllQuestions()
         {
-            var response = await _mediator.Send(new GetAllQuestionQueryRequest());
+            var response = await _mediator.Send(new GetAllQuestionQuery());
             return Ok(response);
         }
         [HttpGet("{Id}")]
-        public async Task<IActionResult> GetQuestionById([FromRoute] GetByIdQuestionQueryRequest getByIdQuestionQueryRequest)
+        public async Task<IActionResult> GetQuestionById([FromRoute] GetByIdQuestionQuery getByIdQuestionQueryRequest)
         {
             var response = await _mediator.Send(getByIdQuestionQueryRequest);
             return Ok(response);
         }
         [HttpPut]
-        public async Task<ActionResult> UpdateQuestion(UpdateQuestionCommandRequest updateQuestionCommandRequest)
+        public async Task<ActionResult> UpdateQuestion(UpdateQuestionCommand updateQuestionCommandRequest)
         {
             var response = await _mediator.Send(updateQuestionCommandRequest);
             return Ok(response);
         }
         [HttpDelete("{Id}")]
-        public async Task<ActionResult> RemoveQuestion([FromRoute] RemoveQuestionCommandRequest removeQuestionCommandRequest)
+        public async Task<ActionResult> RemoveQuestion([FromRoute] RemoveQuestionCommand removeQuestionCommandRequest)
         {
             var response = await _mediator.Send(removeQuestionCommandRequest);
             return Ok(response);

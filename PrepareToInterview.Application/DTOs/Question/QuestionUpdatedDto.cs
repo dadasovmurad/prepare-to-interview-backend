@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PrepareToInterview.Application.Abstractions.Services
+namespace PrepareToInterview.Application.DTOs.Question
 {
-    public interface IAnswerService
+    public class QuestionUpdatedDto
     {
     }
 }

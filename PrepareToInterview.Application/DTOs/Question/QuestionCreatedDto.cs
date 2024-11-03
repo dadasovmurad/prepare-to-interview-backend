@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PrepareToInterview.Application.Abstractions.Services
+namespace PrepareToInterview.Application.DTOs.Question
 {
-    public interface ICommentService
+    public class QuestionCreatedDto
     {
-        //public Task<>
     }
 }
