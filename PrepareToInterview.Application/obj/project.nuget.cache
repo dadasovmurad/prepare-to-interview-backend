@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "1qMC8TzM2Ac=",
+  "dgSpecHash": "aAWzGBq+yxY=",
   "success": true,
   "projectFilePath": "C:\\Users\\Murad Dadashov\\source\\repos\\PrepareToInterview\\PrepareToInterview.Application\\PrepareToInterview.Application.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Murad Dadashov\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\Murad Dadashov\\.nuget\\packages\\fluentvalidation\\11.10.0\\fluentvalidation.11.10.0.nupkg.sha512",
     "C:\\Users\\Murad Dadashov\\.nuget\\packages\\mediatr\\12.4.1\\mediatr.12.4.1.nupkg.sha512",
     "C:\\Users\\Murad Dadashov\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",

@@ -32,7 +32,7 @@ namespace PrepareToInterview.Persistence.Contexts
 
             modelBuilder.Entity<Answer>()
                 .HasOne(c => c.Question)
-                .WithMany(q => q.Answer)
+                .WithMany(q => q.Answers)
                 .HasForeignKey(c => c.QuestionId);
 
             modelBuilder.Entity<Comment>()

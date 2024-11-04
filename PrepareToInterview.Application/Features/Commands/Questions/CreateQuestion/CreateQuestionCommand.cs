@@ -1,6 +1,6 @@
-﻿using MediatR;
-using PrepareToInterview.Application.DTOs.Answer;
-using PrepareToInterview.Application.DTOs.Question;
+﻿using AutoMapper;
+using MediatR;
+using PrepareToInterview.Application.DTOs;
 using PrepareToInterview.Application.Repositories;
 using PrepareToInterview.Application.Results;
 using PrepareToInterview.Domain.Entities;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PrepareToInterview.Application.Features.Commands.Question.CreateQuestion
+namespace PrepareToInterview.Application.Features.Commands.Questions.CreateQuestion
 {
     public class CreateQuestionCommand : IRequest<IDataResult<QuestionCreatedDto>>
     {
@@ -21,22 +21,26 @@ namespace PrepareToInterview.Application.Features.Commands.Question.CreateQuesti
 
         public class CreateQuestionCommandHandler : IRequestHandler<CreateQuestionCommand, IDataResult<QuestionCreatedDto>>
         {
-            private IQuestionWriteRepository _questionWriteRepository;
-
-            public CreateQuestionCommandHandler(IQuestionWriteRepository questioNWriteRepository)
+            private readonly IQuestionWriteRepository _questionWriteRepository;
+            private readonly IMapper _mapper;
+            public CreateQuestionCommandHandler(IQuestionWriteRepository questioNWriteRepository, IMapper mapper)
             {
                 _questionWriteRepository = questioNWriteRepository;
+                _mapper = mapper;
             }
 
             public async Task<IDataResult<QuestionCreatedDto>> Handle(CreateQuestionCommand request, CancellationToken cancellationToken)
             {
-                await _questionWriteRepository.AddAsync(new PrepareToInterview.Domain.Entities.Question
-                {
-                    Content = request.Content,
-                    Category = request.Category,
-                    SuitableFor = request.SuitableFor,
-                    Answer = request.Answers.Select(x => new Answer { Content = x.Content }).ToList(),
-                });
+                //await _questionWriteRepository.AddAsync(new PrepareToInterview.Domain.Entities.Question
+                //{
+                //    Content = request.Content,
+                //    Category = request.Category,
+                //    SuitableFor = request.SuitableFor,
+                //    Answer = request.Answers.Select(x => new Answer { Content = x.Content }).ToList(),
+                //});
+
+                await _questionWriteRepository.AddAsync(_mapper.Map<Question>(request));
+
                 await _questionWriteRepository.SaveAsync();
 
                 return new SuccessDataResult<QuestionCreatedDto>();

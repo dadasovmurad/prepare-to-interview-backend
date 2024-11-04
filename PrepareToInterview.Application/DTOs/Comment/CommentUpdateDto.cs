@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PrepareToInterview.Application.DTOs.Comment
+namespace PrepareToInterview.Application.DTOs
 {
     public class CommentUpdateDto
     {

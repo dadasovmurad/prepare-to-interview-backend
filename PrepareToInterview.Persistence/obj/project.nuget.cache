@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "9SRpItdXznE=",
+  "dgSpecHash": "B3X/N+qA3zw=",
   "success": true,
   "projectFilePath": "C:\\Users\\Murad Dadashov\\source\\repos\\PrepareToInterview\\PrepareToInterview.Persistence\\PrepareToInterview.Persistence.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Murad Dadashov\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\Murad Dadashov\\.nuget\\packages\\fluentvalidation\\11.10.0\\fluentvalidation.11.10.0.nupkg.sha512",
     "C:\\Users\\Murad Dadashov\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Murad Dadashov\\.nuget\\packages\\mediatr\\12.4.1\\mediatr.12.4.1.nupkg.sha512",

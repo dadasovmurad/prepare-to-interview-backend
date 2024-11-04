@@ -127,3 +127,4 @@ C:\Users\Murad Dadashov\source\repos\PrepareToInterview\PrepareToInterview.API\o
 C:\Users\Murad Dadashov\source\repos\PrepareToInterview\PrepareToInterview.API\obj\Debug\net8.0\PrepareToInterview.API.pdb
 C:\Users\Murad Dadashov\source\repos\PrepareToInterview\PrepareToInterview.API\obj\Debug\net8.0\PrepareToInterview.API.genruntimeconfig.cache
 C:\Users\Murad Dadashov\source\repos\PrepareToInterview\PrepareToInterview.API\obj\Debug\net8.0\ref\PrepareToInterview.API.dll
+C:\Users\Murad Dadashov\source\repos\PrepareToInterview\PrepareToInterview.API\bin\Debug\net8.0\AutoMapper.dll

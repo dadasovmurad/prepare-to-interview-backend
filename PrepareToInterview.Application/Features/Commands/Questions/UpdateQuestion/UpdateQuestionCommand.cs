@@ -1,8 +1,7 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
-using PrepareToInterview.Application.DTOs.Answer;
-using PrepareToInterview.Application.DTOs.Comment;
-using PrepareToInterview.Application.DTOs.Question;
+using PrepareToInterview.Application.DTOs;
 using PrepareToInterview.Application.Repositories;
 using PrepareToInterview.Application.Results;
 using PrepareToInterview.Domain.Entities;
@@ -12,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PrepareToInterview.Application.Features.Commands.Question.UpdateQuestion
+namespace PrepareToInterview.Application.Features.Commands.Questions.UpdateQuestion
 {
     public class UpdateQuestionCommand : IRequest<IDataResult<QuestionUpdatedDto>>
     {
@@ -27,26 +26,24 @@ namespace PrepareToInterview.Application.Features.Commands.Question.UpdateQuesti
         {
             private readonly IQuestionWriteRepository _questionWriteRepository;
             private readonly IQuestionReadRepository _questionReadRepository;
-
-            public UpdateQuestionCommandHandler(IQuestionWriteRepository questionWriteRepository, IQuestionReadRepository questionReadRepository)
+            private readonly IMapper _mapper;
+            public UpdateQuestionCommandHandler(IQuestionWriteRepository questionWriteRepository, IQuestionReadRepository questionReadRepository, IMapper mapper)
             {
                 _questionWriteRepository = questionWriteRepository;
                 _questionReadRepository = questionReadRepository;
+                _mapper = mapper;
             }
             public async Task<IDataResult<QuestionUpdatedDto>> Handle(UpdateQuestionCommand request, CancellationToken cancellationToken)
             {
                 var targetQuestion = await _questionReadRepository.GetAll(q => q.Id == Guid.Parse(request.Id))
-                                                           .Include(q => q.Answer)
+                                                           .Include(q => q.Answers)
                                                            .Include(q => q.Comments)
                                                            .FirstOrDefaultAsync();
+                
 
                 if (targetQuestion is not null)
                 {
-                    targetQuestion.Content = request.Content;
-                    targetQuestion.SuitableFor = request.SuitableFor;
-                    targetQuestion.Category = request.Category;
-                    targetQuestion.Answer = request.Answers.Select(a => new Answer { Content = a.Content }).ToList();
-                    targetQuestion.Comments = request.Comments.Select(c => new Comment { Content = c.Content }).ToList();
+                    _mapper.Map(request, targetQuestion);
                     await _questionWriteRepository.SaveAsync();
                     return new SuccessDataResult<QuestionUpdatedDto>();
                 }

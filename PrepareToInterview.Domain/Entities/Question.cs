@@ -16,7 +16,7 @@ namespace PrepareToInterview.Domain.Entities
 
         // Foreign Key
         //public string UserId { get; set; }
-        public ICollection<Answer> Answer { get; set; } // The answer to this question
+        public ICollection<Answer> Answers { get; set; } // The answer to this question
         public ICollection<Comment> Comments { get; set; } // Related comments
     }
 }

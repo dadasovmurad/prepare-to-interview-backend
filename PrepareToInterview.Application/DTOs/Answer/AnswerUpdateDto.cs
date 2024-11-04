@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PrepareToInterview.Application.DTOs.Answer
+namespace PrepareToInterview.Application.DTOs
 {
     public class AnswerUpdateDto
     {

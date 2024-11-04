@@ -1,10 +1,10 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using PrepareToInterview.Application.Features.Commands.Question.CreateQuestion;
-using PrepareToInterview.Application.Features.Commands.Question.RemoveQuestion;
-using PrepareToInterview.Application.Features.Commands.Question.UpdateQuestion;
-using PrepareToInterview.Application.Features.Queries.Question.GetAllQuestion;
-using PrepareToInterview.Application.Features.Queries.Question.GetByIdQuestion;
+using PrepareToInterview.Application.Features.Commands.Questions.CreateQuestion;
+using PrepareToInterview.Application.Features.Commands.Questions.RemoveQuestion;
+using PrepareToInterview.Application.Features.Commands.Questions.UpdateQuestion;
+using PrepareToInterview.Application.Features.Queries.Questions.GetAllQuestion;
+using PrepareToInterview.Application.Features.Queries.Questions.GetByIdQuestion;
 
 namespace PrepareToInterview.API.Controllers
 {

@@ -9,7 +9,7 @@
     "Parameters": [
       {
         "Name": "createQuestionCommandRequest",
-        "Type": "PrepareToInterview.Application.Features.Commands.Question.CreateQuestion.CreateQuestionCommand",
+        "Type": "PrepareToInterview.Application.Features.Commands.Questions.CreateQuestion.CreateQuestionCommand",
         "IsRequired": true
       }
     ],
@@ -35,7 +35,7 @@
     "Parameters": [
       {
         "Name": "updateQuestionCommandRequest",
-        "Type": "PrepareToInterview.Application.Features.Commands.Question.UpdateQuestion.UpdateQuestionCommand",
+        "Type": "PrepareToInterview.Application.Features.Commands.Questions.UpdateQuestion.UpdateQuestionCommand",
         "IsRequired": true
       }
     ],
