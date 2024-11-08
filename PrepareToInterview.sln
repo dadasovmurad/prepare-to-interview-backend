@@ -5,19 +5,21 @@ VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{DF96E502-D4D2-4221-81BD-841A983C892B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrepareToInterview.Application", "PrepareToInterview.Application\PrepareToInterview.Application.csproj", "{180C1F63-D5CC-428B-A4A3-052C7E867D81}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrepareToInterview.Application", "src\PrepareToInterview.Application\PrepareToInterview.Application.csproj", "{180C1F63-D5CC-428B-A4A3-052C7E867D81}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrepareToInterview.Domain", "PrepareToInterview.Domain\PrepareToInterview.Domain.csproj", "{610D0CA0-3289-464D-9F9D-170BA90E5BC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrepareToInterview.Domain", "src\PrepareToInterview.Domain\PrepareToInterview.Domain.csproj", "{610D0CA0-3289-464D-9F9D-170BA90E5BC0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{18CAD327-D64E-4576-B278-08C46CC84B89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrepareToInterview.Infrastructure", "PrepareToInterview.Infrastructure\PrepareToInterview.Infrastructure.csproj", "{0670C91E-89A2-432A-A7CA-6B31FBABD564}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrepareToInterview.Infrastructure", "src\PrepareToInterview.Infrastructure\PrepareToInterview.Infrastructure.csproj", "{0670C91E-89A2-432A-A7CA-6B31FBABD564}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrepareToInterview.Persistence", "PrepareToInterview.Persistence\PrepareToInterview.Persistence.csproj", "{C841AAB6-387F-46A9-81F8-3F4A9A4C928D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrepareToInterview.Persistence", "src\PrepareToInterview.Persistence\PrepareToInterview.Persistence.csproj", "{C841AAB6-387F-46A9-81F8-3F4A9A4C928D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{38D8C668-0575-48D9-9A86-DD1E23C7E556}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrepareToInterview.API", "PrepareToInterview.API\PrepareToInterview.API.csproj", "{4A81946D-96FC-408E-98CF-64038E0FC571}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrepareToInterview.API", "src\PrepareToInterview.API\PrepareToInterview.API.csproj", "{4A81946D-96FC-408E-98CF-64038E0FC571}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{505977B2-BE5E-4B94-89A1-C9C6F9108761}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,10 +52,13 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{DF96E502-D4D2-4221-81BD-841A983C892B} = {505977B2-BE5E-4B94-89A1-C9C6F9108761}
 		{180C1F63-D5CC-428B-A4A3-052C7E867D81} = {DF96E502-D4D2-4221-81BD-841A983C892B}
 		{610D0CA0-3289-464D-9F9D-170BA90E5BC0} = {DF96E502-D4D2-4221-81BD-841A983C892B}
+		{18CAD327-D64E-4576-B278-08C46CC84B89} = {505977B2-BE5E-4B94-89A1-C9C6F9108761}
 		{0670C91E-89A2-432A-A7CA-6B31FBABD564} = {18CAD327-D64E-4576-B278-08C46CC84B89}
 		{C841AAB6-387F-46A9-81F8-3F4A9A4C928D} = {18CAD327-D64E-4576-B278-08C46CC84B89}
+		{38D8C668-0575-48D9-9A86-DD1E23C7E556} = {505977B2-BE5E-4B94-89A1-C9C6F9108761}
 		{4A81946D-96FC-408E-98CF-64038E0FC571} = {38D8C668-0575-48D9-9A86-DD1E23C7E556}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

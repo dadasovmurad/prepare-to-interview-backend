@@ -1,0 +1,87 @@
+[
+  {
+    "ContainingType": "PrepareToInterview.API.Controllers.QuestionsController",
+    "Method": "CreateQuestion",
+    "RelativePath": "api/Questions",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "createQuestionCommandRequest",
+        "Type": "PrepareToInterview.Application.Features.Commands.Questions.CreateQuestion.CreateQuestionCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PrepareToInterview.API.Controllers.QuestionsController",
+    "Method": "GetAllQuestions",
+    "RelativePath": "api/Questions",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "PageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PrepareToInterview.API.Controllers.QuestionsController",
+    "Method": "UpdateQuestion",
+    "RelativePath": "api/Questions",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "updateQuestionCommandRequest",
+        "Type": "PrepareToInterview.Application.Features.Commands.Questions.UpdateQuestion.UpdateQuestionCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PrepareToInterview.API.Controllers.QuestionsController",
+    "Method": "GetQuestionById",
+    "RelativePath": "api/Questions/{Id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PrepareToInterview.API.Controllers.QuestionsController",
+    "Method": "RemoveQuestion",
+    "RelativePath": "api/Questions/{Id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
