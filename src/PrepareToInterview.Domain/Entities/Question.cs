@@ -18,5 +18,7 @@ namespace PrepareToInterview.Domain.Entities
         //public string UserId { get; set; }
         public ICollection<Answer> Answers { get; set; } // The answer to this question
         public ICollection<Comment> Comments { get; set; } // Related comments
+        public ICollection<QuestionTag> QuestionTags { get; set; } // Related comments
     }
+
 }

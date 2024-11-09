@@ -39,7 +39,7 @@ namespace PrepareToInterview.Persistence.Migrations
 
                     b.HasIndex("QuestionId");
 
-                    b.ToTable("Answer");
+                    b.ToTable("Answers");
                 });
 
             modelBuilder.Entity("PrepareToInterview.Domain.Entities.Comment", b =>
@@ -59,7 +59,7 @@ namespace PrepareToInterview.Persistence.Migrations
 
                     b.HasIndex("QuestionId");
 
-                    b.ToTable("Comment");
+                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("PrepareToInterview.Domain.Entities.Question", b =>
@@ -82,13 +82,43 @@ namespace PrepareToInterview.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Question");
+                    b.ToTable("Questions");
+                });
+
+            modelBuilder.Entity("PrepareToInterview.Domain.Entities.QuestionTag", b =>
+                {
+                    b.Property<Guid>("QuestionID")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("TagID")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("QuestionID", "TagID");
+
+                    b.HasIndex("TagID");
+
+                    b.ToTable("QuestionTags");
+                });
+
+            modelBuilder.Entity("PrepareToInterview.Domain.Entities.Tag", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Tags");
                 });
 
             modelBuilder.Entity("PrepareToInterview.Domain.Entities.Answer", b =>
                 {
                     b.HasOne("PrepareToInterview.Domain.Entities.Question", "Question")
-                        .WithMany("Answer")
+                        .WithMany("Answers")
                         .HasForeignKey("QuestionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -107,11 +137,37 @@ namespace PrepareToInterview.Persistence.Migrations
                     b.Navigation("Question");
                 });
 
+            modelBuilder.Entity("PrepareToInterview.Domain.Entities.QuestionTag", b =>
+                {
+                    b.HasOne("PrepareToInterview.Domain.Entities.Question", "Question")
+                        .WithMany("QuestionTags")
+                        .HasForeignKey("QuestionID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PrepareToInterview.Domain.Entities.Tag", "Tag")
+                        .WithMany("QuestionTags")
+                        .HasForeignKey("TagID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Question");
+
+                    b.Navigation("Tag");
+                });
+
             modelBuilder.Entity("PrepareToInterview.Domain.Entities.Question", b =>
                 {
-                    b.Navigation("Answer");
+                    b.Navigation("Answers");
 
                     b.Navigation("Comments");
+
+                    b.Navigation("QuestionTags");
+                });
+
+            modelBuilder.Entity("PrepareToInterview.Domain.Entities.Tag", b =>
+                {
+                    b.Navigation("QuestionTags");
                 });
 #pragma warning restore 612, 618
         }

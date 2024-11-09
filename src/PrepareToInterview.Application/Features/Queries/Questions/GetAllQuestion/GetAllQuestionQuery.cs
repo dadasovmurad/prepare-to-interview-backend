@@ -33,8 +33,12 @@ namespace PrepareToInterview.Application.Features.Queries.Questions.GetAllQuesti
                 var includedData = await _questionReadRepository.GetAll()
                                                          .Include(q => q.Answers)
                                                          .Include(q => q.Comments)
+                                                         .Include(q=>q.QuestionTags)
+                                                         .ThenInclude(x=>x.Tag)
                                                          .GetPageAsync(request.PageNumber, request.PageSize);
 
+
+                var dto = _mapper.Map<PagedResponse<QuestionListDto>>(includedData);
                 return _mapper.Map<PagedResponse<QuestionListDto>>(includedData);
             }
         }

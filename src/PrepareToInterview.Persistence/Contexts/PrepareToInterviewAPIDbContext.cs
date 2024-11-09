@@ -15,21 +15,13 @@ namespace PrepareToInterview.Persistence.Contexts
 
         }
         public DbSet<Question> Questions { get; set; }
-        public DbSet<Question> Answers { get; set; }
-        public DbSet<Question> Comments { get; set; }
+        public DbSet<Answer> Answers { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+        public DbSet<Tag> Tags { get; set; }
+        public DbSet<QuestionTag> QuestionTags { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-           // modelBuilder.Entity<Question>()
-           //.HasOne(q => q.User)
-           //.WithMany(u => u.Questions)
-           //.HasForeignKey(q => q.UserId);
-
-            //modelBuilder.Entity<Question>()
-            //    .HasMany(q => q.Answer)
-            //    .WithOne(a => a.Question)
-            //    .HasForeignKey(a => a.QuestionId);
-
             modelBuilder.Entity<Answer>()
                 .HasOne(c => c.Question)
                 .WithMany(q => q.Answers)
@@ -40,10 +32,18 @@ namespace PrepareToInterview.Persistence.Contexts
                 .WithMany(q => q.Comments)
                 .HasForeignKey(c => c.QuestionId);
 
-            //modelBuilder.Entity<Comment>()
-            //    .HasOne(c => c.User)
-            //    .WithMany()
-            //    .HasForeignKey(c => c.UserId);
+            modelBuilder.Entity<QuestionTag>()
+                .HasKey(qt => new { qt.QuestionID, qt.TagID });
+
+            modelBuilder.Entity<QuestionTag>()
+                .HasOne(qt => qt.Question)
+                .WithMany(q => q.QuestionTags)
+                .HasForeignKey(qt => qt.QuestionID);
+
+            modelBuilder.Entity<QuestionTag>()
+                .HasOne(qt => qt.Tag)
+                .WithMany(t => t.QuestionTags)
+                .HasForeignKey(qt => qt.TagID);
 
             base.OnModelCreating(modelBuilder);
         }

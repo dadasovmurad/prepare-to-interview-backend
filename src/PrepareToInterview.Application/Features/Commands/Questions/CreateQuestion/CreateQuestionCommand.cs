@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using PrepareToInterview.Application.DTOs;
+using PrepareToInterview.Application.DTOs.Tag;
 using PrepareToInterview.Application.Repositories;
 using PrepareToInterview.Application.Results;
 using PrepareToInterview.Domain.Entities;
@@ -18,6 +19,7 @@ namespace PrepareToInterview.Application.Features.Commands.Questions.CreateQuest
         public string Category { get; set; }
         public string SuitableFor { get; set; }
         public List<AnswerCreateDto> Answers { get; set; }
+        public List<TagCreateDto> Tags { get; set; }
 
         public class CreateQuestionCommandHandler : IRequestHandler<CreateQuestionCommand, IDataResult<QuestionCreatedDto>>
         {
@@ -31,14 +33,6 @@ namespace PrepareToInterview.Application.Features.Commands.Questions.CreateQuest
 
             public async Task<IDataResult<QuestionCreatedDto>> Handle(CreateQuestionCommand request, CancellationToken cancellationToken)
             {
-                //await _questionWriteRepository.AddAsync(new PrepareToInterview.Domain.Entities.Question
-                //{
-                //    Content = request.Content,
-                //    Category = request.Category,
-                //    SuitableFor = request.SuitableFor,
-                //    Answer = request.Answers.Select(x => new Answer { Content = x.Content }).ToList(),
-                //});
-
                 await _questionWriteRepository.AddAsync(_mapper.Map<Question>(request));
 
                 await _questionWriteRepository.SaveAsync();

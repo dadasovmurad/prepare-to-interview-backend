@@ -32,19 +32,12 @@ namespace PrepareToInterview.Application.Features.Queries.Questions.GetByIdQuest
                 var targetQuestion = await _questionReadRepository.GetAll(q => q.Id == Guid.Parse(request.Id))
                                                         .Include(q => q.Answers)
                                                         .Include(q => q.Comments)
+                                                        .Include(q => q.QuestionTags)
+                                                        .ThenInclude(x => x.Tag)
                                                         .FirstAsync();
                 if (targetQuestion is not null)
                 {
                     var resultData = _mapper.Map<QuestionGetByIdDto>(targetQuestion);
-                    //var questionGetById = new QuestionGetByIdDto
-                    //{
-                    //    Id = targetQuestion.Id,
-                    //    Content = targetQuestion.Content,
-                    //    Category = targetQuestion.Category,
-                    //    SuitableFor = targetQuestion.SuitableFor,
-                    //    Answers = targetQuestion.Answer.Select(a => new { a.Id, a.Content }),
-                    //    Comments = targetQuestion.Comments.Select(c => new { c.Id, c.Content }),
-                    //};
                     return new SuccessDataResult<QuestionGetByIdDto>(resultData);
                 }
                 return new ErrorDataResult<QuestionGetByIdDto>();
