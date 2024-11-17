@@ -42,6 +42,28 @@ namespace PrepareToInterview.Persistence.Migrations
                     b.ToTable("Answers");
                 });
 
+            modelBuilder.Entity("PrepareToInterview.Domain.Entities.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int?>("ParentId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ParentId");
+
+                    b.ToTable("Categories");
+                });
+
             modelBuilder.Entity("PrepareToInterview.Domain.Entities.Comment", b =>
                 {
                     b.Property<Guid>("Id")
@@ -68,9 +90,8 @@ namespace PrepareToInterview.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Content")
                         .IsRequired()
@@ -81,6 +102,8 @@ namespace PrepareToInterview.Persistence.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Questions");
                 });
@@ -126,6 +149,15 @@ namespace PrepareToInterview.Persistence.Migrations
                     b.Navigation("Question");
                 });
 
+            modelBuilder.Entity("PrepareToInterview.Domain.Entities.Category", b =>
+                {
+                    b.HasOne("PrepareToInterview.Domain.Entities.Category", "Parent")
+                        .WithMany("Children")
+                        .HasForeignKey("ParentId");
+
+                    b.Navigation("Parent");
+                });
+
             modelBuilder.Entity("PrepareToInterview.Domain.Entities.Comment", b =>
                 {
                     b.HasOne("PrepareToInterview.Domain.Entities.Question", "Question")
@@ -135,6 +167,17 @@ namespace PrepareToInterview.Persistence.Migrations
                         .IsRequired();
 
                     b.Navigation("Question");
+                });
+
+            modelBuilder.Entity("PrepareToInterview.Domain.Entities.Question", b =>
+                {
+                    b.HasOne("PrepareToInterview.Domain.Entities.Category", "Category")
+                        .WithMany("Questions")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("PrepareToInterview.Domain.Entities.QuestionTag", b =>
@@ -154,6 +197,13 @@ namespace PrepareToInterview.Persistence.Migrations
                     b.Navigation("Question");
 
                     b.Navigation("Tag");
+                });
+
+            modelBuilder.Entity("PrepareToInterview.Domain.Entities.Category", b =>
+                {
+                    b.Navigation("Children");
+
+                    b.Navigation("Questions");
                 });
 
             modelBuilder.Entity("PrepareToInterview.Domain.Entities.Question", b =>

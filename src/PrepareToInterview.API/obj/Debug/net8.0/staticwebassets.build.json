@@ -1,11 +1,12 @@
 {
   "Version": 1,
-  "Hash": "2D7KdYocsooY8byePxHstzJxwxOEcfvDfQWs1SduZr4=",
+  "Hash": "gqjVWdWMj7uZ6+gWEdum9oBGMnIukIzVAbDOeTVDfBE=",
   "Source": "PrepareToInterview.API",
   "BasePath": "_content/PrepareToInterview.API",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": []
+  "Assets": [],
+  "Endpoints": []
 }

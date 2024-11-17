@@ -11,8 +11,9 @@ namespace PrepareToInterview.Domain.Entities
     public class Question : BaseEntity
     {
         public string Content { get; set; } // Question text
-        public string Category { get; set; } // Question category (Technical, HR, etc.)
-        public string SuitableFor { get; set; }
+        public string? SuitableFor { get; set; }
+        public int CategoryId { get; set; }
+        public Category Category { get; set; }
 
         // Foreign Key
         //public string UserId { get; set; }

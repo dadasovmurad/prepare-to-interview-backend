@@ -16,12 +16,24 @@ namespace PrepareToInterview.Persistence.Contexts
         }
         public DbSet<Question> Questions { get; set; }
         public DbSet<Answer> Answers { get; set; }
+        public DbSet<Category> Categories { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<QuestionTag> QuestionTags { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Question>()
+                .HasOne(q => q.Category)
+                .WithMany(c => c.Questions)
+                .HasForeignKey(q => q.CategoryId);
+
+            modelBuilder.Entity<Category>()
+                .HasOne(s => s.Parent)
+                .WithMany(m => m.Children)
+                .HasForeignKey(e => e.ParentId);
+
+
             modelBuilder.Entity<Answer>()
                 .HasOne(c => c.Question)
                 .WithMany(q => q.Answers)
@@ -32,6 +44,7 @@ namespace PrepareToInterview.Persistence.Contexts
                 .WithMany(q => q.Comments)
                 .HasForeignKey(c => c.QuestionId);
 
+          
             modelBuilder.Entity<QuestionTag>()
                 .HasKey(qt => new { qt.QuestionID, qt.TagID });
 

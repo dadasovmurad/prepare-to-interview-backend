@@ -16,8 +16,8 @@ namespace PrepareToInterview.Application.Features.Commands.Questions.CreateQuest
     public class CreateQuestionCommand : IRequest<IDataResult<QuestionCreatedDto>>
     {
         public string Content { get; set; }
-        public string Category { get; set; }
-        public string SuitableFor { get; set; }
+        public int CategoryId { get; set; }
+        public string? SuitableFor { get; set; }
         public List<AnswerCreateDto> Answers { get; set; }
         public List<TagCreateDto> Tags { get; set; }
 

@@ -18,8 +18,9 @@ namespace PrepareToInterview.Application.Features.Commands.Questions.UpdateQuest
     {
         public string Id { get; set; }
         public string Content { get; set; }
-        public string Category { get; set; }
-        public string SuitableFor { get; set; }
+        public int CategoryId { get; set; }
+        public string? SuitableFor { get; set; }
+        //public bool IsLiked {  get; set; }
         public List<AnswerUpdateDto> Answers { get; set; }
         public List<CommentUpdateDto> Comments { get; set; }
         public List<TagUpdateDto> Tags { get; set; }

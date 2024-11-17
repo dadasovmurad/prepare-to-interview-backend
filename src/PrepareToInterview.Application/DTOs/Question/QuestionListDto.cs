@@ -1,4 +1,5 @@
 ﻿using PrepareToInterview.Application.DTOs.Answer;
+using PrepareToInterview.Application.DTOs.Category;
 using PrepareToInterview.Application.DTOs.Comment;
 using PrepareToInterview.Application.DTOs.Tag;
 using System;
@@ -13,7 +14,7 @@ namespace PrepareToInterview.Application.DTOs
     {
         public Guid Id { get; set; }
         public string Content { get; set; }
-        public string Category { get; set; }
+        public CategoryDto Category { get; set; }
         public string SuitableFor { get;set; }
         public List<AnswerListDto> Answers { get; set; }
         public List<CommentListDto> Comments { get; set; }

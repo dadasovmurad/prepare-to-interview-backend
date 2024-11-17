@@ -259,6 +259,7 @@
       },
       "PrepareToInterview.Domain/1.0.0": {
         "dependencies": {
+          "FluentValidation": "11.10.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.10"
         },
         "runtime": {

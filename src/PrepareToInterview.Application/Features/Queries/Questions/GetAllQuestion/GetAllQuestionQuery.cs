@@ -31,6 +31,10 @@ namespace PrepareToInterview.Application.Features.Queries.Questions.GetAllQuesti
             public async Task<PagedResponse<QuestionListDto>> Handle(GetAllQuestionQuery request, CancellationToken cancellationToken)
             {
                 var includedData = await _questionReadRepository.GetAll()
+                                                         .Include(q=>q.Category)
+                                                         //.ThenInclude(q=>q.Parent)
+                                                         //.Include(q => q.Category)
+                                                         //.ThenInclude(c => c.Children)
                                                          .Include(q => q.Answers)
                                                          .Include(q => q.Comments)
                                                          .Include(q=>q.QuestionTags)

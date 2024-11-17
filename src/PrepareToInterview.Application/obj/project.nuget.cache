@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "qB8Itzg6QJ0=",
+  "dgSpecHash": "7zPoTR1YGMo=",
   "success": true,
   "projectFilePath": "C:\\Users\\Murad Dadashov\\source\\repos\\PrepareToInterview\\src\\PrepareToInterview.Application\\PrepareToInterview.Application.csproj",
   "expectedPackageFiles": [
@@ -26,7 +26,11 @@
     "C:\\Users\\Murad Dadashov\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\8.0.2\\microsoft.extensions.logging.abstractions.8.0.2.nupkg.sha512",
     "C:\\Users\\Murad Dadashov\\.nuget\\packages\\microsoft.extensions.options\\8.0.2\\microsoft.extensions.options.8.0.2.nupkg.sha512",
     "C:\\Users\\Murad Dadashov\\.nuget\\packages\\microsoft.extensions.primitives\\8.0.0\\microsoft.extensions.primitives.8.0.0.nupkg.sha512",
-    "C:\\Users\\Murad Dadashov\\.nuget\\packages\\xbuddy.models\\1.0.0\\xbuddy.models.1.0.0.nupkg.sha512"
+    "C:\\Users\\Murad Dadashov\\.nuget\\packages\\xbuddy.models\\1.0.0\\xbuddy.models.1.0.0.nupkg.sha512",
+    "C:\\Users\\Murad Dadashov\\.nuget\\packages\\microsoft.net.sdk.compilers.toolset\\9.0.100\\microsoft.net.sdk.compilers.toolset.9.0.100.nupkg.sha512",
+    "C:\\Users\\Murad Dadashov\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.11\\microsoft.windowsdesktop.app.ref.8.0.11.nupkg.sha512",
+    "C:\\Users\\Murad Dadashov\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.11\\microsoft.netcore.app.ref.8.0.11.nupkg.sha512",
+    "C:\\Users\\Murad Dadashov\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.11\\microsoft.aspnetcore.app.ref.8.0.11.nupkg.sha512"
   ],
   "logs": []
 }

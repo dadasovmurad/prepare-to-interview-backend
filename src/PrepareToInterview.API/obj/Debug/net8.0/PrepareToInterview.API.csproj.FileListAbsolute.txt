@@ -259,3 +259,7 @@ C:\Users\Murad Dadashov\source\repos\PrepareToInterview\src\PrepareToInterview.A
 C:\Users\Murad Dadashov\source\repos\PrepareToInterview\src\PrepareToInterview.API\obj\Debug\net8.0\PrepareToInterview.API.genruntimeconfig.cache
 C:\Users\Murad Dadashov\source\repos\PrepareToInterview\src\PrepareToInterview.API\obj\Debug\net8.0\ref\PrepareToInterview.API.dll
 C:\Users\Murad Dadashov\source\repos\PrepareToInterview\src\PrepareToInterview.API\bin\Debug\net8.0\XBuddy.Models.dll
+C:\Users\Murad Dadashov\source\repos\PrepareToInterview\src\PrepareToInterview.API\bin\Debug\net8.0\PrepareToInterview.API.staticwebassets.endpoints.json
+C:\Users\Murad Dadashov\source\repos\PrepareToInterview\src\PrepareToInterview.API\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+C:\Users\Murad Dadashov\source\repos\PrepareToInterview\src\PrepareToInterview.API\obj\Debug\net8.0\staticwebassets\msbuild.PrepareToInterview.API.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+C:\Users\Murad Dadashov\source\repos\PrepareToInterview\src\PrepareToInterview.API\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
