@@ -1,1 +1,21 @@
+# Visual Studio specific files and folders
 .vs/
+
+# # Ignore bin and obj directories for specific projects
+# /src/PrepareToInterview.API/obj/
+# /src/PrepareToInterview.API/bin/
+# /src/PrepareToInterview.Application/obj/
+# /src/PrepareToInterview.Application/bin/
+# /src/PrepareToInterview.Persistence/obj/
+# /src/PrepareToInterview.Persistence/bin/
+# /src/PrepareToInterview.Infrastructure/obj/
+# /src/PrepareToInterview.Infrastructure/bin/
+# /src/PrepareToInterview.Domain/obj/
+# /src/PrepareToInterview.Domain/bin/
+
+# Ignore all bin and obj directories globally
+**/bin/
+**/obj/
+
+# Ignore any file with .obj extension
+*.obj
