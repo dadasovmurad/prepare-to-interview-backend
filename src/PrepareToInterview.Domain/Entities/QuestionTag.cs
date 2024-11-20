@@ -2,10 +2,10 @@
 {
     public class QuestionTag
     {
-        public Guid QuestionID { get; set; }
+        public int QuestionID { get; set; }
         public Question Question { get; set; }
 
-        public Guid TagID { get; set; }
+        public int TagID { get; set; }
         public Tag Tag { get; set; }
     }
 }

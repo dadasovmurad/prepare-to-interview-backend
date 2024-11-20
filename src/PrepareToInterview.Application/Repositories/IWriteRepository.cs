@@ -13,7 +13,7 @@ namespace PrepareToInterview.Application.Repositories
         Task AddRangeAsync(IEnumerable<T> datas);
         void RemoveRange(List<T> datas);
         void Remove(T model);
-        Task RemoveAsync(string id);
+        Task RemoveAsync(int id);
         T Update(T model);
         Task SaveAsync();
     }

@@ -16,7 +16,7 @@ namespace PrepareToInterview.Application.Features.Commands.Questions.UpdateQuest
 {
     public class UpdateQuestionCommand : IRequest<IDataResult<QuestionUpdatedDto>>
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Content { get; set; }
         public int CategoryId { get; set; }
         public string? SuitableFor { get; set; }
@@ -38,7 +38,7 @@ namespace PrepareToInterview.Application.Features.Commands.Questions.UpdateQuest
             }
             public async Task<IDataResult<QuestionUpdatedDto>> Handle(UpdateQuestionCommand request, CancellationToken cancellationToken)
             {
-                var targetQuestion = await _questionReadRepository.GetAll(q => q.Id == Guid.Parse(request.Id))
+                var targetQuestion = await _questionReadRepository.GetAll(q => q.Id == request.Id)
                                                            .Include(q => q.Answers)
                                                            .Include(q => q.Comments)
                                                            .Include(q => q.QuestionTags)

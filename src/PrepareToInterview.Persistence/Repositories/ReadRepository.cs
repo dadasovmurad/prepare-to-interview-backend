@@ -49,9 +49,9 @@ namespace PrepareToInterview.Persistence.Repositories
             return await query.FirstOrDefaultAsync(predicate);
         }
 
-        public Task<T> GetByIdAsync(string id, bool tracking = true)
+        public Task<T> GetByIdAsync(int id, bool tracking = true)
         {
-            return GetAsync(x => x.Id == Guid.Parse(id), tracking);
+            return GetAsync(x => x.Id == id, tracking);
         }
     }
 }

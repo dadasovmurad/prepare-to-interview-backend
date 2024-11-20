@@ -12,7 +12,7 @@ namespace PrepareToInterview.Application.DTOs
 {
     public class QuestionGetByIdDto
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public string Content { get; set; }
         public CategoryDto Category { get; set; }
         public string SuitableFor { get; set; }

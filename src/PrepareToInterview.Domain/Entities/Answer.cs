@@ -7,7 +7,7 @@ namespace PrepareToInterview.Domain.Entities
     {
         public string Content { get; set; } // Answer text
         // Foreign Key
-        public Guid QuestionId { get; set; }
+        public int QuestionId { get; set; }
         public Question Question { get; set; } // Navigation property
     }
 }

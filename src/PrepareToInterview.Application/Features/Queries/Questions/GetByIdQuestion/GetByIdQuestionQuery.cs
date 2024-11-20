@@ -14,7 +14,7 @@ namespace PrepareToInterview.Application.Features.Queries.Questions.GetByIdQuest
 {
     public class GetByIdQuestionQuery : IRequest<IDataResult<QuestionGetByIdDto>>
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         public class GetBuIdQuestionQueryHanler : IRequestHandler<GetByIdQuestionQuery, IDataResult<QuestionGetByIdDto>>
         {
@@ -29,7 +29,8 @@ namespace PrepareToInterview.Application.Features.Queries.Questions.GetByIdQuest
 
             public async Task<IDataResult<QuestionGetByIdDto>> Handle(GetByIdQuestionQuery request, CancellationToken cancellationToken)
             {
-                var targetQuestion = await _questionReadRepository.GetAll(q => q.Id == Guid.Parse(request.Id))
+                var targetQuestion = await _questionReadRepository.GetAll(q => q.Id == request.Id)
+                                                        .Include(q => q.Category)
                                                         .Include(q => q.Answers)
                                                         .Include(q => q.Comments)
                                                         .Include(q => q.QuestionTags)

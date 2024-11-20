@@ -13,7 +13,7 @@ namespace PrepareToInterview.Application.Repositories
         IQueryable<T> GetAll(Expression<Func<T, bool>>? predicate = null, bool tracking = true);
         Task<T> GetAsync(Expression<Func<T, bool>> predicate, bool tracking = true);
         T Get(Expression<Func<T, bool>> predicate, bool tracking = true);
-        Task<T> GetByIdAsync(string id, bool tracking = true);
+        Task<T> GetByIdAsync(int id, bool tracking = true);
 
     }
 }

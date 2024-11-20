@@ -34,9 +34,9 @@ namespace PrepareToInterview.Persistence.Repositories
             Table.Remove(model);
         }
 
-        public async Task RemoveAsync(string id)
+        public async Task RemoveAsync(int id)
         {
-            T model = await Table.FirstOrDefaultAsync(data => data.Id == Guid.Parse(id));
+            T model = await Table.FirstOrDefaultAsync(data => data.Id == id);
             Remove(model);
         }
 

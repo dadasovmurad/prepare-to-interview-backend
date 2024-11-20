@@ -8,7 +8,7 @@ namespace PrepareToInterview.Domain.Entities.Common
 {
     public class BaseEntity
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public DateTime CreatedDate => DateTime.Now;
     }
 }

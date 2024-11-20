@@ -12,7 +12,7 @@ namespace PrepareToInterview.Application.Features.Commands.Questions.RemoveQuest
 {
     public class RemoveQuestionCommand : IRequest<IDataResult<RemovedQuestionDto>>
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         public class RemoveQuestionCommandHandler : IRequestHandler<RemoveQuestionCommand, IDataResult<RemovedQuestionDto>>
         {
