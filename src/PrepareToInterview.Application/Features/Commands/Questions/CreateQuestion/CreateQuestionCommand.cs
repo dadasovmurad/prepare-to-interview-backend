@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using PrepareToInterview.Application.DTOs;
+using PrepareToInterview.Application.DTOs.QuestionTranslations;
 using PrepareToInterview.Application.DTOs.Tag;
 using PrepareToInterview.Application.Repositories;
 using PrepareToInterview.Application.Results;
@@ -15,11 +16,11 @@ namespace PrepareToInterview.Application.Features.Commands.Questions.CreateQuest
 {
     public class CreateQuestionCommand : IRequest<IDataResult<QuestionCreatedDto>>
     {
-        public string Content { get; set; }
         public int CategoryId { get; set; }
         public string? SuitableFor { get; set; }
         public List<AnswerCreateDto> Answers { get; set; }
         public List<TagCreateDto> Tags { get; set; }
+        public List<QuestionTranslationsCreateDto> QuestionTranslations { get; set; }
 
         public class CreateQuestionCommandHandler : IRequestHandler<CreateQuestionCommand, IDataResult<QuestionCreatedDto>>
         {

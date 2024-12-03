@@ -21,8 +21,8 @@ namespace PrepareToInterview.Application.Features.Profiles
             CreateMap<Question, UpdateQuestionCommand>().ReverseMap();
             CreateMap<Question, QuestionGetByIdDto>().ReverseMap();
 
-            CreateMap<Question, QuestionListDto>().
-                ForMember(q => q.Tags, dest => dest.MapFrom(src => src.QuestionTags.Select(x => x.Tag)));
+            CreateMap<Question, QuestionListDto>()
+                .ForMember(q => q.Tags, dest => dest.MapFrom(src => src.QuestionTags.Select(x => x.Tag)));
 
             CreateMap<Question, QuestionGetByIdDto>().
               ForMember(q => q.Tags, dest => dest.MapFrom(src => src.QuestionTags.Select(x => x.Tag)));
@@ -36,6 +36,15 @@ namespace PrepareToInterview.Application.Features.Profiles
             CreateMap<UpdateQuestionCommand, Question>()
             .ForMember(dest => dest.QuestionTags, opt => opt.MapFrom(src =>
                  src.Tags.Select(tag => new QuestionTag { Tag = new Tag { Name = tag.Name } })));
+
+            CreateMap<CreateQuestionCommand, Question>()
+            .ForMember(dest => dest.QuestionTranslations, opt => opt.MapFrom(src =>
+                src.QuestionTranslations.Select(tr => new QuestionTranslation { LanguageCode = tr.LanguageCode,Content = tr.Content })));
+
+            CreateMap<UpdateQuestionCommand, Question>()
+          .ForMember(dest => dest.QuestionTranslations, opt => opt.MapFrom(src =>
+               src.QuestionTranslations.Select(tr => new QuestionTranslation { LanguageCode = tr.LanguageCode, Content = tr.Content })));
+
         }
     }
 }

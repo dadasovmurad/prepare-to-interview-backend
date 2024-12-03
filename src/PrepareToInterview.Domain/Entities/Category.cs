@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PrepareToInterview.Domain.Entities.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace PrepareToInterview.Domain.Entities
 {
-    public class Category
+    public class Category : BaseEntity
     {
-        public int Id { get; set; }
         public string Name { get; set; }
 
         public int? ParentId { get; set; }
@@ -17,7 +17,5 @@ namespace PrepareToInterview.Domain.Entities
         public virtual ICollection<Category> Children { get; set; }
 
         public virtual ICollection<Question> Questions { get; set; }
-
-
     }
 }

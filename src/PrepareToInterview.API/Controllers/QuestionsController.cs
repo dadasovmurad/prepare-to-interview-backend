@@ -19,13 +19,13 @@ namespace PrepareToInterview.API.Controllers
             _mediator = mediator;
         }
         [HttpPost]
-        public async Task<IActionResult> CreateQuestion([FromBody]CreateQuestionCommand createQuestionCommandRequest)
+        public async Task<IActionResult> CreateQuestion([FromBody] CreateQuestionCommand createQuestionCommandRequest)
         {
             var response = await _mediator.Send(createQuestionCommandRequest);
             return StatusCode(StatusCodes.Status201Created, response);
         }
         [HttpGet]
-        public async Task<IActionResult> GetAllQuestions([FromQuery]GetAllQuestionQuery getAllQuestionQuery)
+        public async Task<IActionResult> GetAllQuestions([FromQuery] GetAllQuestionQuery getAllQuestionQuery)
         {
             var response = await _mediator.Send(getAllQuestionQuery);
             return Ok(response);

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PrepareToInterview.Application.DTOs;
 using PrepareToInterview.Application.Repositories;
@@ -15,6 +16,8 @@ namespace PrepareToInterview.Application.Features.Queries.Questions.GetByIdQuest
     public class GetByIdQuestionQuery : IRequest<IDataResult<QuestionGetByIdDto>>
     {
         public int Id { get; set; }
+        [FromQuery]
+        public string Lang { get; set; } = "en";
 
         public class GetBuIdQuestionQueryHanler : IRequestHandler<GetByIdQuestionQuery, IDataResult<QuestionGetByIdDto>>
         {
@@ -31,6 +34,7 @@ namespace PrepareToInterview.Application.Features.Queries.Questions.GetByIdQuest
             {
                 var targetQuestion = await _questionReadRepository.GetAll(q => q.Id == request.Id)
                                                         .Include(q => q.Category)
+                                                        .Include(q => q.QuestionTranslations.Where(t => t.LanguageCode == request.Lang))
                                                         .Include(q => q.Answers)
                                                         .Include(q => q.Comments)
                                                         .Include(q => q.QuestionTags)

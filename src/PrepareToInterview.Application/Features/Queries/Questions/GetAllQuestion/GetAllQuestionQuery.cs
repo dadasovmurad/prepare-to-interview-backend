@@ -18,6 +18,7 @@ namespace PrepareToInterview.Application.Features.Queries.Questions.GetAllQuesti
 {
     public class GetAllQuestionQuery : BasePagedQuery<PagedResponse<QuestionListDto>>
     {
+        public string Lang { get; set; } = "en";
         public class GetAllQuestionQueryHandler : IRequestHandler<GetAllQuestionQuery, PagedResponse<QuestionListDto>>
         {
             private readonly IQuestionReadRepository _questionReadRepository;
@@ -27,20 +28,17 @@ namespace PrepareToInterview.Application.Features.Queries.Questions.GetAllQuesti
                 _questionReadRepository = questionReadRepository;
                 _mapper = mapper;
             }
-         
+
             public async Task<PagedResponse<QuestionListDto>> Handle(GetAllQuestionQuery request, CancellationToken cancellationToken)
             {
                 var includedData = await _questionReadRepository.GetAll()
-                                                         .Include(q=>q.Category)
-                                                         //.ThenInclude(q=>q.Parent)
-                                                         //.Include(q => q.Category)
-                                                         //.ThenInclude(c => c.Children)
+                                                         .Include(q => q.Category)
+                                                         .Include(q => q.QuestionTranslations.Where(t => t.LanguageCode == request.Lang))
                                                          .Include(q => q.Answers)
                                                          .Include(q => q.Comments)
-                                                         .Include(q=>q.QuestionTags)
-                                                         .ThenInclude(x=>x.Tag)
+                                                         .Include(q => q.QuestionTags)
+                                                         .ThenInclude(x => x.Tag)
                                                          .GetPageAsync(request.PageNumber, request.PageSize);
-
 
                 var dto = _mapper.Map<PagedResponse<QuestionListDto>>(includedData);
                 return _mapper.Map<PagedResponse<QuestionListDto>>(includedData);

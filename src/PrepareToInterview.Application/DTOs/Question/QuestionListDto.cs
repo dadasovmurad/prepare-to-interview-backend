@@ -1,6 +1,7 @@
 ﻿using PrepareToInterview.Application.DTOs.Answer;
 using PrepareToInterview.Application.DTOs.Category;
 using PrepareToInterview.Application.DTOs.Comment;
+using PrepareToInterview.Application.DTOs.QuestionTranslations;
 using PrepareToInterview.Application.DTOs.Tag;
 using System;
 using System.Collections.Generic;
@@ -13,11 +14,11 @@ namespace PrepareToInterview.Application.DTOs
     public class QuestionListDto
     {
         public int Id { get; set; }
-        public string Content { get; set; }
+        public List<QuestionTranslationsListDto> QuestionTranslations { get; set; }
         public CategoryDto Category { get; set; }
-        public string SuitableFor { get;set; }
-        public List<AnswerListDto> Answers { get; set; }
-        public List<CommentListDto> Comments { get; set; }
-        public List<TagListDto> Tags { get; set; }
+        public string SuitableFor { get; set; }
+        public IList<AnswerListDto> Answers { get; set; }
+        public IList<CommentListDto> Comments { get; set; }
+        public IList<TagListDto> Tags { get; set; }
     }
 }

@@ -10,7 +10,6 @@ namespace PrepareToInterview.Domain.Entities
 {
     public class Question : BaseEntity
     {
-        public string Content { get; set; } // Question text
         public string? SuitableFor { get; set; }
         public int CategoryId { get; set; }
         public Category Category { get; set; }
@@ -18,8 +17,8 @@ namespace PrepareToInterview.Domain.Entities
         // Foreign Key
         //public string UserId { get; set; }
         public ICollection<Answer> Answers { get; set; } // The answer to this question
+        public ICollection<QuestionTranslation> QuestionTranslations { get; set; } // The answer to this question
         public ICollection<Comment> Comments { get; set; } // Related comments
         public ICollection<QuestionTag> QuestionTags { get; set; } // Related comments
     }
-
 }
