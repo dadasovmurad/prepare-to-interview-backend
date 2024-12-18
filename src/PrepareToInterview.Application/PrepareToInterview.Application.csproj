@@ -16,9 +16,9 @@
     <Compile Remove="Features\Commands\Questions\UpdateQuestion\UpdateQuestionCommandHandler.cs" />
     <Compile Remove="Features\Commands\Questions\UpdateQuestion\UpdateQuestionCommandRequest.cs" />
     <Compile Remove="Features\Commands\Questions\UpdateQuestion\UpdateQuestionCommandResponse.cs" />
-    <Compile Remove="Features\Queries\Questions\GetAllQuestion\GetAllQuestionQueryHandler.cs" />
-    <Compile Remove="Features\Queries\Questions\GetAllQuestion\GetAllQuestionQueryRequest.cs" />
-    <Compile Remove="Features\Queries\Questions\GetAllQuestion\GetAllQuestionQueryResponse.cs" />
+    <Compile Remove="Features\Queries\Questions\GetAllQuestions\GetAllQuestionQueryHandler.cs" />
+    <Compile Remove="Features\Queries\Questions\GetAllQuestions\GetAllQuestionQueryRequest.cs" />
+    <Compile Remove="Features\Queries\Questions\GetAllQuestions\GetAllQuestionQueryResponse.cs" />
     <Compile Remove="Features\Queries\Questions\GetByIdQuestion\GetByIdQuestionQueryHandler.cs" />
     <Compile Remove="Features\Queries\Questions\GetByIdQuestion\GetByIdQuestionQueryRequest.cs" />
     <Compile Remove="Features\Queries\Questions\GetByIdQuestion\GetByIdQuestionQueryResponse.cs" />

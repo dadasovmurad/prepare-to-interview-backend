@@ -13,7 +13,7 @@ namespace PrepareToInterview.Application.Features.Profiles
     {
         public QuestionTranslationProfile()
         {
-            CreateMap<QuestionTranslation, QuestionTranslationsListDto>();
+            CreateMap<QuestionTranslation, QuestionTranslationsListDto>().ReverseMap();
         }
     }
 }

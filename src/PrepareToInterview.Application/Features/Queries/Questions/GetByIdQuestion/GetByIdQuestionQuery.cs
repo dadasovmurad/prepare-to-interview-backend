@@ -34,7 +34,8 @@ namespace PrepareToInterview.Application.Features.Queries.Questions.GetByIdQuest
             {
                 var targetQuestion = await _questionReadRepository.GetAll(q => q.Id == request.Id)
                                                         .Include(q => q.Category)
-                                                        .Include(q => q.QuestionTranslations.Where(t => t.LanguageCode == request.Lang))
+                                                        .Include(q => q.QuestionTranslations
+                                                                       .Where(t => t.LanguageCode == request.Lang))
                                                         .Include(q => q.Answers)
                                                         .Include(q => q.Comments)
                                                         .Include(q => q.QuestionTags)

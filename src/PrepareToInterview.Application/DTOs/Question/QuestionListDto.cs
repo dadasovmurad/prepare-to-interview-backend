@@ -14,11 +14,12 @@ namespace PrepareToInterview.Application.DTOs
     public class QuestionListDto
     {
         public int Id { get; set; }
-        public List<QuestionTranslationsListDto> QuestionTranslations { get; set; }
-        public CategoryDto Category { get; set; }
+        public string Question { get; set; }
+        //public List<CategoryTranslationsListDto> CategoryTranslations { get; set; }
+        //public CategoryDto Category { get; set; }
         public string SuitableFor { get; set; }
-        public IList<AnswerListDto> Answers { get; set; }
-        public IList<CommentListDto> Comments { get; set; }
-        public IList<TagListDto> Tags { get; set; }
+        //public IList<AnswerListDto> Answers { get; set; }
+        //public IList<CommentListDto> Comments { get; set; }
+        //public IList<TagListDto> Tags { get; set; }
     }
 }

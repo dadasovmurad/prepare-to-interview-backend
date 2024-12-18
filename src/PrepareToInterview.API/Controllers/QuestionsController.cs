@@ -25,7 +25,7 @@ namespace PrepareToInterview.API.Controllers
             return StatusCode(StatusCodes.Status201Created, response);
         }
         [HttpGet]
-        public async Task<IActionResult> GetAllQuestions([FromQuery] GetAllQuestionQuery getAllQuestionQuery)
+        public async Task<IActionResult> GetAllQuestions([FromQuery] GetAllQuestionsQuery getAllQuestionQuery)
         {
             var response = await _mediator.Send(getAllQuestionQuery);
             return Ok(response);

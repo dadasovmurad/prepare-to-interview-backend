@@ -21,6 +21,7 @@ namespace PrepareToInterview.Persistence.Contexts
         public DbSet<Tag> Tags { get; set; }
         public DbSet<QuestionTag> QuestionTags { get; set; }
         public DbSet<QuestionTranslation> QuestionTranslations { get; set; }
+        public DbSet<CategoryTranslation> CategoryTranslations { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -39,6 +40,11 @@ namespace PrepareToInterview.Persistence.Contexts
                 .WithMany(m => m.Children)
                 .HasForeignKey(e => e.ParentId);
 
+            modelBuilder.Entity<CategoryTranslation>()
+                .HasOne(q => q.Category)
+                .WithMany(q => q.CategoryTranslations)
+                .HasForeignKey(q => q.CategoryId);
+
             modelBuilder.Entity<Answer>()
                 .HasOne(c => c.Question)
                 .WithMany(q => q.Answers)
@@ -48,7 +54,7 @@ namespace PrepareToInterview.Persistence.Contexts
                 .HasOne(c => c.Question)
                 .WithMany(q => q.Comments)
                 .HasForeignKey(c => c.QuestionId);
-          
+
             modelBuilder.Entity<QuestionTag>()
                 .HasKey(qt => new { qt.QuestionID, qt.TagID });
 

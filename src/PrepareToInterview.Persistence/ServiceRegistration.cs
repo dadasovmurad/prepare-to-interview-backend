@@ -19,14 +19,19 @@ namespace PrepareToInterview.Persistence
             string conStr = Configuration.ConnectionString;
             services.AddDbContext<PrepareToInterviewAPIDbContext>(options => options.UseNpgsql(Configuration.ConnectionString));
 
-            services.AddScoped<IQuestionReadRepository,QuestionReadRepository>();
-            services.AddScoped<IQuestionWriteRepository,QuestionWriteRepository>();
+            services.AddScoped<IQuestionReadRepository, QuestionReadRepository>();
+            services.AddScoped<IQuestionWriteRepository, QuestionWriteRepository>();
 
             services.AddScoped<IAnswerReadRepository, AnswerReadRepository>();
             services.AddScoped<IAnswerWriteRepository, AnswerWriteRepository>();
 
             services.AddScoped<ICommentReadRepository, CommentReadRepository>();
-            services.AddScoped<ICommentWriteRepository, CommentWriteRepository>();
+            services.AddScoped<ICommentReadRepository, CommentReadRepository>();
+
+
+            services.AddScoped<ICategoryReadRepository, CategoryReadRepository>();
+            services.AddScoped<ICategoryWriteRepository, CategoryWriteRepository>();
+
         }
     }
 }
