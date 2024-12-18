@@ -15,7 +15,8 @@ namespace PrepareToInterview.Persistence.Migrations
                 name: "Tag",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                    .Annotation("Npgsql:ValueGenerationStrategy", Npgsql.EntityFrameworkCore.PostgreSQL.Metadata.NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                 },
                 constraints: table =>
                 {
@@ -26,8 +27,8 @@ namespace PrepareToInterview.Persistence.Migrations
                 name: "QuestionTag",
                 columns: table => new
                 {
-                    QuestionID = table.Column<Guid>(type: "uuid", nullable: false),
-                    TagID = table.Column<Guid>(type: "uuid", nullable: false)
+                    QuestionID = table.Column<int>(type: "integer", nullable: false),
+                    TagID = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
