@@ -32,6 +32,9 @@ namespace PrepareToInterview.Persistence
             services.AddScoped<ICategoryReadRepository, CategoryReadRepository>();
             services.AddScoped<ICategoryWriteRepository, CategoryWriteRepository>();
 
+            services.AddScoped<ITagWriteRepository, TagWriteRepository>();
+            services.AddScoped<ITagReadRepository, TagReadRepository>();
+
         }
     }
 }
