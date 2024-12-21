@@ -35,10 +35,10 @@ namespace PrepareToInterview.Application.Features.Queries.Categories.GetAllCateg
             {
                 var categories = await _categoryReadRepository.GetAll()
                                                       .Include(c => c.CategoryTranslations.Where(tran => tran.LanguageCode == request.Lang))
-                                                      .Where(c=>c.ParentId == null)
-                                                      .Include(c=>c.Children)
+                                                      .Where(c => c.Parent == null)
+                                                      .Include(c => c.Children)
                                                       .ToListAsync();
-               
+
                 var resultData = _mapper.Map<List<CategoryDto>>(categories);
 
                 return new SuccessDataResult<List<CategoryDto>>(resultData);
