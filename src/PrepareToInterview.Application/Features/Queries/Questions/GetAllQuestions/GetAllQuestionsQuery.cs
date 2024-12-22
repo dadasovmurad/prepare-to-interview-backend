@@ -16,10 +16,12 @@ using XBuddy.Models.Paging;
 
 namespace PrepareToInterview.Application.Features.Queries.Questions.GetAllQuestion
 {
-    public class GetAllQuestionsQuery : BasePagedQuery<PagedResponse<QuestionListDto>>
+    public class GetAllQuestionsQuery : IRequest<IDataResult<IList<QuestionListDto>>>
     {
         public string Lang { get; set; } = "en";
-        public class GetAllQuestionQueryHandler : IRequestHandler<GetAllQuestionsQuery, PagedResponse<QuestionListDto>>
+        public int PageNumber { get; set; } = 1;
+        public int PageSize { get; set; } = 10;
+        public class GetAllQuestionQueryHandler : IRequestHandler<GetAllQuestionsQuery, IDataResult<IList<QuestionListDto>>>
         {
             private readonly IQuestionReadRepository _questionReadRepository;
             private readonly IMapper _mapper;
@@ -29,21 +31,23 @@ namespace PrepareToInterview.Application.Features.Queries.Questions.GetAllQuesti
                 _mapper = mapper;
             }
 
-            public async Task<PagedResponse<QuestionListDto>> Handle(GetAllQuestionsQuery request, CancellationToken cancellationToken)
+            public async Task<IDataResult<IList<QuestionListDto>>> Handle(GetAllQuestionsQuery request, CancellationToken cancellationToken)
             {
                 var includedData = await _questionReadRepository.GetAll()
                                                          //.Include(q => q.Category)
                                                          //.Include(q => q.Category.CategoryTranslations.Where(c => c.LanguageCode == request.Lang))
                                                          .Include(q => q.QuestionTranslations.Where(t => t.LanguageCode == request.Lang))
-                                                         //.Include(q => q.Answers)
-                                                         //.Include(q => q.Comments)
-                                                         //.Include(q => q.QuestionTags)  
-                                                         //.ThenInclude(x => x.Tag)
-                                                         .GetPageAsync(request.PageNumber, request.PageSize);
+                                                          //.Include(q => q.Answers)
+                                                          //.Include(q => q.Comments)
+                                                          //.Include(q => q.QuestionTags)  
+                                                          //.ThenInclude(x => x.Tag)
+                                                          .Skip((request.PageNumber - 1) * request.PageSize) // Skip items from previous pages
+                                                          .Take(request.PageSize) // Take items for the current page
+                                                          .ToListAsync(); // Convert to a list asynchronously
 
-                var resultData = _mapper.Map<PagedResponse<QuestionListDto>>(includedData);
+                var resultData = _mapper.Map<IList<QuestionListDto>>(includedData);
 
-                return resultData;
+                return new SuccessDataResult<IList<QuestionListDto>>(resultData);
             }
         }
     }
