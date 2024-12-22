@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using PrepareToInterview.Application.DTOs.Tag;
 using PrepareToInterview.Application.Features.Commands.Questions.CreateQuestion;
+using PrepareToInterview.Application.Features.Commands.Tags.CreateTag;
 
 namespace PrepareToInterview.Application.Features.Profiles
 {
@@ -20,6 +21,7 @@ namespace PrepareToInterview.Application.Features.Profiles
             CreateMap<Tag, TagUpdateDto>().ReverseMap();
             CreateMap<Tag, TagListDto>().ReverseMap();
             CreateMap<TagCreateDto, Tag>();
+            CreateMap<CreateTagCommand,Tag>().ReverseMap();   
             //CreateMap<CreateQuestionCommand, Question>()
             //.ForMember(dest => dest.QuestionTags, opt => opt.MapFrom(src =>
             //    src.Tags.Select(tag => new QuestionTag { Tag = new Tag { Name = tag.Name } })));
