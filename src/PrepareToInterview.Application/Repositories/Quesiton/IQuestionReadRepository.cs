@@ -10,5 +10,6 @@ namespace PrepareToInterview.Application.Repositories
 {
     public interface IQuestionReadRepository : IReadRepository<Question>
     {
+
     }
 }

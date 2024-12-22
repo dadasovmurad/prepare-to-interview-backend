@@ -5,6 +5,7 @@ using PrepareToInterview.Application.Features.Commands.Questions.RemoveQuestion;
 using PrepareToInterview.Application.Features.Commands.Questions.UpdateQuestion;
 using PrepareToInterview.Application.Features.Queries.Questions.GetAllQuestion;
 using PrepareToInterview.Application.Features.Queries.Questions.GetByIdQuestion;
+using PrepareToInterview.Application.Features.Queries.Questions.GetTotalQuestionCount;
 
 namespace PrepareToInterview.API.Controllers
 {
@@ -46,6 +47,12 @@ namespace PrepareToInterview.API.Controllers
         public async Task<ActionResult> RemoveQuestion([FromRoute] RemoveQuestionCommand removeQuestionCommandRequest)
         {
             var response = await _mediator.Send(removeQuestionCommandRequest);
+            return Ok(response);
+        }
+        [HttpGet("total-count")]
+        public async Task<ActionResult> GetTotalQuestionCount([FromRoute] GetTotalQuestionCountQuery getTotalQuestionCountQuery)
+        {
+            var response = await _mediator.Send(getTotalQuestionCountQuery);
             return Ok(response);
         }
     }
