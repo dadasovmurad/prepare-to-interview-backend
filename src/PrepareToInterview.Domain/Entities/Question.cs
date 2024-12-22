@@ -1,4 +1,5 @@
 ﻿using PrepareToInterview.Domain.Entities.Common;
+using PrepareToInterview.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace PrepareToInterview.Domain.Entities
 {
     public class Question : BaseEntity
     {
-        public string? SuitableFor { get; set; }
+        public Difficulty Difficulty { get; set; }
         public int CategoryId { get; set; }
         public Category Category { get; set; }
 

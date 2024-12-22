@@ -6,6 +6,7 @@ using PrepareToInterview.Application.DTOs.Tag;
 using PrepareToInterview.Application.Repositories;
 using PrepareToInterview.Application.Results;
 using PrepareToInterview.Domain.Entities;
+using PrepareToInterview.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace PrepareToInterview.Application.Features.Commands.Questions.CreateQuest
     public class CreateQuestionCommand : IRequest<IDataResult<QuestionCreatedDto>>
     {
         public int CategoryId { get; set; }
-        public string? SuitableFor { get; set; }
+        public string Difficulty { get; set; }
         public List<AnswerCreateDto> Answers { get; set; }
         public List<TagCreateDto> Tags { get; set; }
         public List<QuestionTranslationsCreateDto> QuestionTranslations { get; set; }

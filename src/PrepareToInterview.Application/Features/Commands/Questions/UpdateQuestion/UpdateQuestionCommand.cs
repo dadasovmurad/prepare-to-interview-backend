@@ -7,6 +7,7 @@ using PrepareToInterview.Application.DTOs.Tag;
 using PrepareToInterview.Application.Repositories;
 using PrepareToInterview.Application.Results;
 using PrepareToInterview.Domain.Entities;
+using PrepareToInterview.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace PrepareToInterview.Application.Features.Commands.Questions.UpdateQuest
     {
         public int Id { get; set; }
         public int CategoryId { get; set; }
-        public string? SuitableFor { get; set; }
+        public string Difficulty { get; set; }
         //public bool IsLiked {  get; set; }
         public List<AnswerUpdateDto> Answers { get; set; }
         public List<CommentUpdateDto> Comments { get; set; }

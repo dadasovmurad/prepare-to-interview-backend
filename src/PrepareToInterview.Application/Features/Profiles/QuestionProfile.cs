@@ -24,13 +24,13 @@ namespace PrepareToInterview.Application.Features.Profiles
             //CreateMap<Question, QuestionGetByIdDto>().ReverseMap();
 
             CreateMap<Question, QuestionListDto>()
-                                                .ForMember(dest => dest.Question, opt => opt.MapFrom(src =>
+                                                .ForMember(dest => dest.Content, opt => opt.MapFrom(src =>
                                                 src.QuestionTranslations.Select(t=>t.Content)
                                                 .FirstOrDefault()));
             
             CreateMap<Question, QuestionGetByIdDto>()
                                                  .ForMember(q => q.Tags, dest => dest.MapFrom(src => src.QuestionTags.Select(x => x.Tag)))
-                                                .ForMember(dest => dest.Question, opt => opt.MapFrom(src =>
+                                                .ForMember(dest => dest.Content, opt => opt.MapFrom(src =>
                                                 src.QuestionTranslations.Select(t=>t.Content)
                                                 .FirstOrDefault()));
 

@@ -68,6 +68,10 @@ namespace PrepareToInterview.Persistence.Contexts
                 .WithMany(t => t.QuestionTags)
                 .HasForeignKey(qt => qt.TagID);
 
+            modelBuilder.Entity<Question>()
+           .Property(e => e.Difficulty)
+           .HasConversion<string>();  // Store enum as string in the database
+
             base.OnModelCreating(modelBuilder);
         }
     }
