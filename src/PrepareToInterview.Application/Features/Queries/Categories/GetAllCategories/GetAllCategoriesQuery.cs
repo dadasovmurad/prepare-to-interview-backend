@@ -7,6 +7,7 @@ using PrepareToInterview.Application.Extensions;
 using PrepareToInterview.Application.Features.Base;
 using PrepareToInterview.Application.Repositories;
 using PrepareToInterview.Application.Results;
+using PrepareToInterview.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,13 +36,26 @@ namespace PrepareToInterview.Application.Features.Queries.Categories.GetAllCateg
             {
                 var categories = await _categoryReadRepository.GetAll()
                                                       .Include(c => c.CategoryTranslations.Where(tran => tran.LanguageCode == request.Lang))
-                                                      .Where(c => c.Parent == null)
-                                                      .Include(c => c.Children)
+                                                      //.Where(c => c.Parent == null)
+                                                      //.Include(c => c.Children)
                                                       .ToListAsync();
 
-                var resultData = _mapper.Map<List<CategoryDto>>(categories);
+                var categoryDict = categories.ToDictionary(c => c.Id);
 
-                return new SuccessDataResult<List<CategoryDto>>(resultData);
+                foreach (var category in categories)
+                {
+                    // Find the parent category
+                    if (category.ParentId.HasValue && categoryDict.TryGetValue(category.ParentId.Value, out var parentCategory))
+                    {
+                        parentCategory.Children ??= new List<Category>();
+                        // Add the current category to the parent's children
+                        parentCategory.Children.Add(category);
+                    }
+                }
+
+                var resultData = categories.Where(c => !c.ParentId.HasValue);
+
+                return new SuccessDataResult<List<CategoryDto>>(_mapper.Map<List<CategoryDto>>(resultData));
             }
         }
     }
