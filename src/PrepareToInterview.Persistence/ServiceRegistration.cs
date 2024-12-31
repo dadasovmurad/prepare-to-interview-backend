@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using EFCore.NamingConventions;
 using Microsoft.Extensions.DependencyInjection;
 using PrepareToInterview.Application.Repositories;
 using PrepareToInterview.Persistence.Contexts;
@@ -17,7 +18,9 @@ namespace PrepareToInterview.Persistence
         public static void AddPersistenceServices(this IServiceCollection services)
         {
             string conStr = Configuration.ConnectionString;
-            services.AddDbContext<PrepareToInterviewAPIDbContext>(options => options.UseNpgsql(Configuration.ConnectionString));
+            services.AddDbContext<PrepareToInterviewAPIDbContext>(options => options
+                                                                             .UseNpgsql(Configuration.ConnectionString)
+                                                                             .UseSnakeCaseNamingConvention());
 
             services.AddScoped<IQuestionReadRepository, QuestionReadRepository>();
             services.AddScoped<IQuestionWriteRepository, QuestionWriteRepository>();

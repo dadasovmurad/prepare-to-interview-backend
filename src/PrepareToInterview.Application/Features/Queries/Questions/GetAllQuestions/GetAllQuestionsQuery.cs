@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using PrepareToInterview.Application.DTOs;
 using PrepareToInterview.Application.Extensions;
 using PrepareToInterview.Application.Features.Base;
+using PrepareToInterview.Application.Pagination;
 using PrepareToInterview.Application.Repositories;
 using PrepareToInterview.Application.Results;
 using PrepareToInterview.Domain.Entities;
@@ -12,16 +13,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using XBuddy.Models.Paging;
 
 namespace PrepareToInterview.Application.Features.Queries.Questions.GetAllQuestion
 {
-    public class GetAllQuestionsQuery : IRequest<IDataResult<IList<QuestionListDto>>>
+    public class GetAllQuestionsQuery : BasePagedQuery<IDataResult<PagedResponse<QuestionListDto>>>
     {
         public string Lang { get; set; } = "en";
         public int PageNumber { get; set; } = 1;
         public int PageSize { get; set; } = 10;
-        public class GetAllQuestionQueryHandler : IRequestHandler<GetAllQuestionsQuery, IDataResult<IList<QuestionListDto>>>
+        public class GetAllQuestionQueryHandler : IRequestHandler<GetAllQuestionsQuery, IDataResult<PagedResponse<QuestionListDto>>>
         {
             private readonly IQuestionReadRepository _questionReadRepository;
             private readonly IMapper _mapper;
@@ -31,7 +31,7 @@ namespace PrepareToInterview.Application.Features.Queries.Questions.GetAllQuesti
                 _mapper = mapper;
             }
 
-            public async Task<IDataResult<IList<QuestionListDto>>> Handle(GetAllQuestionsQuery request, CancellationToken cancellationToken)
+            public async Task<IDataResult<PagedResponse<QuestionListDto>>> Handle(GetAllQuestionsQuery request, CancellationToken cancellationToken)
             {
                 var includedData = await _questionReadRepository.GetAll()
                                                          //.Include(q => q.Category)
@@ -43,11 +43,12 @@ namespace PrepareToInterview.Application.Features.Queries.Questions.GetAllQuesti
                                                           //.ThenInclude(x => x.Tag)
                                                           .Skip((request.PageNumber - 1) * request.PageSize) // Skip items from previous pages
                                                           .Take(request.PageSize) // Take items for the current page
-                                                          .ToListAsync(); // Convert to a list asynchronously
+                                                          .GetPageAsync(request.PageNumber, request.PageSize);
 
-                var resultData = _mapper.Map<IList<QuestionListDto>>(includedData);
 
-                return new SuccessDataResult<IList<QuestionListDto>>(resultData);
+                var resultData = _mapper.Map<PagedResponse<QuestionListDto>>(includedData);
+
+                return new SuccessDataResult<PagedResponse<QuestionListDto>>(resultData);
             }
         }
     }

@@ -13,7 +13,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using XBuddy.Models.Paging;
 
 namespace PrepareToInterview.Application.Features.Queries.Categories.GetAllCategory
 {
@@ -34,7 +33,7 @@ namespace PrepareToInterview.Application.Features.Queries.Categories.GetAllCateg
 
             public async Task<IDataResult<IList<CategoryDto>>> Handle(GetAllCategoriesQuery request, CancellationToken cancellationToken)
             {
-                var categories = await _categoryReadRepository.GetAll()
+                var categories = await _categoryReadRepository.GetAll(tracking: false)
                                                       .Include(c => c.CategoryTranslations.Where(tran => tran.LanguageCode == request.Lang))
                                                       //.Where(c => c.Parent == null)
                                                       //.Include(c => c.Children)

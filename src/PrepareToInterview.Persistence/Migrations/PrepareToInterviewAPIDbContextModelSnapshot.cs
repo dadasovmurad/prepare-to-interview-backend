@@ -26,171 +26,210 @@ namespace PrepareToInterview.Persistence.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Content")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("content");
 
                     b.Property<int>("QuestionId")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("question_id");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_answer");
 
-                    b.HasIndex("QuestionId");
+                    b.HasIndex("QuestionId")
+                        .HasDatabaseName("ix_answer_question_id");
 
-                    b.ToTable("Answers");
+                    b.ToTable("answer", (string)null);
                 });
 
             modelBuilder.Entity("PrepareToInterview.Domain.Entities.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("IconUrl")
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("icon_url");
 
                     b.Property<int?>("ParentId")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("parent_id");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_category");
 
-                    b.HasIndex("ParentId");
+                    b.HasIndex("ParentId")
+                        .HasDatabaseName("ix_category_parent_id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("category", (string)null);
                 });
 
             modelBuilder.Entity("PrepareToInterview.Domain.Entities.CategoryTranslation", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<int>("CategoryId")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("category_id");
 
                     b.Property<string>("Content")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("content");
 
                     b.Property<string>("LanguageCode")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("language_code");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_category_translation");
 
-                    b.HasIndex("CategoryId");
+                    b.HasIndex("CategoryId")
+                        .HasDatabaseName("ix_category_translation_category_id");
 
-                    b.ToTable("CategoryTranslations");
+                    b.ToTable("category_translation", (string)null);
                 });
 
             modelBuilder.Entity("PrepareToInterview.Domain.Entities.Comment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Content")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("content");
 
                     b.Property<int>("QuestionId")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("question_id");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_comment");
 
-                    b.HasIndex("QuestionId");
+                    b.HasIndex("QuestionId")
+                        .HasDatabaseName("ix_comment_question_id");
 
-                    b.ToTable("Comments");
+                    b.ToTable("comment", (string)null);
                 });
 
             modelBuilder.Entity("PrepareToInterview.Domain.Entities.Question", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<int>("CategoryId")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("category_id");
 
                     b.Property<string>("Difficulty")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("difficulty");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_question");
 
-                    b.HasIndex("CategoryId");
+                    b.HasIndex("CategoryId")
+                        .HasDatabaseName("ix_question_category_id");
 
-                    b.ToTable("Questions");
+                    b.ToTable("question", (string)null);
                 });
 
             modelBuilder.Entity("PrepareToInterview.Domain.Entities.QuestionTag", b =>
                 {
                     b.Property<int>("QuestionID")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("question_id");
 
                     b.Property<int>("TagID")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("tag_id");
 
-                    b.HasKey("QuestionID", "TagID");
+                    b.HasKey("QuestionID", "TagID")
+                        .HasName("pk_question_tag");
 
-                    b.HasIndex("TagID");
+                    b.HasIndex("TagID")
+                        .HasDatabaseName("ix_question_tag_tag_id");
 
-                    b.ToTable("QuestionTags");
+                    b.ToTable("question_tag", (string)null);
                 });
 
             modelBuilder.Entity("PrepareToInterview.Domain.Entities.QuestionTranslation", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Content")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("content");
 
                     b.Property<string>("LanguageCode")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("language_code");
 
                     b.Property<int>("QuestionId")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("question_id");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_question_translation");
 
-                    b.HasIndex("QuestionId");
+                    b.HasIndex("QuestionId")
+                        .HasDatabaseName("ix_question_translation_question_id");
 
-                    b.ToTable("QuestionTranslations");
+                    b.ToTable("question_translation", (string)null);
                 });
 
             modelBuilder.Entity("PrepareToInterview.Domain.Entities.Tag", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("name");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_tag");
 
-                    b.ToTable("Tags");
+                    b.ToTable("tag", (string)null);
                 });
 
             modelBuilder.Entity("PrepareToInterview.Domain.Entities.Answer", b =>
@@ -199,7 +238,8 @@ namespace PrepareToInterview.Persistence.Migrations
                         .WithMany("Answers")
                         .HasForeignKey("QuestionId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("fk_answer_question_question_id");
 
                     b.Navigation("Question");
                 });
@@ -208,7 +248,8 @@ namespace PrepareToInterview.Persistence.Migrations
                 {
                     b.HasOne("PrepareToInterview.Domain.Entities.Category", "Parent")
                         .WithMany("Children")
-                        .HasForeignKey("ParentId");
+                        .HasForeignKey("ParentId")
+                        .HasConstraintName("fk_category_category_parent_id");
 
                     b.Navigation("Parent");
                 });
@@ -219,7 +260,8 @@ namespace PrepareToInterview.Persistence.Migrations
                         .WithMany("CategoryTranslations")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("fk_category_translation_category_category_id");
 
                     b.Navigation("Category");
                 });
@@ -230,7 +272,8 @@ namespace PrepareToInterview.Persistence.Migrations
                         .WithMany("Comments")
                         .HasForeignKey("QuestionId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("fk_comment_question_question_id");
 
                     b.Navigation("Question");
                 });
@@ -241,7 +284,8 @@ namespace PrepareToInterview.Persistence.Migrations
                         .WithMany("Questions")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("fk_question_category_category_id");
 
                     b.Navigation("Category");
                 });
@@ -252,13 +296,15 @@ namespace PrepareToInterview.Persistence.Migrations
                         .WithMany("QuestionTags")
                         .HasForeignKey("QuestionID")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("fk_question_tag_question_question_id");
 
                     b.HasOne("PrepareToInterview.Domain.Entities.Tag", "Tag")
                         .WithMany("QuestionTags")
                         .HasForeignKey("TagID")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("fk_question_tag_tag_tag_id");
 
                     b.Navigation("Question");
 
@@ -271,7 +317,8 @@ namespace PrepareToInterview.Persistence.Migrations
                         .WithMany("QuestionTranslations")
                         .HasForeignKey("QuestionId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("fk_question_translation_question_question_id");
 
                     b.Navigation("Question");
                 });

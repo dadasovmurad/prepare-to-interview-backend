@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using PrepareToInterview.Application.Pagination;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using XBuddy.Models.Paging;
 
 namespace PrepareToInterview.Application.Extensions
 {
