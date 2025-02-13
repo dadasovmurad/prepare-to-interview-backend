@@ -12,6 +12,17 @@ namespace PrepareToInterview.API
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAngularApp", policy =>
+                {
+                    policy.WithOrigins("http://localhost:4200") // Angular dev server
+                          .AllowAnyMethod()
+                          .AllowAnyHeader()
+                          .AllowCredentials();
+                });
+            });
+
             // Add services to the container.
             var services = builder.Services;
 
@@ -25,6 +36,8 @@ namespace PrepareToInterview.API
             services.AddProblemDetails();
             services.AddValidatorsFromAssemblyContaining<CreateQuestionValidator>();
             var app = builder.Build();
+
+            app.UseCors("AllowAngularApp");
 
             // Configure the HTTP request pipeline.
 
