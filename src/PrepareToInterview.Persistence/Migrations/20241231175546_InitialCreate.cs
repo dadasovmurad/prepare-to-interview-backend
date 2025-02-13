@@ -17,6 +17,7 @@ namespace PrepareToInterview.Persistence.Migrations
                 {
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    name = table.Column<string>(type: "text", nullable: false),
                     parent_id = table.Column<int>(type: "integer", nullable: true),
                     icon_url = table.Column<string>(type: "text", nullable: true)
                 },
@@ -44,32 +45,12 @@ namespace PrepareToInterview.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "category_translation",
-                columns: table => new
-                {
-                    id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    category_id = table.Column<int>(type: "integer", nullable: false),
-                    language_code = table.Column<string>(type: "text", nullable: false),
-                    content = table.Column<string>(type: "text", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("pk_category_translation", x => x.id);
-                    table.ForeignKey(
-                        name: "fk_category_translation_category_category_id",
-                        column: x => x.category_id,
-                        principalTable: "category",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "question",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    content = table.Column<string>(type: "text", nullable: false),
                     difficulty = table.Column<string>(type: "text", nullable: false),
                     category_id = table.Column<int>(type: "integer", nullable: false)
                 },
@@ -148,27 +129,6 @@ namespace PrepareToInterview.Persistence.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "question_translation",
-                columns: table => new
-                {
-                    id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    question_id = table.Column<int>(type: "integer", nullable: false),
-                    language_code = table.Column<string>(type: "text", nullable: false),
-                    content = table.Column<string>(type: "text", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("pk_question_translation", x => x.id);
-                    table.ForeignKey(
-                        name: "fk_question_translation_question_question_id",
-                        column: x => x.question_id,
-                        principalTable: "question",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
 
             migrationBuilder.CreateIndex(
                 name: "ix_answer_question_id",
@@ -179,11 +139,6 @@ namespace PrepareToInterview.Persistence.Migrations
                 name: "ix_category_parent_id",
                 table: "category",
                 column: "parent_id");
-
-            migrationBuilder.CreateIndex(
-                name: "ix_category_translation_category_id",
-                table: "category_translation",
-                column: "category_id");
 
             migrationBuilder.CreateIndex(
                 name: "ix_comment_question_id",
@@ -200,16 +155,10 @@ namespace PrepareToInterview.Persistence.Migrations
                 table: "question_tag",
                 column: "tag_id");
 
-            migrationBuilder.CreateIndex(
-                name: "ix_question_translation_question_id",
-                table: "question_translation",
-                column: "question_id");
-
             migrationBuilder.AddCheckConstraint(
                 table: "question",
                 name: "ck_question_difficulty",
                 sql: "\"difficulty\" IN ('Easy', 'Medium', 'Hard')");
-
         }
 
         /// <inheritdoc />
@@ -219,16 +168,10 @@ namespace PrepareToInterview.Persistence.Migrations
                 name: "answer");
 
             migrationBuilder.DropTable(
-                name: "category_translation");
-
-            migrationBuilder.DropTable(
                 name: "comment");
 
             migrationBuilder.DropTable(
                 name: "question_tag");
-
-            migrationBuilder.DropTable(
-                name: "question_translation");
 
             migrationBuilder.DropTable(
                 name: "tag");

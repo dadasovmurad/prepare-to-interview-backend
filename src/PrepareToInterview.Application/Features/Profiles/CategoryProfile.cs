@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using PrepareToInterview.Application.DTOs.Category;
+using PrepareToInterview.Application.Features.Commands.Categories.CreateCategory;
 using PrepareToInterview.Domain.Entities;
 
 namespace PrepareToInterview.Application.Features.Profiles
@@ -8,16 +9,11 @@ namespace PrepareToInterview.Application.Features.Profiles
     {
         public CategoryProfile()
         {
-            CreateMap<Category, CategoryDto>()
-                .ForMember(q => q.Name, dest => dest
-                                                   .MapFrom(src => src.CategoryTranslations
-                                                   .Select(x => x.Content)
-                                                   .FirstOrDefault()))
-                                                   .ReverseMap();
+            CreateMap<Category, CategoryDto>().ReverseMap();
 
-            CreateMap<CategoryTranslation, CategoryTranslationsListDto>();
+            //CreateMap<CategoryTranslation, CategoryTranslationsListDto>();
 
-            //CreateMap<CreateCategoryCommand, Category>()
+            CreateMap<CreateCategoryCommand, Category>().ReverseMap();
             //    .ForMember(q => q.CategoryTranslations, dest => dest.MapFrom(src => src.CategoryTranslations));
         }
     }

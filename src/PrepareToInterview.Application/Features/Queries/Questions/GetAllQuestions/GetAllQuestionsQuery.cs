@@ -12,7 +12,7 @@ namespace PrepareToInterview.Application.Features.Queries.Questions.GetAllQuesti
 {
     public class GetAllQuestionsQuery : BasePagedQuery<IDataResult<PagedResponse<QuestionListDto>>>
     {
-        public string Lang { get; set; } = "en";
+        //public string Lang { get; set; } = "en";
         public int PageNumber { get; set; } = 1;
         public int PageSize { get; set; } = 10;
         public class GetAllQuestionQueryHandler : IRequestHandler<GetAllQuestionsQuery, IDataResult<PagedResponse<QuestionListDto>>>
@@ -30,7 +30,7 @@ namespace PrepareToInterview.Application.Features.Queries.Questions.GetAllQuesti
                 var includedData = await _questionReadRepository.GetAll()
                                                          //.Include(q => q.Category)
                                                          //.Include(q => q.Category.CategoryTranslations.Where(c => c.LanguageCode == request.Lang))
-                                                         .Include(q => q.QuestionTranslations.Where(t => t.LanguageCode == request.Lang))
+                                                         //.Include(q => q.QuestionTranslations.Where(t => t.LanguageCode == request.Lang))
                                                           //.Include(q => q.Answers)
                                                           //.Include(q => q.Comments)
                                                           //.Include(q => q.QuestionTags)  

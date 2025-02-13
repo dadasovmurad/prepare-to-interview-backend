@@ -13,26 +13,10 @@ namespace PrepareToInterview.Application.Features.Profiles
         {
             CreateMap<Question, CreateQuestionCommand>().ReverseMap();
             CreateMap<Question, UpdateQuestionCommand>().ReverseMap();
-            //CreateMap<Question, QuestionGetByIdDto>().ReverseMap();
 
-            CreateMap<Question, QuestionListDto>()
-                                                .ForMember(dest => dest.Content, opt => opt.MapFrom(src =>
-                                                src.QuestionTranslations.Select(t => t.Content)
-                                                .FirstOrDefault()));
+            CreateMap<Question, QuestionListDto>();
 
-            CreateMap<Question, QuestionGetByIdDto>()
-                                                 .ForMember(q => q.Tags, dest => dest.MapFrom(src => src.QuestionTags.Select(x => x.Tag)))
-                                                .ForMember(dest => dest.Content, opt => opt.MapFrom(src =>
-                                                src.QuestionTranslations.Select(t => t.Content)
-                                                .FirstOrDefault()));
-
-            //    .ForMember(q => q.Tags, dest => dest.MapFrom(src => src.QuestionTags.Select(x => x.Tag)));
-
-            //CreateMap<Question, QuestionListDto>()
-            //   .ForMember(q => q.CategoryTranslations, dest => dest.MapFrom(src => src.Category.CategoryTranslations));
-
-            //CreateMap<Question, QuestionGetByIdDto>()
-
+            CreateMap<Question, QuestionGetByIdDto>().ForMember(q => q.Tags, dest => dest.MapFrom(src => src.QuestionTags.Select(x => x.Tag)));
 
             CreateMap<PagedResponse<Question>, PagedResponse<QuestionListDto>>().ReverseMap();
 
@@ -45,14 +29,9 @@ namespace PrepareToInterview.Application.Features.Profiles
             .ForMember(dest => dest.QuestionTags, opt => opt.MapFrom(src =>
                  src.Tags.Select(tag => new QuestionTag { Tag = new Tag { Name = tag.Name } })));
 
-            CreateMap<CreateQuestionCommand, Question>()
-            .ForMember(dest => dest.QuestionTranslations, opt => opt.MapFrom(src =>
-                src.QuestionTranslations.Select(tr => new QuestionTranslation { LanguageCode = tr.LanguageCode, Content = tr.Content })));
+            CreateMap<CreateQuestionCommand, Question>();
 
-            CreateMap<UpdateQuestionCommand, Question>()
-          .ForMember(dest => dest.QuestionTranslations, opt => opt.MapFrom(src =>
-               src.QuestionTranslations.Select(tr => new QuestionTranslation { LanguageCode = tr.LanguageCode, Content = tr.Content })));
-
+            CreateMap<UpdateQuestionCommand, Question>();
         }
     }
 }

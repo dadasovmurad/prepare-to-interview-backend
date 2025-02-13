@@ -2,7 +2,7 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using PrepareToInterview.Application.DTOs;
-using PrepareToInterview.Application.DTOs.QuestionTranslations;
+//using PrepareToInterview.Application.DTOs.QuestionTranslations;
 using PrepareToInterview.Application.DTOs.Tag;
 using PrepareToInterview.Application.Repositories;
 using PrepareToInterview.Application.Results;
@@ -18,7 +18,7 @@ namespace PrepareToInterview.Application.Features.Commands.Questions.UpdateQuest
         public List<AnswerUpdateDto> Answers { get; set; }
         public List<CommentUpdateDto> Comments { get; set; }
         public List<TagUpdateDto> Tags { get; set; }
-        public List<QuestionTranslationsUpdateDto> QuestionTranslations { get; set; }
+        //public List<QuestionTranslationsUpdateDto> QuestionTranslations { get; set; }
 
         public class UpdateQuestionCommandHandler : IRequestHandler<UpdateQuestionCommand, IDataResult<QuestionUpdatedDto>>
         {
@@ -35,12 +35,11 @@ namespace PrepareToInterview.Application.Features.Commands.Questions.UpdateQuest
             {
                 var targetQuestion = await _questionReadRepository.GetAll(q => q.Id == request.Id)
                                                            .Include(q => q.Answers)
-                                                           .Include(q => q.QuestionTranslations)
+                                                           //.Include(q => q.QuestionTranslations)
                                                            .Include(q => q.Comments)
                                                            .Include(q => q.QuestionTags)
                                                            .ThenInclude(x => x.Tag)
                                                            .FirstOrDefaultAsync();
-
                 if (targetQuestion is not null)
                 {
                     _mapper.Map(request, targetQuestion);

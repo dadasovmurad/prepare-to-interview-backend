@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="DTOs\QuestionTranslations\**" />
+    <EmbeddedResource Remove="DTOs\QuestionTranslations\**" />
+    <None Remove="DTOs\QuestionTranslations\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="DTOs\Category\CategoryTranslationsListDto.cs" />
     <Compile Remove="Features\Commands\Questions\CreateQuestion\CreateQuestionCommandHandler.cs" />
     <Compile Remove="Features\Commands\Questions\CreateQuestion\CreateQuestionCommandRequest.cs" />
     <Compile Remove="Features\Commands\Questions\CreateQuestion\CreateQuestionCommandResponse.cs" />
@@ -16,6 +23,8 @@
     <Compile Remove="Features\Commands\Questions\UpdateQuestion\UpdateQuestionCommandHandler.cs" />
     <Compile Remove="Features\Commands\Questions\UpdateQuestion\UpdateQuestionCommandRequest.cs" />
     <Compile Remove="Features\Commands\Questions\UpdateQuestion\UpdateQuestionCommandResponse.cs" />
+    <Compile Remove="Features\Profiles\CategoryTranslationProfile.cs" />
+    <Compile Remove="Features\Profiles\QuestionTranslationProfile.cs" />
     <Compile Remove="Features\Queries\Questions\GetAllQuestions\GetAllQuestionQueryHandler.cs" />
     <Compile Remove="Features\Queries\Questions\GetAllQuestions\GetAllQuestionQueryRequest.cs" />
     <Compile Remove="Features\Queries\Questions\GetAllQuestions\GetAllQuestionQueryResponse.cs" />
