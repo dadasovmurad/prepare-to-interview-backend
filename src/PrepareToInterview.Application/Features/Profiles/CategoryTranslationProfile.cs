@@ -1,13 +1,7 @@
 ﻿using AutoMapper;
 using PrepareToInterview.Application.DTOs.Category;
 using PrepareToInterview.Application.Features.Commands.Categories.CreateCategory;
-using PrepareToInterview.Application.Features.Commands.Questions.CreateQuestion;
 using PrepareToInterview.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PrepareToInterview.Application.Features.Profiles
 {
@@ -37,11 +31,11 @@ namespace PrepareToInterview.Application.Features.Profiles
                opt => opt.MapFrom(src => src.CategoryTranslations));
 
 
-               //{
-               //Content = src.CategoryTranslations.FirstOrDefault()!.Content,
-               //LanguageCode = src.CategoryTranslations.FirstOrDefault()!.LanguageCode,
-               //}))
-               //);
+            //{
+            //Content = src.CategoryTranslations.FirstOrDefault()!.Content,
+            //LanguageCode = src.CategoryTranslations.FirstOrDefault()!.LanguageCode,
+            //}))
+            //);
 
 
             //CreateMap<Category, CategoryTranslationsListDto>()

@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PrepareToInterview.Application.DTOs.Tag
+﻿namespace PrepareToInterview.Application.DTOs.Tag
 {
     public class TagUpdateDto
     {
-        public string Name { get;set; }
+        public string Name { get; set; }
     }
 }

@@ -1,15 +1,7 @@
 ﻿using AutoMapper;
-using PrepareToInterview.Application.DTOs.Answer;
-using PrepareToInterview.Application.DTOs;
-using PrepareToInterview.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using PrepareToInterview.Application.DTOs.Tag;
-using PrepareToInterview.Application.Features.Commands.Questions.CreateQuestion;
 using PrepareToInterview.Application.Features.Commands.Tags.CreateTag;
+using PrepareToInterview.Domain.Entities;
 
 namespace PrepareToInterview.Application.Features.Profiles
 {
@@ -21,7 +13,7 @@ namespace PrepareToInterview.Application.Features.Profiles
             CreateMap<Tag, TagUpdateDto>().ReverseMap();
             CreateMap<Tag, TagListDto>().ReverseMap();
             CreateMap<TagCreateDto, Tag>();
-            CreateMap<CreateTagCommand,Tag>().ReverseMap();   
+            CreateMap<CreateTagCommand, Tag>().ReverseMap();
             //CreateMap<CreateQuestionCommand, Question>()
             //.ForMember(dest => dest.QuestionTags, opt => opt.MapFrom(src =>
             //    src.Tags.Select(tag => new QuestionTag { Tag = new Tag { Name = tag.Name } })));

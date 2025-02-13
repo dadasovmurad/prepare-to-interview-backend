@@ -1,14 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using EFCore.NamingConventions;
 using Microsoft.Extensions.DependencyInjection;
 using PrepareToInterview.Application.Repositories;
 using PrepareToInterview.Persistence.Contexts;
 using PrepareToInterview.Persistence.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 
 namespace PrepareToInterview.Persistence

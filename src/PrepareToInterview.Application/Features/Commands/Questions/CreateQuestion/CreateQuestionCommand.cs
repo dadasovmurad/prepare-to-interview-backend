@@ -6,12 +6,6 @@ using PrepareToInterview.Application.DTOs.Tag;
 using PrepareToInterview.Application.Repositories;
 using PrepareToInterview.Application.Results;
 using PrepareToInterview.Domain.Entities;
-using PrepareToInterview.Domain.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PrepareToInterview.Application.Features.Commands.Questions.CreateQuestion
 {

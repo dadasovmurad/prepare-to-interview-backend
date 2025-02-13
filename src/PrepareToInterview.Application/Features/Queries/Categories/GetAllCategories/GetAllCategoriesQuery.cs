@@ -1,18 +1,10 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using PrepareToInterview.Application.DTOs;
 using PrepareToInterview.Application.DTOs.Category;
-using PrepareToInterview.Application.Extensions;
-using PrepareToInterview.Application.Features.Base;
 using PrepareToInterview.Application.Repositories;
 using PrepareToInterview.Application.Results;
 using PrepareToInterview.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PrepareToInterview.Application.Features.Queries.Categories.GetAllCategory
 {

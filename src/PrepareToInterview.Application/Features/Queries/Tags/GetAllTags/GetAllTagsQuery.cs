@@ -1,16 +1,9 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using PrepareToInterview.Application.DTOs.Category;
 using PrepareToInterview.Application.DTOs.Tag;
 using PrepareToInterview.Application.Repositories;
 using PrepareToInterview.Application.Results;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PrepareToInterview.Application.Features.Queries.Tags.GetAllTags
 {

@@ -2,13 +2,7 @@
 using PrepareToInterview.Application.Repositories;
 using PrepareToInterview.Domain.Entities.Common;
 using PrepareToInterview.Persistence.Contexts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace PrepareToInterview.Persistence.Repositories
 {

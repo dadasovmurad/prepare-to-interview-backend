@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using PrepareToInterview.Application.DTOs;
-using PrepareToInterview.Application.DTOs.Answer;
 using PrepareToInterview.Application.DTOs.Comment;
 using PrepareToInterview.Domain.Entities;
 

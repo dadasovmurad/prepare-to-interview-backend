@@ -3,11 +3,6 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using PrepareToInterview.Application.Repositories;
 using PrepareToInterview.Domain.Entities.Common;
 using PrepareToInterview.Persistence.Contexts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PrepareToInterview.Persistence.Repositories
 {

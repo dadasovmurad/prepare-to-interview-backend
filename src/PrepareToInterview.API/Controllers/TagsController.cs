@@ -1,8 +1,6 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PrepareToInterview.Application.Features.Commands.Tags.CreateTag;
-using PrepareToInterview.Application.Features.Queries.Categories.GetAllCategory;
 using PrepareToInterview.Application.Features.Queries.Tags.GetAllTags;
 
 namespace PrepareToInterview.API.Controllers

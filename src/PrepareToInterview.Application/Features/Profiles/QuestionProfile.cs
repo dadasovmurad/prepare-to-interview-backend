@@ -1,17 +1,9 @@
 ﻿using AutoMapper;
 using PrepareToInterview.Application.DTOs;
-using PrepareToInterview.Application.DTOs.QuestionTranslations;
-using PrepareToInterview.Application.DTOs.Tag;
 using PrepareToInterview.Application.Features.Commands.Questions.CreateQuestion;
 using PrepareToInterview.Application.Features.Commands.Questions.UpdateQuestion;
 using PrepareToInterview.Application.Pagination;
 using PrepareToInterview.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PrepareToInterview.Application.Features.Profiles
 {
@@ -25,13 +17,13 @@ namespace PrepareToInterview.Application.Features.Profiles
 
             CreateMap<Question, QuestionListDto>()
                                                 .ForMember(dest => dest.Content, opt => opt.MapFrom(src =>
-                                                src.QuestionTranslations.Select(t=>t.Content)
+                                                src.QuestionTranslations.Select(t => t.Content)
                                                 .FirstOrDefault()));
-            
+
             CreateMap<Question, QuestionGetByIdDto>()
                                                  .ForMember(q => q.Tags, dest => dest.MapFrom(src => src.QuestionTags.Select(x => x.Tag)))
                                                 .ForMember(dest => dest.Content, opt => opt.MapFrom(src =>
-                                                src.QuestionTranslations.Select(t=>t.Content)
+                                                src.QuestionTranslations.Select(t => t.Content)
                                                 .FirstOrDefault()));
 
             //    .ForMember(q => q.Tags, dest => dest.MapFrom(src => src.QuestionTags.Select(x => x.Tag)));
@@ -40,7 +32,7 @@ namespace PrepareToInterview.Application.Features.Profiles
             //   .ForMember(q => q.CategoryTranslations, dest => dest.MapFrom(src => src.Category.CategoryTranslations));
 
             //CreateMap<Question, QuestionGetByIdDto>()
-              
+
 
             CreateMap<PagedResponse<Question>, PagedResponse<QuestionListDto>>().ReverseMap();
 

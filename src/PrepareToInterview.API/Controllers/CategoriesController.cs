@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PrepareToInterview.Application.Features.Commands.Categories.CreateCategory;
 using PrepareToInterview.Application.Features.Queries.Categories.GetAllCategory;

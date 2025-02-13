@@ -169,7 +169,7 @@ namespace PrepareToInterview.Persistence.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-         
+
             migrationBuilder.CreateIndex(
                 name: "ix_answer_question_id",
                 table: "answer",

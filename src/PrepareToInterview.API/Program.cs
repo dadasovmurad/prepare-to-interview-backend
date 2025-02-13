@@ -1,6 +1,4 @@
 using FluentValidation;
-using FluentValidation.AspNetCore;
-using Microsoft.AspNetCore.Identity;
 using PrepareToInterview.API.Middlewares;
 using PrepareToInterview.Application;
 using PrepareToInterview.Application.Validators;

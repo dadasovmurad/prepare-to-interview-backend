@@ -1,15 +1,9 @@
 ﻿using AutoMapper;
 using MediatR;
-using PrepareToInterview.Application.DTOs;
 using PrepareToInterview.Application.DTOs.Category;
 using PrepareToInterview.Application.Repositories;
 using PrepareToInterview.Application.Results;
 using PrepareToInterview.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PrepareToInterview.Application.Features.Commands.Categories.CreateCategory
 {
