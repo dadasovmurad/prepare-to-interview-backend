@@ -12,6 +12,7 @@ namespace PrepareToInterview.Application.Features.Commands.Categories.CreateCate
         public string Name {  get; set; }
         public int? ParentId { get; set; }
         public string? IconUrl { get; set; }
+        public string? IconName { get; set; }
         //public IList<CategoryTranslationsListDto> CategoryTranslations { get; set; }
         public class CreateCategoryCommandHandler : IRequestHandler<CreateCategoryCommand, IDataResult<CategoryCreatedDto>>
         {
