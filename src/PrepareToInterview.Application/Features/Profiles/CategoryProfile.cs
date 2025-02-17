@@ -10,6 +10,7 @@ namespace PrepareToInterview.Application.Features.Profiles
         public CategoryProfile()
         {
             CreateMap<Category, CategoryDto>().ReverseMap();
+            CreateMap<Category, CategoryHeaderDto>().ReverseMap();
 
             //CreateMap<CategoryTranslation, CategoryTranslationsListDto>();
 
