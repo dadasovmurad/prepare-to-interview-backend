@@ -13,8 +13,6 @@ namespace PrepareToInterview.Application.Features.Queries.Questions.GetAllQuesti
     public class GetAllQuestionsQuery : BasePagedQuery<IDataResult<PagedResponse<QuestionListDto>>>
     {
         //public string Lang { get; set; } = "en";
-        public int PageNumber { get; set; } = 1;
-        public int PageSize { get; set; } = 10;
         public class GetAllQuestionQueryHandler : IRequestHandler<GetAllQuestionsQuery, IDataResult<PagedResponse<QuestionListDto>>>
         {
             private readonly IQuestionReadRepository _questionReadRepository;
@@ -35,8 +33,8 @@ namespace PrepareToInterview.Application.Features.Queries.Questions.GetAllQuesti
                                                           //.Include(q => q.Comments)
                                                           //.Include(q => q.QuestionTags)  
                                                           //.ThenInclude(x => x.Tag)
-                                                          .Skip((request.PageNumber - 1) * request.PageSize) // Skip items from previous pages
-                                                          .Take(request.PageSize) // Take items for the current page
+                                                          //.Skip((request.PageNumber - 1) * request.PageSize) // Skip items from previous pages
+                                                          //.Take(request.PageSize) // Take items for the current page
                                                           .GetPageAsync(request.PageNumber, request.PageSize);
 
 

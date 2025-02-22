@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using PrepareToInterview.Application.Features.Commands.Questions.CreateQuestion;
 using PrepareToInterview.Application.Features.Commands.Questions.RemoveQuestion;
 using PrepareToInterview.Application.Features.Commands.Questions.UpdateQuestion;
+using PrepareToInterview.Application.Features.Queries.Questions.FilterQuestions;
 using PrepareToInterview.Application.Features.Queries.Questions.GetAllQuestion;
 using PrepareToInterview.Application.Features.Queries.Questions.GetByIdQuestion;
 using PrepareToInterview.Application.Features.Queries.Questions.GetTotalQuestionCount;
@@ -53,6 +54,12 @@ namespace PrepareToInterview.API.Controllers
         public async Task<ActionResult> GetTotalQuestionCount([FromRoute] GetTotalQuestionCountQuery getTotalQuestionCountQuery)
         {
             var response = await _mediator.Send(getTotalQuestionCountQuery);
+            return Ok(response);
+        }
+        [HttpPost("filter")]
+        public async Task<IActionResult> GetFilteredQuestionsPost([FromBody] GetFilteredQuestionsQuery getFilteredQuestionsQuery)
+        {
+            var response = await _mediator.Send(getFilteredQuestionsQuery);
             return Ok(response);
         }
     }

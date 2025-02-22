@@ -4,6 +4,7 @@ using PrepareToInterview.Application.Features.Commands.Categories.CreateCategory
 using PrepareToInterview.Application.Features.Queries.Categories.GetAllCategory;
 using PrepareToInterview.Application.Features.Queries.Categories.GetCategoryChildrensById;
 using PrepareToInterview.Application.Features.Queries.Categories.GetCategoryHeaders;
+using PrepareToInterview.Application.Features.Queries.Questions.FilterQuestions;
 
 namespace PrepareToInterview.API.Controllers
 {
