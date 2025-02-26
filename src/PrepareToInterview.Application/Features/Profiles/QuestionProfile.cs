@@ -29,7 +29,7 @@ namespace PrepareToInterview.Application.Features.Profiles
             .ForMember(dest => dest.QuestionTags, opt => opt.MapFrom(src =>
                  src.Tags.Select(tag => new QuestionTag { Tag = new Tag { Name = tag.Name } })));
 
-            CreateMap<CreateQuestionCommand, Question>();
+            //CreateMap<CreateQuestionCommand, Question>();
 
             CreateMap<UpdateQuestionCommand, Question>();
         }
