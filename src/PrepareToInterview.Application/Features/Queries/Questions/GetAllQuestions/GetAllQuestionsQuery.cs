@@ -25,7 +25,9 @@ namespace PrepareToInterview.Application.Features.Queries.Questions.GetAllQuesti
 
             public async Task<IDataResult<PagedResponse<QuestionListDto>>> Handle(GetAllQuestionsQuery request, CancellationToken cancellationToken)
             {
+                
                 var includedData = await _questionReadRepository.GetAll()
+                    //.Where(x=>x.Id==3139)
                                                          //.Include(q => q.Category)
                                                          //.Include(q => q.Category.CategoryTranslations.Where(c => c.LanguageCode == request.Lang))
                                                          //.Include(q => q.QuestionTranslations.Where(t => t.LanguageCode == request.Lang))
@@ -36,7 +38,6 @@ namespace PrepareToInterview.Application.Features.Queries.Questions.GetAllQuesti
                                                           //.Skip((request.PageNumber - 1) * request.PageSize) // Skip items from previous pages
                                                           //.Take(request.PageSize) // Take items for the current page
                                                           .GetPageAsync(request.PageNumber, request.PageSize);
-
 
                 var resultData = _mapper.Map<PagedResponse<QuestionListDto>>(includedData);
 
