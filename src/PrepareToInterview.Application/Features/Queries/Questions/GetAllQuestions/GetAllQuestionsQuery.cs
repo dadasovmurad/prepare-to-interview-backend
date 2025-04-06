@@ -7,11 +7,18 @@ using PrepareToInterview.Application.Features.Base;
 using PrepareToInterview.Application.Pagination;
 using PrepareToInterview.Application.Repositories;
 using PrepareToInterview.Application.Results;
+using PrepareToInterview.Domain.Enums;
 
 namespace PrepareToInterview.Application.Features.Queries.Questions.GetAllQuestion
 {
     public class GetAllQuestionsQuery : BasePagedQuery<IDataResult<PagedResponse<QuestionListDto>>>
     {
+        public string? Category { get; set; }
+        public string? SubCategory { get; set; }
+        public string? Difficulty { get; set; }
+        public string[]? Tags { get; set; }
+        public string? Term { get; set; }
+
         //public string Lang { get; set; } = "en";
         public class GetAllQuestionQueryHandler : IRequestHandler<GetAllQuestionsQuery, IDataResult<PagedResponse<QuestionListDto>>>
         {
@@ -25,21 +32,35 @@ namespace PrepareToInterview.Application.Features.Queries.Questions.GetAllQuesti
 
             public async Task<IDataResult<PagedResponse<QuestionListDto>>> Handle(GetAllQuestionsQuery request, CancellationToken cancellationToken)
             {
-                
-                var includedData = await _questionReadRepository.GetAll()
-                    //.Where(x=>x.Id==3139)
-                                                         //.Include(q => q.Category)
-                                                         //.Include(q => q.Category.CategoryTranslations.Where(c => c.LanguageCode == request.Lang))
-                                                         //.Include(q => q.QuestionTranslations.Where(t => t.LanguageCode == request.Lang))
-                                                          //.Include(q => q.Answers)
-                                                          //.Include(q => q.Comments)
-                                                          //.Include(q => q.QuestionTags)  
-                                                          //.ThenInclude(x => x.Tag)
-                                                          //.Skip((request.PageNumber - 1) * request.PageSize) // Skip items from previous pages
-                                                          //.Take(request.PageSize) // Take items for the current page
-                                                          .GetPageAsync(request.PageNumber, request.PageSize);
+                var questions = _questionReadRepository.GetAll()
+                                                                        .Include(q => q.Category)
+                                                                        .Include(t => t.QuestionTags)
+                                                                        .ThenInclude(t => t.Tag)
+                                                                        .AsQueryable();
+                if (!string.IsNullOrWhiteSpace(request.Category))
+                {
+                    questions = questions.Where(x => x.Category.Parent == null && x.Category.Name == request.Category);
+                }
+                if (!string.IsNullOrWhiteSpace(request.SubCategory))
+                {
+                    questions = questions.Where(x => x.Category.Parent != null && x.Category.Name == request.SubCategory);
+                }
+                if (!string.IsNullOrEmpty(request.Difficulty) && Enum.TryParse<Difficulty>(request.Difficulty, true, out var difficultyEnum))
+                {
+                    questions = questions.Where(x => x.Difficulty == difficultyEnum);
+                }
+                if (request.Tags is not null && request.Tags.Any())
+                {
+                    questions = questions.Where(x => x.QuestionTags.Any(q => request.Tags.Contains(q.Tag.Name)));
+                }
+                if (!string.IsNullOrWhiteSpace(request.Term))
+                {
+                    questions = questions.Where(x => x.Content.ToLower().Contains(request.Term.ToLower()));
+                }
 
-                var resultData = _mapper.Map<PagedResponse<QuestionListDto>>(includedData);
+                var pagedResult = await questions.GetPageAsync(request.PageNumber, request.PageSize);
+
+                var resultData = _mapper.Map<PagedResponse<QuestionListDto>>(pagedResult);
 
                 return new SuccessDataResult<PagedResponse<QuestionListDto>>(resultData);
             }

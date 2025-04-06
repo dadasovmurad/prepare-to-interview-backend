@@ -56,11 +56,11 @@ namespace PrepareToInterview.API.Controllers
             var response = await _mediator.Send(getTotalQuestionCountQuery);
             return Ok(response);
         }
-        [HttpGet("filter")]
-        public async Task<IActionResult> GetFilteredQuestionsPost([FromQuery] GetFilteredQuestionsQuery getFilteredQuestionsQuery)
-        {
-            var response = await _mediator.Send(getFilteredQuestionsQuery);
-            return Ok(response);
-        }
+        //[HttpGet("filter")]
+        //public async Task<IActionResult> GetFilteredQuestionsPost([FromQuery] GetFilteredQuestionsQuery getFilteredQuestionsQuery)
+        //{
+        //    var response = await _mediator.Send(getFilteredQuestionsQuery);
+        //    return Ok(response);
+        //}
     }
 }
