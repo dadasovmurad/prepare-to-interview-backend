@@ -22,8 +22,8 @@ namespace PrepareToInterview.Application.Features.Queries.Tags.GetAllTags
 
             public async Task<IDataResult<IList<TagListDto>>> Handle(GetAllTagsQuery request, CancellationToken cancellationToken)
             {
-                var tags = await _tagReadRepository.GetAll().ToListAsync();
-                var resultData = _mapper.Map<List<TagListDto>>(tags);
+                var tags = await _tagReadRepository.GetAll().Distinct().ToListAsync();
+                var resultData = _mapper.Map<List<TagListDto>>(tags.DistinctBy(x=>x.Name));
 
                 return new SuccessDataResult<IList<TagListDto>>(resultData);
             }

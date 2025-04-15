@@ -45,7 +45,7 @@ namespace PrepareToInterview.Application.Features.Queries.Questions.GetAllQuesti
                 {
                     questions = questions.Where(x => x.Category.Parent != null && x.Category.Name == request.SubCategory);
                 }
-                if (!string.IsNullOrEmpty(request.Difficulty) && Enum.TryParse<Difficulty>(request.Difficulty, true, out var difficultyEnum))
+                if (!string.IsNullOrEmpty(request.Difficulty) && EnumHelper.TryParseEnumOrDescription(request.Difficulty, out Difficulty difficultyEnum))
                 {
                     questions = questions.Where(x => x.Difficulty == difficultyEnum);
                 }

@@ -16,7 +16,10 @@ namespace PrepareToInterview.Application.Features.Profiles
 
             CreateMap<Question, QuestionListDto>();
 
-            CreateMap<Question, QuestionGetByIdDto>().ForMember(q => q.Tags, dest => dest.MapFrom(src => src.QuestionTags.Select(x => x.Tag)));
+            CreateMap<Question, QuestionGetByIdDto>()
+                .ForMember(q => q.Title, dest => dest.MapFrom(src => src.Content))
+                .ForMember(q => q.Tags, dest => dest.MapFrom(src => src.QuestionTags.Select(x => x.Tag)))
+                .ForMember(q => q.Content, dest => dest.MapFrom(src => src.Answers.FirstOrDefault().Content));
 
             CreateMap<PagedResponse<Question>, PagedResponse<QuestionListDto>>().ReverseMap();
 
