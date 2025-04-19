@@ -37,6 +37,7 @@ namespace PrepareToInterview.Application.Features.Queries.Questions.GetAllQuesti
                                                                         .Include(t => t.QuestionTags)
                                                                         .ThenInclude(t => t.Tag)
                                                                         .AsQueryable();
+                
                 if (!string.IsNullOrWhiteSpace(request.Category))
                 {
                     questions = questions.Where(x => x.Category.Parent == null && x.Category.Name == request.Category);

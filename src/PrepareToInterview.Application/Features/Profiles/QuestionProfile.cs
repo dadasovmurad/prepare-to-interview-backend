@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using PrepareToInterview.Application.DTOs;
+using PrepareToInterview.Application.DTOs.Question;
 using PrepareToInterview.Application.Features.Commands.Questions.CreateQuestion;
 using PrepareToInterview.Application.Features.Commands.Questions.UpdateQuestion;
 using PrepareToInterview.Application.Pagination;
@@ -15,6 +16,8 @@ namespace PrepareToInterview.Application.Features.Profiles
             CreateMap<Question, UpdateQuestionCommand>().ReverseMap();
 
             CreateMap<Question, QuestionListDto>();
+
+            CreateMap<Question,QuestionRelatedDto>().ReverseMap();
 
             CreateMap<Question, QuestionGetByIdDto>()
                 .ForMember(q => q.Title, dest => dest.MapFrom(src => src.Content))

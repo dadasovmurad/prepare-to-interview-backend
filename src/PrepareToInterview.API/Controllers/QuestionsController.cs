@@ -6,6 +6,7 @@ using PrepareToInterview.Application.Features.Commands.Questions.UpdateQuestion;
 using PrepareToInterview.Application.Features.Queries.Questions.FilterQuestions;
 using PrepareToInterview.Application.Features.Queries.Questions.GetAllQuestion;
 using PrepareToInterview.Application.Features.Queries.Questions.GetByIdQuestion;
+using PrepareToInterview.Application.Features.Queries.Questions.GetRelatedQuestions;
 using PrepareToInterview.Application.Features.Queries.Questions.GetTotalQuestionCount;
 
 namespace PrepareToInterview.API.Controllers
@@ -54,6 +55,12 @@ namespace PrepareToInterview.API.Controllers
         public async Task<ActionResult> GetTotalQuestionCount([FromRoute] GetTotalQuestionCountQuery getTotalQuestionCountQuery)
         {
             var response = await _mediator.Send(getTotalQuestionCountQuery);
+            return Ok(response);
+        }
+        [HttpGet("related-questions/{QuestionId}")]
+        public async Task<ActionResult> GetRelatedQuestions([FromRoute] GetRelatedQuestionsQuery getReleatedQuestionsQuery)
+        {
+            var response = await _mediator.Send(getReleatedQuestionsQuery);
             return Ok(response);
         }
         //[HttpGet("filter")]
