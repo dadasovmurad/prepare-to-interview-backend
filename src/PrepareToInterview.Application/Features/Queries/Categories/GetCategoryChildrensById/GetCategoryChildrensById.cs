@@ -32,7 +32,7 @@ namespace PrepareToInterview.Application.Features.Queries.Categories.GetCategory
             {
                 var categories = await _categoryReadRepository.GetAll(tracking: false)
                                                      //.Where(c => c.ParentId == request.Id)
-                                                     .ToListAsync();
+                                                     .ToListAsync(cancellationToken);
 
                 var categoryDict = categories.ToDictionary(c => c.Id);
 
