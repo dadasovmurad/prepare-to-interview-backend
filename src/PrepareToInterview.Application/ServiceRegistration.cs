@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using PrepareToInterview.Application.Services;
 using System.Reflection;
 
 namespace PrepareToInterview.Application
@@ -7,8 +8,13 @@ namespace PrepareToInterview.Application
     {
         public static void AddApplicationServices(this IServiceCollection services)
         {
-            services.AddMediatR(config => config.RegisterServicesFromAssemblies(typeof(ServiceRegistration).Assembly));
+            // Remove MediatR since we're not using CQRS anymore
+            // services.AddMediatR(config => config.RegisterServicesFromAssemblies(typeof(ServiceRegistration).Assembly));
+            
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            
+            // Register our services
+            services.AddScoped<IQuestionService, QuestionService>();
         }
     }
 }
