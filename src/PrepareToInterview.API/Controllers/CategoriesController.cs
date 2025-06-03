@@ -1,10 +1,6 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Mvc;
-using PrepareToInterview.Application.Features.Commands.Categories.CreateCategory;
-using PrepareToInterview.Application.Features.Queries.Categories.GetAllCategory;
-using PrepareToInterview.Application.Features.Queries.Categories.GetCategoryChildrensById;
-using PrepareToInterview.Application.Features.Queries.Categories.GetCategoryHeaders;
-using PrepareToInterview.Application.Features.Queries.Questions.FilterQuestions;
+﻿using Microsoft.AspNetCore.Mvc;
+using PrepareToInterview.Application.DTOs.Category;
+using PrepareToInterview.Application.Services;
 
 namespace PrepareToInterview.API.Controllers
 {
@@ -12,34 +8,46 @@ namespace PrepareToInterview.API.Controllers
     [ApiController]
     public class CategoriesController : ControllerBase
     {
-        private readonly IMediator _mediator;
+        private readonly ICategoryService _categoryService;
 
-        public CategoriesController(IMediator mediator)
+        public CategoriesController(ICategoryService categoryService)
         {
-            _mediator = mediator;
+            _categoryService = categoryService;
         }
+
         [HttpGet]
-        public async Task<IActionResult> GetAllCategories([FromQuery] GetAllCategoriesQuery getAllCategoryQuery)
+        public async Task<IActionResult> GetAllCategories([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
         {
-            var response = await _mediator.Send(getAllCategoryQuery);
+            var response = await _categoryService.GetAllAsync(pageNumber, pageSize);
             return Ok(response);
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetCategoryById([FromRoute] int id)
+        {
+            var response = await _categoryService.GetByIdAsync(id);
+            return Ok(response);
+        }
+
         [HttpPost]
-        public async Task<IActionResult> CreateCategory([FromBody] CreateCategoryCommand createCategoryCommand)
+        public async Task<IActionResult> CreateCategory([FromBody] CategoryCreateDto categoryCreateDto)
         {
-            var response = await _mediator.Send(createCategoryCommand);
+            var response = await _categoryService.CreateAsync(categoryCreateDto);
+            return StatusCode(StatusCodes.Status201Created, response);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateCategory([FromRoute] int id, [FromBody] CategoryUpdateDto categoryUpdateDto)
+        {
+            categoryUpdateDto.Id = id;
+            var response = await _categoryService.UpdateAsync(categoryUpdateDto);
             return Ok(response);
         }
-        [HttpGet("headers")]
-        public async Task<IActionResult> GetCategoryHeaders([FromQuery] GetCategoryHeadersQuery getCategoryHeadersQuery)
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteCategory([FromRoute] int id)
         {
-            var response = await _mediator.Send(getCategoryHeadersQuery);
-            return Ok(response);    
-        }
-        [HttpGet("children")]
-        public async Task<IActionResult> GetCategoryChildrenById([FromQuery] GetCategoryChildrensById query)
-        {
-            var response = await _mediator.Send(query);
+            var response = await _categoryService.DeleteAsync(id);
             return Ok(response);
         }
     }

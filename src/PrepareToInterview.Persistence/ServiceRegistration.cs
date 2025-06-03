@@ -1,37 +1,34 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using PrepareToInterview.Application.Repositories;
+using PrepareToInterview.Application.Services;
 using PrepareToInterview.Persistence.Contexts;
 using PrepareToInterview.Persistence.Repositories;
-
+using PrepareToInterview.Persistence.Services;
 
 namespace PrepareToInterview.Persistence
 {
-    public static class ServiceRegistation
+    public static class ServiceRegistration
     {
         public static void AddPersistenceServices(this IServiceCollection services)
         {
-            string conStr = Configuration.ConnectionString;
             services.AddDbContext<PrepareToInterviewAPIDbContext>(options => options
-                                                                             .UseNpgsql(Configuration.ConnectionString)
-                                                                             .UseSnakeCaseNamingConvention());
+                .UseNpgsql(Configuration.ConnectionString)
+                .UseSnakeCaseNamingConvention());
 
-            services.AddScoped<IQuestionReadRepository, QuestionReadRepository>();
-            services.AddScoped<IQuestionWriteRepository, QuestionWriteRepository>();
+            // Register repositories
+            services.AddScoped<IQuestionRepository, QuestionRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IAnswerRepository, AnswerRepository>();
+            services.AddScoped<ICommentRepository, CommentRepository>();
+            services.AddScoped<ITagRepository, TagRepository>();
 
-            services.AddScoped<IAnswerReadRepository, AnswerReadRepository>();
-            services.AddScoped<IAnswerWriteRepository, AnswerWriteRepository>();
-
-            services.AddScoped<ICommentReadRepository, CommentReadRepository>();
-            services.AddScoped<ICommentReadRepository, CommentReadRepository>();
-
-
-            services.AddScoped<ICategoryReadRepository, CategoryReadRepository>();
-            services.AddScoped<ICategoryWriteRepository, CategoryWriteRepository>();
-
-            services.AddScoped<ITagWriteRepository, TagWriteRepository>();
-            services.AddScoped<ITagReadRepository, TagReadRepository>();
-
+            // Register services
+            services.AddScoped<IQuestionService, QuestionService>();
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IAnswerService, AnswerService>();
+            services.AddScoped<ICommentService, CommentService>();
+            services.AddScoped<ITagService, TagService>();
         }
     }
 }
