@@ -14,6 +14,7 @@ namespace PrepareToInterview.Persistence.Contexts
         public DbSet<Category> Categories { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Tag> Tags { get; set; }
+        public DbSet<Contribution> Contributions { get; set; }
         public DbSet<QuestionTag> QuestionTags { get; set; }
         //public DbSet<QuestionTranslation> QuestionTranslations { get; set; }
         //public DbSet<CategoryTranslation> CategoryTranslations { get; set; }
@@ -63,9 +64,17 @@ namespace PrepareToInterview.Persistence.Contexts
                 .WithMany(t => t.QuestionTags)
                 .HasForeignKey(qt => qt.TagID);
 
+            modelBuilder.Entity<Contribution>()
+                .Property(c => c.Tags)
+                .HasColumnType("jsonb");
+
             modelBuilder.Entity<Question>()
            .Property(e => e.Difficulty)
            .HasConversion<string>();  // Store enum as string in the database
+           
+            modelBuilder.Entity<Contribution>()
+           .Property(e => e.Difficulty)
+           .HasConversion<string>();
 
             base.OnModelCreating(modelBuilder);
         }
