@@ -1,5 +1,4 @@
-﻿
-using PrepareToInterview.Domain.Entities.Common;
+﻿using PrepareToInterview.Domain.Entities.Common;
 
 namespace PrepareToInterview.Domain.Entities
 {
@@ -7,7 +6,7 @@ namespace PrepareToInterview.Domain.Entities
     {
         public string Content { get; set; } // Comment text
         // Foreign Key
-        public int QuestionId { get; set; }
-        public Question Question { get; set; } // Navigation property
+        public int AnswerId { get; set; }
+        public Answer Answer { get; set; } // Navigation property
     }
 }

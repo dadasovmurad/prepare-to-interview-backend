@@ -1,7 +1,8 @@
-﻿namespace PrepareToInterview.Application.DTOs
+﻿namespace PrepareToInterview.Application.DTOs.Comment
 {
     public class CommentUpdateDto
     {
-        public string Content { get; set; }
+        public int Id { get; set; }
+        public string Content { get; set; } = null!;
     }
 }

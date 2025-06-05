@@ -2,5 +2,6 @@
 {
     public class CategoryCreatedDto
     {
+        public int Id { get; set; }
     }
 }

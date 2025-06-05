@@ -46,9 +46,9 @@ namespace PrepareToInterview.Persistence.Contexts
                 .HasForeignKey(c => c.QuestionId);
 
             modelBuilder.Entity<Comment>()
-                .HasOne(c => c.Question)
-                .WithMany(q => q.Comments)
-                .HasForeignKey(c => c.QuestionId);
+                .HasOne(c => c.Answer)
+                .WithMany(a => a.Comments)
+                .HasForeignKey(c => c.AnswerId);
 
             modelBuilder.Entity<QuestionTag>()
                 .HasKey(qt => new { qt.QuestionID, qt.TagID });

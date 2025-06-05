@@ -13,4 +13,4 @@ namespace PrepareToInterview.Application.Services
         Task<IDataResult<AnswerUpdatedDto>> UpdateAsync(AnswerUpdateDto answerUpdateDto);
         Task<IResult> DeleteAsync(int id);
     }
-} 
+}

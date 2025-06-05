@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using PrepareToInterview.Domain.Enums;
 
 namespace PrepareToInterview.Application.DTOs.Question
 {
-    public class QuestionRelatedDto
+    public class QuestionUpdateDto
     {
         public int Id { get; set; }
         public string Content { get; set; } = null!;
+        public int CategoryId { get; set; }
         public Difficulty Difficulty { get; set; }
-        public ICollection<string> Tags { get; set; } = new List<string>();
+        public int[] TagIds { get; set; } = Array.Empty<int>();
     }
-}
+} 

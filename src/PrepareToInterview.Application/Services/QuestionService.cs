@@ -105,12 +105,12 @@ namespace PrepareToInterview.Application.Services
             if (question is null)
                 return new ErrorDataResult<List<QuestionRelatedDto>>("Question not found!");
 
-            var tagIds = question.QuestionTags.Select(x => x.TagId).ToList();
+            var tagIds = question.QuestionTags.Select(x => x.TagID).ToList();
 
             var relatedQuestions = await _questionRepository.GetAll()
                 .Include(q => q.QuestionTags)
                 .ThenInclude(q => q.Tag)
-                .Where(x => x.Id != questionId && x.QuestionTags.Any(qt => tagIds.Contains(qt.TagId)))
+                .Where(x => x.Id != questionId && x.QuestionTags.Any(qt => tagIds.Contains(qt.TagID)))
                 .Take(5)
                 .ToListAsync();
 
