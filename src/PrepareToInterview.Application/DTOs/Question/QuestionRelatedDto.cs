@@ -3,15 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using PrepareToInterview.Domain.Enums;
 
 namespace PrepareToInterview.Application.DTOs.Question
 {
     public class QuestionRelatedDto
     {
         public int Id { get; set; }
-        public string Content { get; set; } = null!;
-        public Difficulty Difficulty { get; set; }
-        public ICollection<string> Tags { get; set; } = new List<string>();
+        public string Content { get; set; }
     }
 }

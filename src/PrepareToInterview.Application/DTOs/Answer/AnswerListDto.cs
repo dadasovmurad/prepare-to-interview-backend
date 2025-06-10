@@ -3,8 +3,6 @@
     public class AnswerListDto
     {
         public int Id { get; set; }
-        public string Content { get; set; } = null!;
-        public int QuestionId { get; set; }
-        public DateTime CreatedAt { get; set; }
+        public string Content { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using PrepareToInterview.Application.DTOs;
 using PrepareToInterview.Application.DTOs.Question;
 using PrepareToInterview.Application.Pagination;
 using PrepareToInterview.Domain.Entities;
@@ -36,5 +37,4 @@ namespace PrepareToInterview.Application.Features.Profiles
             //CreateMap<UpdateQuestionCommand, Question>();
         }
     }
-}
 }

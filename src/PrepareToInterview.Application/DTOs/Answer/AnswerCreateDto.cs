@@ -1,8 +1,7 @@
-﻿namespace PrepareToInterview.Application.DTOs.Answer
+﻿namespace PrepareToInterview.Application.DTOs
 {
     public class AnswerCreateDto
     {
-        public string Content { get; set; } = null!;
-        public int QuestionId { get; set; }
+        public string Content { get; set; }
     }
 }

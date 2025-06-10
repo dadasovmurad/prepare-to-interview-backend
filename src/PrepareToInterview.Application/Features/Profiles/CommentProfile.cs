@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using PrepareToInterview.Application.DTOs;
 using PrepareToInterview.Application.DTOs.Comment;
 using PrepareToInterview.Domain.Entities;
 
@@ -12,5 +13,4 @@ namespace PrepareToInterview.Application.Features.Profiles
             CreateMap<Comment, CommentListDto>().ReverseMap();
         }
     }
-}
 }

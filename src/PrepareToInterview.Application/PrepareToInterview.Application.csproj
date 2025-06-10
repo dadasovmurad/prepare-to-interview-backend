@@ -13,24 +13,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="DTOs\Category\CategoryTranslationsListDto.cs" />
-    <Compile Remove="Features\Commands\Questions\CreateQuestion\CreateQuestionCommandHandler.cs" />
-    <Compile Remove="Features\Commands\Questions\CreateQuestion\CreateQuestionCommandRequest.cs" />
-    <Compile Remove="Features\Commands\Questions\CreateQuestion\CreateQuestionCommandResponse.cs" />
-    <Compile Remove="Features\Commands\Questions\RemoveQuestion\RemoveQuestionCommandHandler.cs" />
-    <Compile Remove="Features\Commands\Questions\RemoveQuestion\RemoveQuestionCommandRequest.cs" />
-    <Compile Remove="Features\Commands\Questions\RemoveQuestion\RemoveQuestionCommandResponse.cs" />
-    <Compile Remove="Features\Commands\Questions\UpdateQuestion\UpdateQuestionCommandHandler.cs" />
-    <Compile Remove="Features\Commands\Questions\UpdateQuestion\UpdateQuestionCommandRequest.cs" />
-    <Compile Remove="Features\Commands\Questions\UpdateQuestion\UpdateQuestionCommandResponse.cs" />
-    <Compile Remove="Features\Profiles\CategoryTranslationProfile.cs" />
-    <Compile Remove="Features\Profiles\QuestionTranslationProfile.cs" />
-    <Compile Remove="Features\Queries\Questions\GetAllQuestions\GetAllQuestionQueryHandler.cs" />
-    <Compile Remove="Features\Queries\Questions\GetAllQuestions\GetAllQuestionQueryRequest.cs" />
-    <Compile Remove="Features\Queries\Questions\GetAllQuestions\GetAllQuestionQueryResponse.cs" />
-    <Compile Remove="Features\Queries\Questions\GetByIdQuestion\GetByIdQuestionQueryHandler.cs" />
-    <Compile Remove="Features\Queries\Questions\GetByIdQuestion\GetByIdQuestionQueryRequest.cs" />
-    <Compile Remove="Features\Queries\Questions\GetByIdQuestion\GetByIdQuestionQueryResponse.cs" />
+    <Compile Remove="Services\ICommentService.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="DTOs\QuestionTranslations\QuestionTranslationsCreateDto.cs" />
+    <Compile Include="DTOs\QuestionTranslations\QuestionTranslationsListDto.cs" />
+    <Compile Include="DTOs\QuestionTranslations\QuestionTranslationsUpdateDto.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,7 +1,6 @@
-﻿namespace PrepareToInterview.Application.DTOs.Question
+﻿namespace PrepareToInterview.Application.DTOs
 {
     public class QuestionCreatedDto
     {
-        public int Id { get; set; }
     }
 }

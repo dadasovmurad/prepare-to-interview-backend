@@ -21,4 +21,3 @@ namespace PrepareToInterview.Application.Features.Profiles
         }
     }
 }
-}

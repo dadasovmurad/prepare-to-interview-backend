@@ -27,7 +27,7 @@ namespace PrepareToInterview.Persistence
             services.AddScoped<IQuestionService, QuestionService>();
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IAnswerService, AnswerService>();
-            services.AddScoped<ICommentService, CommentService>();
+            //services.AddScoped<ICommentService, CommentService>();
             services.AddScoped<ITagService, TagService>();
         }
     }

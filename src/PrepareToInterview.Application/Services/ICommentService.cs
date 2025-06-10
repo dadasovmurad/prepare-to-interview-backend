@@ -1,3 +1,4 @@
+using PrepareToInterview.Application.DTOs;
 using PrepareToInterview.Application.DTOs.Comment;
 using PrepareToInterview.Application.Pagination;
 using PrepareToInterview.Application.Results;

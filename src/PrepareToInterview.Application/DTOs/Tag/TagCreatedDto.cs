@@ -2,6 +2,5 @@
 {
     public class TagCreatedDto
     {
-        public int Id { get; set; }
     }
 }

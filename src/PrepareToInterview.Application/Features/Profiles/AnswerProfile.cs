@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using PrepareToInterview.Application.DTOs;
 using PrepareToInterview.Application.DTOs.Answer;
 using PrepareToInterview.Application.DTOs.Category;
 using PrepareToInterview.Domain.Entities;

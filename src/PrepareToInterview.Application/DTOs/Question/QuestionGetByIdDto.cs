@@ -1,15 +1,17 @@
-﻿using PrepareToInterview.Domain.Enums;
+﻿using PrepareToInterview.Application.DTOs.Answer;
+using PrepareToInterview.Application.DTOs.Category;
+using PrepareToInterview.Application.DTOs.Comment;
+using PrepareToInterview.Application.DTOs.Tag;
+using PrepareToInterview.Domain.Enums;
 
-namespace PrepareToInterview.Application.DTOs.Question
+namespace PrepareToInterview.Application.DTOs
 {
     public class QuestionGetByIdDto
     {
         public int Id { get; set; }
-        public string Content { get; set; } = null!;
-        public int CategoryId { get; set; }
-        public Difficulty Difficulty { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime? UpdatedAt { get; set; }
-        public ICollection<string> Tags { get; set; } = new List<string>();
+        public string Title { get; set; }
+        public string Content { get; set; }
+        public string Difficulty { get; set; }
+        public IList<TagListDto> Tags { get; set; }
     }
 }
