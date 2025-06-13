@@ -13,16 +13,14 @@ namespace PrepareToInterview.Domain.Entities
 {
     public class Contribution : BaseEntity
     {
-        public string FullName { get; set; }
-        public string Email { get; set; }
-        public string? PersonalUrl { get; set; }
-        public string? ImageUrl { get; set; }
-        public string QuestionTitle { get; set; } 
-        public string CategoryName { get; set; } 
-        public string SubCategoryName { get; set; } 
-        public Difficulty Difficulty { get; set; } 
+        public int UserId { get; set; }
+        public string QuestionTitle { get; set; }
+        public string CategoryName { get; set; }
+        public string SubCategoryName { get; set; }
+        public Difficulty Difficulty { get; set; }
         public JsonArray? Tags { get; set; }
-        public string Experience { get; set; } 
-        public string Answer { get; set; } 
+        public string Experience { get; set; }
+        public string Answer { get; set; }
+        public User User { get; set; }
     }
 }
