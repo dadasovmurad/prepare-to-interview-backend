@@ -18,9 +18,9 @@ namespace PrepareToInterview.Domain.Entities
         public string CategoryName { get; set; }
         public string SubCategoryName { get; set; }
         public Difficulty Difficulty { get; set; }
-        public JsonArray? Tags { get; set; }
+        public string? Tags { get; set; }
         public string Experience { get; set; }
         public string Answer { get; set; }
-        public User User { get; set; }
+        public AppUser User { get; set; }
     }
 }

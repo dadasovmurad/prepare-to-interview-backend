@@ -2,7 +2,7 @@
 
 namespace PrepareToInterview.Domain.Entities
 {
-    public class User : BaseEntity
+    public class AppUser : BaseEntity
     {
         public string FullName { get; set; }
         public string Email { get; set; }

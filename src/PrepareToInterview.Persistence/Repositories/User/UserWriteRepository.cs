@@ -8,7 +8,7 @@ using PrepareToInterview.Persistence.Contexts;
 
 namespace PrepareToInterview.Persistence.Repositories
 {
-    public class UserWriteRepository : WriteRepository<PrepareToInterview.Domain.Entities.User>, IUserWriteRepository
+    public class UserWriteRepository : WriteRepository<PrepareToInterview.Domain.Entities.AppUser>, IUserWriteRepository
     {
         public UserWriteRepository(PrepareToInterviewAPIDbContext context) : base(context) { }
     }

@@ -3,7 +3,7 @@
 
 namespace PrepareToInterview.Application.Repositories
 {
-    public interface IUserWriteRepository:IWriteRepository<User>
+    public interface IUserWriteRepository:IWriteRepository<AppUser>
     {
     }
 }

@@ -25,13 +25,17 @@ namespace PrepareToInterview.Persistence
             services.AddScoped<ICommentReadRepository, CommentReadRepository>();
             services.AddScoped<ICommentReadRepository, CommentReadRepository>();
 
-
             services.AddScoped<ICategoryReadRepository, CategoryReadRepository>();
             services.AddScoped<ICategoryWriteRepository, CategoryWriteRepository>();
 
             services.AddScoped<ITagWriteRepository, TagWriteRepository>();
             services.AddScoped<ITagReadRepository, TagReadRepository>();
 
+            services.AddScoped<IUserReadRepository, UserReadRepository>();
+            services.AddScoped<IUserWriteRepository, UserWriteRepository>();
+
+            services.AddScoped<IContributionReadRepository, ContributionReadRepository>();
+            services.AddScoped<IContributionWriteRepository, ContributionWriteRepository>();
         }
     }
 }

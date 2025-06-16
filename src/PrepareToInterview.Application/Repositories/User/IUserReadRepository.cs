@@ -2,7 +2,7 @@
 
 namespace PrepareToInterview.Application.Repositories
 {
-    public interface IUserReadRepository:IReadRepository<User>
+    public interface IUserReadRepository:IReadRepository<AppUser>
     {
     }
 }

@@ -15,7 +15,7 @@ namespace PrepareToInterview.Persistence.Contexts
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Contribution> Contributions { get; set; }
-        public DbSet<User> Users { get; set; }
+        public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<QuestionTag> QuestionTags { get; set; }
         //public DbSet<QuestionTranslation> QuestionTranslations { get; set; }
         //public DbSet<CategoryTranslation> CategoryTranslations { get; set; }
@@ -94,11 +94,14 @@ namespace PrepareToInterview.Persistence.Contexts
                     .WithMany(q => q.Contributions)
                     .HasForeignKey(c => c.UserId);
             });
-            modelBuilder.Entity<User>(entity =>
+            modelBuilder.Entity<AppUser>(entity =>
             {
                 entity.HasMany(u => u.Contributions)
                     .WithOne(c => c.User)
                     .HasForeignKey(c => c.UserId);
+
+                entity.HasIndex(u => u.PassKeyHash)
+                    .IsUnique();
             });
 
             base.OnModelCreating(modelBuilder);
