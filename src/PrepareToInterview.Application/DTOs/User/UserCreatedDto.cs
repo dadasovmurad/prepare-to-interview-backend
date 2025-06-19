@@ -8,7 +8,7 @@ namespace PrepareToInterview.Application.DTOs.User
 {
     public class UserCreatedDto
     {
-        public int UserId { get; set; }
+        public int Id { get; set; }
         public string Email { get; set; }
         public string PlainPassKey { get; set; }
     }

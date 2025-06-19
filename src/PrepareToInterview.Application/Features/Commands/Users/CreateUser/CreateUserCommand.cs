@@ -1,6 +1,7 @@
 ﻿using System.Security.Cryptography;
 using AutoMapper;
 using MediatR;
+using PrepareToInterview.Application.Constants;
 using PrepareToInterview.Application.DTOs.User;
 using PrepareToInterview.Application.Repositories;
 using PrepareToInterview.Application.Results;
@@ -9,7 +10,7 @@ using PrepareToInterview.Domain.Entities;
 
 namespace PrepareToInterview.Application.Features.Commands.Users.CreateUser
 {
-    public class CreateUserCommand : IRequest<IResult>
+    public class CreateUserCommand : IRequest<IDataResult<UserCreatedDto>>
     {
         public string FullName { get; set; }
         public string Email { get; set; }
@@ -17,7 +18,7 @@ namespace PrepareToInterview.Application.Features.Commands.Users.CreateUser
         public string? PersonalUrl { get; set; }
         public string? ImageUrl { get; set; }
 
-        public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, IResult>
+        public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, IDataResult<UserCreatedDto>>
         {
             private readonly IUserReadRepository _userReadRepository;
             private readonly IUserWriteRepository _userWriteRepository;
@@ -28,7 +29,7 @@ namespace PrepareToInterview.Application.Features.Commands.Users.CreateUser
                 _userWriteRepository = userWriteRepository;
                 _mapper = mapper;
             }
-            public async Task<IResult> Handle(CreateUserCommand request, CancellationToken cancellationToken)
+            public async Task<IDataResult<UserCreatedDto>> Handle(CreateUserCommand request, CancellationToken cancellationToken)
             {
                 var trimmedUsername = request.Username.Trim();
                 var trimmedEmail = request.Email.Trim();
@@ -38,7 +39,7 @@ namespace PrepareToInterview.Application.Features.Commands.Users.CreateUser
                 );
 
                 if (userExists is not null)
-                    return new ErrorResult("Username or email already exists.");
+                    return new ErrorDataResult<UserCreatedDto>(Messages.UsernameOrEmailExists);
 
                 var user = _mapper.Map<AppUser>(request);
 
@@ -48,15 +49,10 @@ namespace PrepareToInterview.Application.Features.Commands.Users.CreateUser
                 await _userWriteRepository.AddAsync(user);
                 await _userWriteRepository.SaveAsync();
 
-                // return the plain key in a DTO
-                var resultDto = new UserCreatedDto
-                {
-                    UserId = user.Id,
-                    Email = user.Email,
-                    PlainPassKey = passKeyResult.PlainKey
-                };
+                var resultDto = _mapper.Map<UserCreatedDto>(user);
+                resultDto.PlainPassKey = passKeyResult.PlainKey;
 
-                return new SuccessDataResult<UserCreatedDto>(resultDto, "User successfully created.");
+                return new SuccessDataResult<UserCreatedDto>(resultDto, Messages.UserSuccessfullyCreated);
             }
         }
     }
