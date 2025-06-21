@@ -12,6 +12,7 @@ namespace PrepareToInterview.API
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            // Add CORS policy
             builder.Services.AddCors(options =>
             {
                 options.AddPolicy("AllowAngularApp", policy =>
@@ -23,11 +24,10 @@ namespace PrepareToInterview.API
                 });
             });
 
-            // Add services to the container.
+            // Add services to the container
             var services = builder.Services;
 
             services.AddControllers();
-
             services.AddPersistenceServices();
             services.AddApplicationServices();
             services.AddControllersWithViews();
@@ -35,17 +35,31 @@ namespace PrepareToInterview.API
             services.AddExceptionHandler<GlobalExceptionHandler>();
             services.AddProblemDetails();
             services.AddValidatorsFromAssemblyContaining<CreateQuestionValidator>();
+
+            // Add Swagger services
+            services.AddEndpointsApiExplorer();
+            services.AddSwaggerGen();
+
             var app = builder.Build();
+
+            // Enable Swagger middleware
+            if (app.Environment.IsDevelopment())
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "API V1");
+                    c.RoutePrefix = string.Empty; // Swagger UI will be at the root URL
+                });
+            }
 
             app.UseCors("AllowAngularApp");
 
-            // Configure the HTTP request pipeline.
-
+            // Configure the HTTP request pipeline
             app.UseExceptionHandler();
-
             app.MapControllers();
-
             app.Run();
         }
+
     }
 }
