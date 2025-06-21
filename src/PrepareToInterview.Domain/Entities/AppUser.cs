@@ -11,5 +11,6 @@ namespace PrepareToInterview.Domain.Entities
         public string? ImageUrl { get; set; }
         public byte[] PassKeyHash { get; set; }
         public ICollection<Contribution> Contributions { get; set; }
+        public ICollection<Question> Questions { get; set; }
     }
 }

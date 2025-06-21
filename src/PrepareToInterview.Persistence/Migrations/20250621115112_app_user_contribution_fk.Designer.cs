@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using PrepareToInterview.Persistence.Contexts;
@@ -11,9 +12,11 @@ using PrepareToInterview.Persistence.Contexts;
 namespace PrepareToInterview.Persistence.Migrations
 {
     [DbContext(typeof(PrepareToInterviewAPIDbContext))]
-    partial class PrepareToInterviewAPIDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250621115112_app_user_contribution_fk")]
+    partial class app_user_contribution_fk
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -196,11 +199,6 @@ namespace PrepareToInterview.Persistence.Migrations
                         .HasColumnType("text")
                         .HasColumnName("question_title");
 
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("status");
-
                     b.Property<string>("SubCategoryName")
                         .IsRequired()
                         .HasColumnType("text")
@@ -245,10 +243,6 @@ namespace PrepareToInterview.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("difficulty");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("integer")
-                        .HasColumnName("status");
 
                     b.Property<int>("UserId")
                         .HasColumnType("integer")

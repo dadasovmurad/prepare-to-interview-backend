@@ -60,6 +60,5 @@ namespace PrepareToInterview.API
             app.MapControllers();
             app.Run();
         }
-
     }
 }

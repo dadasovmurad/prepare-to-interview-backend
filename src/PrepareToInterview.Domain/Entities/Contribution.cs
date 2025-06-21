@@ -22,5 +22,6 @@ namespace PrepareToInterview.Domain.Entities
         public string Experience { get; set; }
         public string Answer { get; set; }
         public AppUser User { get; set; }
+        public ContributionStatus Status { get; set; } = ContributionStatus.Pending;
     }
 }

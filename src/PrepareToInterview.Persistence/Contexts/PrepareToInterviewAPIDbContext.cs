@@ -43,9 +43,17 @@ namespace PrepareToInterview.Persistence.Contexts
                 entity.Property(e => e.Difficulty)
                     .HasConversion<string>();
 
+                // Question-Category relationship
                 entity.HasOne(q => q.Category)
                     .WithMany(c => c.Questions)
-                    .HasForeignKey(q => q.CategoryId);
+                    .HasForeignKey(q => q.CategoryId)
+                    .OnDelete(DeleteBehavior.Restrict); // Prevent cascade delete
+
+                // Question-AppUser relationship
+                entity.HasOne(q => q.User)
+                    .WithMany(u => u.Questions)
+                    .HasForeignKey(q => q.UserId)
+                    .OnDelete(DeleteBehavior.Cascade); // Questions deleted when user is deleted
             });
 
             modelBuilder.Entity<Category>(entity =>
@@ -90,17 +98,32 @@ namespace PrepareToInterview.Persistence.Contexts
                 entity.Property(e => e.Difficulty)
                     .HasConversion<string>();
 
+                entity.Property(e => e.Status)
+                    .HasConversion<string>();
+
                 entity.HasOne(c => c.User)
                     .WithMany(q => q.Contributions)
                     .HasForeignKey(c => c.UserId);
             });
             modelBuilder.Entity<AppUser>(entity =>
             {
+                // AppUser-Contribution relationship
                 entity.HasMany(u => u.Contributions)
                     .WithOne(c => c.User)
-                    .HasForeignKey(c => c.UserId);
+                    .HasForeignKey(c => c.UserId)
+                    .OnDelete(DeleteBehavior.Cascade);
 
-                entity.HasIndex(u => u.PassKeyHash)
+                // AppUser-Question relationship (already configured above, but can be explicit)
+                entity.HasMany(u => u.Questions)
+                    .WithOne(q => q.User)
+                    .HasForeignKey(q => q.UserId)
+                    .OnDelete(DeleteBehavior.Cascade);
+
+                // Unique constraints
+                entity.HasIndex(u => u.Email)
+                    .IsUnique();
+
+                entity.HasIndex(u => u.Username)
                     .IsUnique();
             });
 
