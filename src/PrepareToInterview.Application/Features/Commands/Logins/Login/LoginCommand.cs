@@ -32,17 +32,14 @@ namespace PrepareToInterview.Application.Features.Commands.Loginss.Login
 
             public async Task<IDataResult<AppUserDto>> Handle(LoginCommand request, CancellationToken cancellationToken)
             {
-                var appUsers = await _userReadRepository.GetAll()
-                                                        .ToListAsync();
+                var appUser = await _userReadRepository.GetUserByPassKeyAsync(request.PassKey);
 
-                foreach (var user in appUsers)
+                if (appUser is null)
                 {
-                    if (HashingHelper.VerifyHash(request.PassKey, user.PassKeyHash))
-                    {
-                        return new SuccessDataResult<AppUserDto>(_mapper.Map<AppUserDto>(user));
-                    }
+                    return new ErrorDataResult<AppUserDto>(Messages.InvalidPassKey);
                 }
-                return new ErrorDataResult<AppUserDto>(Messages.InvalidPassKey);
+
+                return new SuccessDataResult<AppUserDto>(_mapper.Map<AppUserDto>(appUser));
             }
         }
     }

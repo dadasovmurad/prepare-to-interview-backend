@@ -10,7 +10,6 @@ namespace PrepareToInterview.Domain.Entities
         public int CategoryId { get; set; }
         public int UserId { get; set; }
         public Category Category { get; set; }
-        public ContributionStatus Status { get; set; }
         public ICollection<Answer> Answers { get; set; } // The answer to this question
         public ICollection<Comment> Comments { get; set; } // Related comments
         public ICollection<QuestionTag> QuestionTags { get; set; } // Related comments

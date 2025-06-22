@@ -128,7 +128,6 @@ namespace PrepareToInterview.Application.Features.Commands.Contributions.AcceptC
                 var question = await _questionWriteRepository.AddAsync(new Domain.Entities.Question
                 {
                     Category = category,
-                    Status = Domain.Enums.ContributionStatus.Accepted,
                     Content = contribution.QuestionTitle,
                     UserId = contribution.UserId,
                     QuestionTags = questionTags, // Use the processed tags

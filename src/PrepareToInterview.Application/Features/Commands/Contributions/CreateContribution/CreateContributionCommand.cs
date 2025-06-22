@@ -6,10 +6,13 @@ using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using PrepareToInterview.Application.DTOs;
+using PrepareToInterview.Application.DTOs.User;
 using PrepareToInterview.Application.Features.Commands.Questions.CreateQuestion;
 using PrepareToInterview.Application.Repositories;
 using PrepareToInterview.Application.Results;
+using PrepareToInterview.Application.Utilities.Helpers;
 using PrepareToInterview.Domain.Entities;
 using PrepareToInterview.Domain.Enums;
 
@@ -17,7 +20,7 @@ namespace PrepareToInterview.Application.Features.Commands.Contributions.CreateC
 {
     public class CreateContributionCommand : IRequest<IResult>
     {
-        public int AppUserId { get; set; }
+        public string UserPassKey { get; set; }
         public string QuestionTitle { get; set; }
         public string CategoryName { get; set; }
         public string SubCategoryName { get; set; }
@@ -44,10 +47,13 @@ namespace PrepareToInterview.Application.Features.Commands.Contributions.CreateC
             {
                 try
                 {
-                    var user = await _userReadRepository.GetAsync(u => u.Id == request.AppUserId);
-                    if (user is null) return new ErrorResult("User not found.");
+                    var appUser = await _userReadRepository.GetUserByPassKeyAsync(request.UserPassKey);
+                    if (appUser is null)
+                        return new ErrorResult("User not found.");
 
                     var contribution = _mapper.Map<Contribution>(request);
+                    contribution.User = appUser;
+
                     await _contributionWriteRepository.AddAsync(contribution);
                     await _contributionWriteRepository.SaveAsync();
 
