@@ -26,7 +26,6 @@ namespace PrepareToInterview.Application.Features.Profiles
 
             CreateMap<PagedResponse<Question>, PagedResponse<QuestionListDto>>().ReverseMap();
 
-
             CreateMap<CreateQuestionCommand, Question>()
             .ForMember(dest => dest.QuestionTags, opt => opt.MapFrom(src =>
                 src.Tags.Select(tag => new QuestionTag { Tag = new Tag { Name = tag.Name } })));

@@ -4,6 +4,7 @@ using PrepareToInterview.Application.DTOs;
 using PrepareToInterview.Application.DTOs.Tag;
 using PrepareToInterview.Application.Repositories;
 using PrepareToInterview.Application.Results;
+using PrepareToInterview.Application.Utilities.Helpers;
 using PrepareToInterview.Domain.Entities;
 
 namespace PrepareToInterview.Application.Features.Commands.Questions.CreateQuestion
@@ -20,21 +21,35 @@ namespace PrepareToInterview.Application.Features.Commands.Questions.CreateQuest
         public class CreateQuestionCommandHandler : IRequestHandler<CreateQuestionCommand, IDataResult<QuestionCreatedDto>>
         {
             private readonly IQuestionWriteRepository _questionWriteRepository;
+            private readonly IQuestionReadRepository _questionReadRepository;
             private readonly IMapper _mapper;
-            public CreateQuestionCommandHandler(IQuestionWriteRepository questioNWriteRepository, IMapper mapper)
+            public CreateQuestionCommandHandler(IQuestionWriteRepository questioNWriteRepository, IMapper mapper, IQuestionReadRepository questionReadRepository)
             {
                 _questionWriteRepository = questioNWriteRepository;
                 _mapper = mapper;
+                _questionReadRepository = questionReadRepository;
             }
 
             public async Task<IDataResult<QuestionCreatedDto>> Handle(CreateQuestionCommand request, CancellationToken cancellationToken)
             {
-                var dt = _mapper.Map<Question>(request);
-                await _questionWriteRepository.AddAsync(dt);
+                var question = _mapper.Map<Question>(request);
 
+                // Loop until we generate a unique short URL
+                string shortUrl;
+                do
+                {
+                    shortUrl = ShortUrlHelper.GenerateShortUrl();
+                }
+                while (await _questionReadRepository.AnyAsync(q => q.ShortUrl == shortUrl));
+
+                question.ShortUrl = shortUrl;
+
+                await _questionWriteRepository.AddAsync(question);
                 await _questionWriteRepository.SaveAsync();
 
-                return new SuccessDataResult<QuestionCreatedDto>();
+                var responseDto = _mapper.Map<QuestionCreatedDto>(question);
+
+                return new SuccessDataResult<QuestionCreatedDto>(responseDto);
             }
         }
     }

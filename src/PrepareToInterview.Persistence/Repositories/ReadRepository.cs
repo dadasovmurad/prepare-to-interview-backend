@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PrepareToInterview.Application.Repositories;
+using PrepareToInterview.Domain.Entities;
 using PrepareToInterview.Domain.Entities.Common;
 using PrepareToInterview.Persistence.Contexts;
 using System.Linq.Expressions;
@@ -46,6 +47,10 @@ namespace PrepareToInterview.Persistence.Repositories
         public Task<T> GetByIdAsync(int id, bool tracking = true)
         {
             return GetAsync(x => x.Id == id, tracking);
+        }
+        public async Task<bool> AnyAsync(Expression<Func<T, bool>> predicate)
+        {
+            return await _context.Set<T>().AnyAsync(predicate);
         }
     }
 }

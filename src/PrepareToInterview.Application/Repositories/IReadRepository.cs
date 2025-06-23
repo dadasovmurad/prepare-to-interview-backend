@@ -1,4 +1,5 @@
-﻿using PrepareToInterview.Domain.Entities.Common;
+﻿using PrepareToInterview.Domain.Entities;
+using PrepareToInterview.Domain.Entities.Common;
 using System.Linq.Expressions;
 
 namespace PrepareToInterview.Application.Repositories
@@ -9,6 +10,6 @@ namespace PrepareToInterview.Application.Repositories
         Task<T> GetAsync(Expression<Func<T, bool>> predicate, bool tracking = true);
         T Get(Expression<Func<T, bool>> predicate, bool tracking = true);
         Task<T> GetByIdAsync(int id, bool tracking = true);
-
+        Task<bool> AnyAsync(Expression<Func<T, bool>> predicate);
     }
 }

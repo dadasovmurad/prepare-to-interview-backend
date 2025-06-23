@@ -6,6 +6,7 @@ namespace PrepareToInterview.Domain.Entities
     public class Question : BaseEntity
     {
         public string Content { get; set; }
+        public string ShortUrl { get; set; }
         public Difficulty Difficulty { get; set; }
         public int CategoryId { get; set; }
         public int UserId { get; set; }
@@ -14,6 +15,5 @@ namespace PrepareToInterview.Domain.Entities
         public ICollection<Comment> Comments { get; set; } // Related comments
         public ICollection<QuestionTag> QuestionTags { get; set; } // Related comments
         public AppUser User { get; set; }
-
     }
 }
