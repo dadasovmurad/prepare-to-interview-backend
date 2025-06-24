@@ -22,7 +22,7 @@ namespace PrepareToInterview.API.Middlewares
             {
                 Status = httpContext.Response.StatusCode,
                 Title = "Server error",
-                Detail = exception.InnerException.Message
+                Detail = exception?.InnerException?.Message
             };
 
             httpContext.Response.StatusCode = problemDetails.Status.Value;

@@ -12,6 +12,7 @@ namespace PrepareToInterview.Application.Features.Profiles
             CreateMap<AppUser, CreateUserCommand>().ReverseMap();
             CreateMap<AppUser, AppUserDto>().ReverseMap();
             CreateMap<AppUser, UserCreatedDto>().ReverseMap();
+            CreateMap<AppUser, UserDetailsDto>().ReverseMap();
         }
     }
 }

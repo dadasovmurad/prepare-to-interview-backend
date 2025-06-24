@@ -27,6 +27,7 @@ namespace PrepareToInterview.Application.Features.Queries.Questions.GetByIdQuest
             {
                 var targetQuestion = await _questionReadRepository.GetAll(q => q.Id == request.Id)
                                                         .Include(q => q.Answers)
+                                                        .Include(u => u.User)
                                                         .Include(q => q.QuestionTags)
                                                         .ThenInclude(x => x.Tag)
                                                         .FirstAsync();

@@ -2,6 +2,7 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using PrepareToInterview.Application.DTOs;
+using PrepareToInterview.Application.DTOs.User;
 using PrepareToInterview.Application.Extensions;
 using PrepareToInterview.Application.Features.Base;
 using PrepareToInterview.Application.Pagination;
@@ -37,6 +38,7 @@ namespace PrepareToInterview.Application.Features.Queries.Questions.GetAllQuesti
             {
                 var questions = _questionReadRepository.GetAll()
                                                                         .Include(q => q.Category)
+                                                                        .Include(u=>u.User)
                                                                         .Include(t => t.QuestionTags)
                                                                         .ThenInclude(t => t.Tag)
                                                                         .AsQueryable();

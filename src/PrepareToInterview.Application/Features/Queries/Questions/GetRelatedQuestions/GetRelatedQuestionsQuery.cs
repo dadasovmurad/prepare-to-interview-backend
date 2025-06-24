@@ -32,8 +32,9 @@ namespace PrepareToInterview.Application.Features.Queries.Questions.GetRelatedQu
             public async Task<IDataResult<List<QuestionRelatedDto>>> Handle(GetRelatedQuestionsQuery request, CancellationToken cancellationToken)
             {
                 var question = await _questionReadRepository.GetAll(x => x.Id == request.QuestionId)
+                                                            .Include(u => u.User)
                                                             .Include(q => q.QuestionTags)
-                                                            .ThenInclude(q=>q.Tag)
+                                                            .ThenInclude(q => q.Tag)
                                                             .FirstOrDefaultAsync();
                 if (question is null)
                     return new ErrorDataResult<List<QuestionRelatedDto>>("Question not found!");
@@ -45,7 +46,6 @@ namespace PrepareToInterview.Application.Features.Queries.Questions.GetRelatedQu
                                                                          (q.CategoryId == questionCategoryId ||
                                                                           q.QuestionTags.Any(qt => questionTagIds.Contains(qt.TagID))))
                                                               .ToList();
-
 
                 var resultData = _mapper.Map<List<QuestionRelatedDto>>(relatedQuestions);
 

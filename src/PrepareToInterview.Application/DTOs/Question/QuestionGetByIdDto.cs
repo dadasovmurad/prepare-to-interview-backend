@@ -2,6 +2,7 @@
 using PrepareToInterview.Application.DTOs.Category;
 using PrepareToInterview.Application.DTOs.Comment;
 using PrepareToInterview.Application.DTOs.Tag;
+using PrepareToInterview.Application.DTOs.User;
 using PrepareToInterview.Domain.Enums;
 
 namespace PrepareToInterview.Application.DTOs
@@ -13,5 +14,6 @@ namespace PrepareToInterview.Application.DTOs
         public string Content { get; set; }
         public string Difficulty { get; set; }
         public IList<TagListDto> Tags { get; set; }
+        public UserDetailsDto UserDetails { get; set; }
     }
 }
