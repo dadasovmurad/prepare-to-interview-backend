@@ -16,9 +16,11 @@ namespace PrepareToInterview.Application.Features.Commands.Questions.CreateQuest
         public string Difficulty { get; set; }
         public List<AnswerCreateDto> Answers { get; set; }
         public List<TagCreateDto> Tags { get; set; }
+        public int UserId { get; set; }
+
         //public List<QuestionTranslationsCreateDto> QuestionTranslations { get; set; }
 
-        public class CreateQuestionCommandHandler : IRequestHandler<CreateQuestionCommand, IDataResult<QuestionCreatedDto>>
+        public class CreateQuestionCommandHandler : IRequestHandler<CreateQuestionCommand, IResult>
         {
             private readonly IQuestionWriteRepository _questionWriteRepository;
             private readonly IQuestionReadRepository _questionReadRepository;
@@ -30,7 +32,7 @@ namespace PrepareToInterview.Application.Features.Commands.Questions.CreateQuest
                 _questionReadRepository = questionReadRepository;
             }
 
-            public async Task<IDataResult<QuestionCreatedDto>> Handle(CreateQuestionCommand request, CancellationToken cancellationToken)
+            public async Task<IResult> Handle(CreateQuestionCommand request, CancellationToken cancellationToken)
             {
                 var question = _mapper.Map<Question>(request);
 
@@ -47,9 +49,7 @@ namespace PrepareToInterview.Application.Features.Commands.Questions.CreateQuest
                 await _questionWriteRepository.AddAsync(question);
                 await _questionWriteRepository.SaveAsync();
 
-                var responseDto = _mapper.Map<QuestionCreatedDto>(question);
-
-                return new SuccessDataResult<QuestionCreatedDto>(responseDto);
+                return new SuccessResult();
             }
         }
     }

@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 using PrepareToInterview.Application.Constants;
 using PrepareToInterview.Application.Repositories;
 using PrepareToInterview.Application.Results;
+using PrepareToInterview.Application.Utilities.Helpers;
 using PrepareToInterview.Domain.Entities;
 
 namespace PrepareToInterview.Application.Features.Commands.Contributions.AcceptContribution
@@ -52,6 +53,7 @@ namespace PrepareToInterview.Application.Features.Commands.Contributions.AcceptC
                 }
                 // Get or create main category
                 var category = await _categoryReadRepository.GetAsync(x => x.Name == contribution.CategoryName);
+                Category subCategory = null;
                 if (category is null)
                 {
                     category = await _categorWriteRepository.AddAsync(new Domain.Entities.Category
@@ -71,7 +73,7 @@ namespace PrepareToInterview.Application.Features.Commands.Contributions.AcceptC
                     if (existingSubCategory is null)
                     {
                         // Create new subcategory
-                        var subCategory = await _categorWriteRepository.AddAsync(new Domain.Entities.Category
+                        subCategory = await _categorWriteRepository.AddAsync(new Domain.Entities.Category
                         {
                             Name = contribution.SubCategoryName,
                             ParentId = category.Id // Assuming you have ParentId property
@@ -123,11 +125,17 @@ namespace PrepareToInterview.Application.Features.Commands.Contributions.AcceptC
                         // QuestionID will be set after question is created
                     });
                 }
+                string shortUrl;
+                do
+                {
+                    shortUrl = ShortUrlHelper.GenerateShortUrl();
+                }
+                while (await _questionReadRepository.AnyAsync(q => q.ShortUrl == shortUrl));
 
                 // Create the question
                 var question = await _questionWriteRepository.AddAsync(new Domain.Entities.Question
                 {
-                    Category = category,
+                    Category = subCategory ?? category,
                     Content = contribution.QuestionTitle,
                     UserId = contribution.UserId,
                     QuestionTags = questionTags, // Use the processed tags
@@ -140,6 +148,7 @@ namespace PrepareToInterview.Application.Features.Commands.Contributions.AcceptC
                             // QuestionId will be set automatically by EF Core
                         }
                     },
+                    ShortUrl = shortUrl
                 });
 
                 await _questionWriteRepository.SaveAsync();

@@ -41,11 +41,14 @@ namespace PrepareToInterview.Application.Features.Queries.Questions.GetRelatedQu
 
                 var questionTagIds = question.QuestionTags.Select(qt => qt.TagID).ToList();
                 int questionCategoryId = question.CategoryId;
-                var relatedQuestions = _questionReadRepository.GetAll()
-                                                              .Where(q => q.Id != request.QuestionId &&
-                                                                         (q.CategoryId == questionCategoryId ||
-                                                                          q.QuestionTags.Any(qt => questionTagIds.Contains(qt.TagID))))
-                                                              .ToList();
+                var relatedQuestions = await _questionReadRepository.GetAll()
+                                              .Include(u => u.User)
+                                              .Where(q => q.Id != request.QuestionId &&
+                                                         (q.CategoryId == questionCategoryId ||
+                                                          q.QuestionTags.Any(qt => questionTagIds.Contains(qt.TagID))))
+                                              .OrderBy(q => Guid.NewGuid())
+                                              .Take(10)
+                                              .ToListAsync();
 
                 var resultData = _mapper.Map<List<QuestionRelatedDto>>(relatedQuestions);
 
