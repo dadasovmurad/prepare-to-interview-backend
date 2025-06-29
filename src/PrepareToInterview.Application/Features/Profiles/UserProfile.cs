@@ -9,7 +9,8 @@ namespace PrepareToInterview.Application.Features.Profiles
     {
         public UserProfile()
         {
-            CreateMap<AppUser, CreateUserCommand>().ReverseMap();
+            CreateMap<CreateUserCommand, AppUser>()
+                .ForMember(dest => dest.ImageUrl, opt => opt.Ignore()); // Ignore ImageUrl as it's handled separately
             CreateMap<AppUser, AppUserDto>().ReverseMap();
             CreateMap<AppUser, UserCreatedDto>().ReverseMap();
             CreateMap<AppUser, UserDetailsDto>().ReverseMap();

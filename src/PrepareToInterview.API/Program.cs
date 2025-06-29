@@ -57,6 +57,10 @@ namespace PrepareToInterview.API
 
             // Configure the HTTP request pipeline
             app.UseExceptionHandler();
+            
+            // Enable static file serving for uploaded images
+            app.UseStaticFiles();
+            
             app.MapControllers();
             app.Run();
         }

@@ -1,6 +1,7 @@
 ﻿using System.Security.Cryptography;
 using AutoMapper;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using PrepareToInterview.Application.Constants;
 using PrepareToInterview.Application.DTOs.User;
 using PrepareToInterview.Application.Repositories;
@@ -16,7 +17,7 @@ namespace PrepareToInterview.Application.Features.Commands.Users.CreateUser
         public string Email { get; set; }
         public string Username { get; set; }
         public string? PersonalUrl { get; set; }
-        public string? ImageUrl { get; set; }
+        public IFormFile? ImageFile { get; set; }
 
         public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, IDataResult<UserCreatedDto>>
         {
@@ -42,6 +43,23 @@ namespace PrepareToInterview.Application.Features.Commands.Users.CreateUser
                     return new ErrorDataResult<UserCreatedDto>(Messages.UsernameOrEmailExists);
 
                 var user = _mapper.Map<AppUser>(request);
+
+                // Handle image upload
+                if (request.ImageFile != null)
+                {
+                    try
+                    {
+                        user.ImageUrl = await FileUploadHelper.UploadImageAsync(request.ImageFile);
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        return new ErrorDataResult<UserCreatedDto>(ex.Message);
+                    }
+                    catch (Exception)
+                    {
+                        return new ErrorDataResult<UserCreatedDto>("Failed to upload image. Please try again.");
+                    }
+                }
 
                 var passKeyResult = PassKeyHelper.GenerateAndHashPassKey();
                 user.PassKeyHash = passKeyResult.HashedKey;

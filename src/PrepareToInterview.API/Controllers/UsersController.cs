@@ -19,7 +19,7 @@ namespace PrepareToInterview.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateUser([FromBody] CreateUserCommand createUserCommand)
+        public async Task<IActionResult> CreateUser([FromForm] CreateUserCommand createUserCommand)
         {
             var response = await _mediator.Send(createUserCommand);
             return Ok(response);
