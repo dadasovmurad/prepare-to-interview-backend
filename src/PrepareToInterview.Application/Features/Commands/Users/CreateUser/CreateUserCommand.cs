@@ -2,6 +2,7 @@
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using PrepareToInterview.Application.Constants;
 using PrepareToInterview.Application.DTOs.User;
 using PrepareToInterview.Application.Repositories;
@@ -24,11 +25,16 @@ namespace PrepareToInterview.Application.Features.Commands.Users.CreateUser
             private readonly IUserReadRepository _userReadRepository;
             private readonly IUserWriteRepository _userWriteRepository;
             private readonly IMapper _mapper;
-            public CreateUserCommandHandler(IUserReadRepository userReadRepository, IUserWriteRepository userWriteRepository, IMapper mapper)
+            private readonly IConfiguration _configuration;
+            /// <summary>
+            /// Handler for creating a user. Now also sends a passkey email using SMTP settings from configuration.
+            /// </summary>
+            public CreateUserCommandHandler(IUserReadRepository userReadRepository, IUserWriteRepository userWriteRepository, IMapper mapper, IConfiguration configuration)
             {
                 _userReadRepository = userReadRepository;
                 _userWriteRepository = userWriteRepository;
                 _mapper = mapper;
+                _configuration = configuration;
             }
             public async Task<IDataResult<UserCreatedDto>> Handle(CreateUserCommand request, CancellationToken cancellationToken)
             {
@@ -69,6 +75,16 @@ namespace PrepareToInterview.Application.Features.Commands.Users.CreateUser
 
                 var resultDto = _mapper.Map<UserCreatedDto>(user);
                 resultDto.PlainPassKey = passKeyResult.PlainKey;
+
+                // Send passkey email
+                var smtpSection = _configuration.GetSection("Smtp");
+                var smtpHost = smtpSection["Host"];
+                var smtpPort = int.Parse(smtpSection["Port"]);
+                var smtpUser = smtpSection["User"];
+                var smtpPass = smtpSection["Pass"];
+                var subject = "Hesabınız üçün giriş açarı";
+                var body = $"Hörmətli {user.FullName},<br/>Sizin giriş açarınız: <b>{passKeyResult.PlainKey}</b><br><br>Bu giriş açarı vasitəsilə qeydiyyat etmədən sürətli şəkildə töhfə edə bilərsiniz.";
+                await MailHelper.SendEmailAsync(smtpHost, smtpPort, smtpUser, smtpPass, user.Email, subject, body);
 
                 return new SuccessDataResult<UserCreatedDto>(resultDto, Messages.UserSuccessfullyCreated);
             }

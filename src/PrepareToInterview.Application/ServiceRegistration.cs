@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
+using Microsoft.Extensions.Configuration;
 
 namespace PrepareToInterview.Application
 {
@@ -9,6 +10,7 @@ namespace PrepareToInterview.Application
         {
             services.AddMediatR(config => config.RegisterServicesFromAssemblies(typeof(ServiceRegistration).Assembly));
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            services.AddSingleton<IConfiguration>(sp => sp.GetRequiredService<IConfiguration>());
         }
     }
 }
