@@ -44,6 +44,7 @@ namespace PrepareToInterview.Application.Features.Queries.Categories.GetAllCateg
                     }
                 }
 
+                //var resultData = categories.Where(c => !c.ParentId.HasValue).Take(1);
                 var resultData = categories.Where(c => !c.ParentId.HasValue);
 
                 return new SuccessDataResult<List<CategoryDto>>(_mapper.Map<List<CategoryDto>>(resultData));

@@ -6,6 +6,7 @@ using PrepareToInterview.Application.Features.Commands.Questions.UpdateQuestion;
 using PrepareToInterview.Application.Features.Queries.Questions.FilterQuestions;
 using PrepareToInterview.Application.Features.Queries.Questions.GetAllQuestion;
 using PrepareToInterview.Application.Features.Queries.Questions.GetByIdQuestion;
+using PrepareToInterview.Application.Features.Queries.Questions.GetQuestionByShortUrl;
 using PrepareToInterview.Application.Features.Queries.Questions.GetRelatedQuestions;
 using PrepareToInterview.Application.Features.Queries.Questions.GetTotalQuestionCount;
 
@@ -63,11 +64,11 @@ namespace PrepareToInterview.API.Controllers
             var response = await _mediator.Send(getReleatedQuestionsQuery);
             return Ok(response);
         }
-        //[HttpGet("filter")]
-        //public async Task<IActionResult> GetFilteredQuestionsPost([FromQuery] GetFilteredQuestionsQuery getFilteredQuestionsQuery)
-        //{
-        //    var response = await _mediator.Send(getFilteredQuestionsQuery);
-        //    return Ok(response);
-        //}
+        [HttpGet("by-short-url/{ShortUrl}")]
+        public async Task<IActionResult> GetByShortUrl([FromRoute] GetQuestionByShortUrlQuery getQuestionByShortUrlQuery)
+        {
+            var response = await _mediator.Send(getQuestionByShortUrlQuery);
+            return Ok(response);
+        }
     }
 }

@@ -10,7 +10,6 @@ namespace PrepareToInterview.Application
         {
             services.AddMediatR(config => config.RegisterServicesFromAssemblies(typeof(ServiceRegistration).Assembly));
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
-            services.AddSingleton<IConfiguration>(sp => sp.GetRequiredService<IConfiguration>());
         }
     }
 }
