@@ -160,26 +160,26 @@ namespace PrepareToInterview.Application.Features.Commands.Contributions.AcceptC
 
                 // Send congratulatory email to the user
                 var user = await _userReadRepository.GetAsync(u => u.Id == contribution.UserId);
-                if (user != null && !string.IsNullOrEmpty(user.Email))
-                {
-                    var smtpSection = _configuration.GetSection("Smtp");
-                    var smtpHost = smtpSection["Host"];
-                    var smtpPort = int.Parse(smtpSection["Port"]);
-                    var smtpUser = smtpSection["User"];
-                    var smtpPass = smtpSection["Pass"];
-                    var subject = "Təbriklər! Töhfəniz qəbul olundu";
-                    var sb = new StringBuilder();
-                    sb.Append("<div style='font-family:sans-serif;max-width:500px;margin:auto;border:1px solid #e0e0e0;padding:24px;border-radius:8px;background:#fafcff;'>");
-                    sb.Append("<h2 style='color:#2e7d32;'>🎉 Təbriklər!</h2>");
-                    sb.Append("<p>Hörmətli <b>" + user.FullName + "</b>,</p>");
-                    sb.Append("<p>Sizin <b>\"" + contribution.QuestionTitle + "\"</b> başlıqlı töhfəniz <span style='color:#388e3c;font-weight:bold;'>qəbul olundu</span>!</p>");
-                    sb.Append("<p>İcmanın inkişafına verdiyiniz töhfəyə görə təşəkkür edirik. Uğurlarınızın davamını arzulayırıq!</p>");
-                    sb.Append("<hr style='border:none;border-top:1px solid #e0e0e0;margin:24px 0;'>");
-                    sb.Append("<p style='font-size:13px;color:#888;'>Bu avtomatik göndərilmiş mesajdır. Zəhmət olmasa cavab verməyin.</p>");
-                    sb.Append("</div>");
-                    var body = sb.ToString();
-                    await MailHelper.SendEmailAsync(smtpHost, smtpPort, smtpUser, smtpPass, user.Email, subject, body);
-                }
+                //if (user != null && !string.IsNullOrEmpty(user.Email))
+                //{
+                //    var smtpSection = _configuration.GetSection("Smtp");
+                //    var smtpHost = smtpSection["Host"];
+                //    var smtpPort = int.Parse(smtpSection["Port"]);
+                //    var smtpUser = smtpSection["User"];
+                //    var smtpPass = smtpSection["Pass"];
+                //    var subject = "Təbriklər! Töhfəniz qəbul olundu";
+                //    var sb = new StringBuilder();
+                //    sb.Append("<div style='font-family:sans-serif;max-width:500px;margin:auto;border:1px solid #e0e0e0;padding:24px;border-radius:8px;background:#fafcff;'>");
+                //    sb.Append("<h2 style='color:#2e7d32;'>🎉 Təbriklər!</h2>");
+                //    sb.Append("<p>Hörmətli <b>" + user.FullName + "</b>,</p>");
+                //    sb.Append("<p>Sizin <b>\"" + contribution.QuestionTitle + "\"</b> başlıqlı töhfəniz <span style='color:#388e3c;font-weight:bold;'>qəbul olundu</span>!</p>");
+                //    sb.Append("<p>İcmanın inkişafına verdiyiniz töhfəyə görə təşəkkür edirik. Uğurlarınızın davamını arzulayırıq!</p>");
+                //    sb.Append("<hr style='border:none;border-top:1px solid #e0e0e0;margin:24px 0;'>");
+                //    sb.Append("<p style='font-size:13px;color:#888;'>Bu avtomatik göndərilmiş mesajdır. Zəhmət olmasa cavab verməyin.</p>");
+                //    sb.Append("</div>");
+                //    var body = sb.ToString();
+                //    await MailHelper.SendEmailAsync(smtpHost, smtpPort, smtpUser, smtpPass, user.Email, subject, body);
+                //}
 
                 return new SuccessResult();
             }

@@ -16,13 +16,13 @@ namespace PrepareToInterview.Domain.Entities
         public int UserId { get; set; }
         public string QuestionTitle { get; set; }
         public string CategoryName { get; set; }
-        public string SubCategoryName { get; set; }
+        public string? SubCategoryName { get; set; }
         public Difficulty Difficulty { get; set; }
         public string? Tags { get; set; }
-        public string Experience { get; set; }
+        public string? Experience { get; set; }
         public string Answer { get; set; }
         public ContributionStatus Status { get; set; } = ContributionStatus.Pending;
-        public string Note {get;set;}
+        public string? Note {get;set;}
         public AppUser User { get; set; }
     }
 }
