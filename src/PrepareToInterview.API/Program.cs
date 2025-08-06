@@ -1,14 +1,16 @@
 using FluentValidation;
+using Microsoft.EntityFrameworkCore;
 using PrepareToInterview.API.Middlewares;
 using PrepareToInterview.Application;
 using PrepareToInterview.Application.Validators;
 using PrepareToInterview.Persistence;
+using PrepareToInterview.Persistence.Contexts;
 
 namespace PrepareToInterview.API
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -41,6 +43,14 @@ namespace PrepareToInterview.API
             services.AddSwaggerGen();
 
             var app = builder.Build();
+        if (app.Environment.IsDevelopment())
+{
+    var application = app.Services.CreateScope().ServiceProvider.GetRequiredService<PrepareToInterviewAPIDbContext>();
+
+    var pendingMigrations = await application.Database.GetPendingMigrationsAsync();
+    if (pendingMigrations != null)
+        await application.Database.MigrateAsync();
+}
 
             // Enable Swagger middleware
             if (app.Environment.IsDevelopment())
@@ -62,7 +72,7 @@ namespace PrepareToInterview.API
             app.UseStaticFiles();
             
             app.MapControllers();
-            app.Run();
+            await app.RunAsync();
         }
     }
 }

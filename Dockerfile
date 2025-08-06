@@ -1,0 +1,45 @@
+# Use the official .NET 8.0 SDK image as the base image
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+
+# Set the working directory
+WORKDIR /src
+
+# Copy the solution file and restore dependencies
+COPY PrepareToInterview.sln ./
+COPY global.json ./
+COPY NuGet.config ./
+COPY src/PrepareToInterview.API/PrepareToInterview.API.csproj src/PrepareToInterview.API/
+COPY src/PrepareToInterview.Application/PrepareToInterview.Application.csproj src/PrepareToInterview.Application/
+COPY src/PrepareToInterview.Domain/PrepareToInterview.Domain.csproj src/PrepareToInterview.Domain/
+COPY src/PrepareToInterview.Infrastructure/PrepareToInterview.Infrastructure.csproj src/PrepareToInterview.Infrastructure/
+COPY src/PrepareToInterview.Persistence/PrepareToInterview.Persistence.csproj src/PrepareToInterview.Persistence/
+
+# Restore dependencies
+RUN dotnet restore --force
+
+# Copy the rest of the source code
+COPY . .
+
+# Build the application
+RUN dotnet build -c Release
+
+# Publish the application
+RUN dotnet publish src/PrepareToInterview.API/PrepareToInterview.API.csproj -c Release -o /app/publish
+
+# Build the runtime image
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the published application
+COPY --from=build /app/publish .
+
+# Create directory for uploaded images
+RUN mkdir -p /app/wwwroot/images/users
+
+# Expose port 80
+EXPOSE 80
+
+# Set the entry point
+ENTRYPOINT ["dotnet", "PrepareToInterview.API.dll"] 

@@ -99,5 +99,21 @@ namespace PrepareToInterview.API.Controllers
 
             return Ok();
         }
+
+        [HttpGet("test-simple")]
+        public IActionResult TestSimple()
+        {
+            var testResponse = new
+            {
+                Message = "Questions Controller is working!",
+                Timestamp = DateTime.UtcNow,
+                Controller = "QuestionsController",
+                Status = "Active",
+                Environment = _configuration["ASPNETCORE_ENVIRONMENT"] ?? "Unknown",
+                DatabaseConnection = _configuration.GetConnectionString("PostgreSQL") != null ? "Configured" : "Not Configured"
+            };
+
+            return Ok(testResponse);
+        }
     }
 }

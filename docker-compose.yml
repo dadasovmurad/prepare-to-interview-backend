@@ -1,0 +1,67 @@
+services:
+  # API service
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.new
+    container_name: preparetointerview-api
+    ports:
+      - "5000:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:80
+      - ConnectionStrings__PostgreSQL=Host=db;Port=5432;Database=it_capsule_db;User Id=postgres;Password=newpassword;
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - preparetointerview-network
+    restart: unless-stopped
+    volumes:
+      - ./wwwroot/images:/app/wwwroot/images
+
+  # PostgreSQL database
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: newpassword
+      POSTGRES_DB: it_capsule_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+    networks:
+      - preparetointerview-network
+
+  # pgAdmin for database management
+  pgadmin:
+    image: dpage/pgadmin4
+    ports:
+      - "8081:80"  # pgAdmin accessible at http://localhost:8081
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    restart: unless-stopped
+    networks:
+      - preparetointerview-network
+
+volumes:
+  pgdata:
+  pgadmin_data:
+
+networks:
+  preparetointerview-network:
+    driver: bridge
